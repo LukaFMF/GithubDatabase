@@ -1,1 +1,2 @@
-# GithubDatabase
+# Github Database
+![Diagram](./diagram.png)
