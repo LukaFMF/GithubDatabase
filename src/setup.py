@@ -10,7 +10,9 @@ if not jeZeUstvarjena:
 	sqlCode = "".join(file.readlines())
 
 	conn.executescript(sqlCode)
-
+	
 	file.close()
+
+
 
 conn.close()
