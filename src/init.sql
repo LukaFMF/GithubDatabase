@@ -1,31 +1,40 @@
-CREATE TABLE oseba(
+CREATE TABLE user(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	uporabnisko_ime TEXT UNIQUE NOT NULL
+	username TEXT UNIQUE NOT NULL,
+	num_public_repos INTEGER NOT NULL,
+	num_followers INTEGER NOT NULL,
+	join_date TIMESTAMP NOT NULL
+
 );
 
-CREATE TABLE programski_jezik(
+CREATE TABLE language(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	ime TEXT UNIQUE
+	name TEXT UNIQUE
 );
 
-CREATE TABLE repozitorij(
+CREATE TABLE repository(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	naslov TEXT NOT NULL,
-	jezik_id INTEGER REFERENCES programski_jezik(id)
+	title TEXT NOT NULL,
+	description TEXT,
+	num_stars INTEGER NOT NULL,
+	date_created TIMESTAMP NOT NULL,
+	owner_id INTEGER REFERENCES user(id),
+	lang_id INTEGER REFERENCES programski_jezik(id)
 );
 
-CREATE TABLE prispevek(
+CREATE TABLE "commit"(
 	sha TEXT UNIQUE PRIMARY KEY,
-	oseba_id INTEGER NOT NULL REFERENCES oseba(id),
-	repo_id INTEGER NOT NULL  REFERENCES repozitorij(id),
-	datum TIMESTAMP NOT NULL,
-	sporocilo TEXT
+	msg TEXT,
+	date_created TIMESTAMP NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES oseba(id),
+	repo_id INTEGER NOT NULL  REFERENCES repozitorij(id)
 );
 
-CREATE TABLE vprasanje(
+CREATE TABLE issue(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	oseba_id INTEGER NOT NULL REFERENCES oseba(id),
-	repo_id INTEGER NOT NULL REFERENCES repozitorij(id),
-	datum TIMESTAMP NOT NULL,
-	besedilo TEXT
+	title TEXT NOT NULL,
+	body TEXT,
+	date_opened TIMESTAMP NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES oseba(id),
+	repo_id INTEGER NOT NULL REFERENCES repozitorij(id)
 );
