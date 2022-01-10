@@ -29,6 +29,15 @@ class Language:
 
 		return cur.lastrowid
 
+	@staticmethod
+	def getCurrLangs():
+		sqlCode = """
+			SELECT name,id
+			FROM language;
+		"""
+
+		return list(conn.execute(sqlCode).fetchall())
+
 class User:
 	def __init__(self,id,username,numPublicRepos,numFollowers,joinDate):
 		self.id = id
@@ -48,6 +57,15 @@ class User:
 		"""
 
 		conn.execute(sqlCode,self.get())
+
+	@staticmethod
+	def getCurrIds():
+		sqlCode = """
+			SELECT id 
+			FROM user;
+		"""
+
+		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
 
 class Repository:
 	def __init__(self,id,title,description,numStars,createDate,ownerId,langId):
@@ -71,6 +89,15 @@ class Repository:
 
 		conn.execute(sqlCode,self.get())
 
+	@staticmethod
+	def getCurrIds():
+		sqlCode = """
+			SELECT id 
+			FROM repository;
+		"""
+
+		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
+
 class Issue:
 	def __init__(self,id,title,state,dateOpened,userId,repoId):
 		self.id = id
@@ -79,6 +106,26 @@ class Issue:
 		self.dateOpened = dateOpened
 		self.userId = userId
 		self.repoId = repoId
+
+	def get(self):
+		return (self.id,self.title,self.state,self.dateOpened,self.userId,self.repoId)
+
+	def insert(self):
+		sqlCode = """
+			INSERT INTO issue
+			VALUES (?,?,?,?,?,?);
+		"""
+
+		conn.execute(sqlCode,self.get())
+
+	@staticmethod
+	def getCurrIds():
+		sqlCode = """
+			SELECT id 
+			FROM issue;
+		"""
+
+		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
 
 class Commit:
 	def __init__(self,sha,message,date,userId,repoId):
@@ -99,54 +146,68 @@ class Commit:
 
 		conn.execute(sqlCode,self.get())
 
+	@staticmethod
+	def getCurrShas():
+		sqlCode = """
+			SELECT sha 
+			FROM "commit";
+		"""
 
-sqlCode = """
-	SELECT * 
-	FROM user;
-"""
-if len(conn.execute(sqlCode).fetchall()) == 0:
-	import requests as r
-	import json
-	from secret import secretUsername,secretToken
+		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
+		
 
-	authUsr = (secretUsername,secretToken,)
 
-	def removeCurly(str):
-		inx = str.find("{")
-		return str[:inx]
 
-	
-	encounteredUsers = set()
-	encounteredLangs = {}
-	storedUsers = ["LukaFMF"]
-	for user in storedUsers:
-		userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
+import requests as r
+import json
+from secret import secretUsername,secretToken
 
-		usr = User(userData["id"],userData["login"],userData["public_repos"],
-			userData["followers"],userData["created_at"])
+authUsr = (secretUsername,secretToken)
 
-		if usr.id not in encounteredUsers:
-			encounteredUsers.add(usr.id)
-			usr.insert()
+successful = r.get(f"https://api.github.com/users/{secretUsername}",headers = {"Authorization": f"token {secretToken}"}).status_code == 200
+if not successful:
+	print("Secret parameters for comunicating with github api are invalid!")
+	exit(-1)
 
-		# dodaj podatke o repozitorijih in commitih 
-		userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
-		for repoData in userReposData:
-			if not repoData["fork"]:
-				lang = repoData["language"]
 
-				if lang not in encounteredLangs:
-					progLang = Language(lang)
-					encounteredLangs[lang] = progLang.insert()
+encounteredUsers = set(User.getCurrIds())
+encounteredRepos = set(Repository.getCurrIds())
+encounteredCommits = set(Commit.getCurrShas())
+encounteredIssues = set(Issue.getCurrIds())
+encounteredLangs = dict(Language.getCurrLangs())
+storedUsers = ["LukaFMF","jaanos"]
+for user in storedUsers:
+	userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
 
-				repo = Repository(repoData["id"],repoData["name"],repoData["description"],
-					repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
+	usr = User(userData["id"],userData["login"],userData["public_repos"],
+		userData["followers"],userData["created_at"])
 
+	if usr.id not in encounteredUsers:
+		encounteredUsers.add(usr.id)
+		usr.insert()
+
+	# dodaj podatke o repozitorijih in commitih 
+	userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
+	for repoData in userReposData:
+		if not repoData["fork"]:
+			lang = repoData["language"]
+
+			if lang not in encounteredLangs:
+				progLang = Language(lang)
+				encounteredLangs[lang] = progLang.insert()
+
+			repo = Repository(repoData["id"],repoData["name"],repoData["description"],
+				repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
+
+			if repo.id not in encounteredRepos:
+				encounteredRepos.add(repo.id)
 				repo.insert()
+			
 
-				commitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits",
-					auth = authUsr).text)
-				for commitData in commitsData:
+			commitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits",
+				auth = authUsr).text)
+			for commitData in commitsData:
+				if commitData != None and "author" in commitData and commitData["author"] != None:
 					commiterUsername = commitData["author"]["login"]
 					commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
 
@@ -160,14 +221,29 @@ if len(conn.execute(sqlCode).fetchall()) == 0:
 					comData = commitData["commit"]
 					commit = Commit(commitData["sha"],comData["message"],comData["author"]["date"],commitUsr.id,repo.id)
 
-					commit.insert()
-					t.sleep(.01)
+					if commit.sha not in encounteredCommits:
+						encounteredCommits.add(commit.sha)
+						commit.insert()
 
-	conn.commit()
+			# dobi le prvih 20 ali 25 vprasanj
+			issuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues",
+				auth = authUsr).text)
+			for issueData in issuesData:
+				if issueData != None and "user" in issueData and issueData["user"] != None:
+					issuerUsername = issueData["user"]["login"]
+					issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
 
-					
+					issueUsr = User(issuerData["id"],issuerData["login"],issuerData["public_repos"],
+						issuerData["followers"],issuerData["created_at"])
 
-					
+					if issueUsr.id not in encounteredUsers:
+						encounteredUsers.add(issueUsr.id)
+						issueUsr.insert()
 
+					issue = Issue(issueData["id"],issueData["title"],issueData["state"],
+						issueData["created_at"],issueUsr.id,repo.id)
 
-
+					if issue.id not in encounteredIssues:
+						encounteredIssues.add(issue.id)
+						issue.insert()
+conn.commit()
