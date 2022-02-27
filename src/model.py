@@ -80,7 +80,7 @@ class User:
 	def getUserInfo(username):
 		sqlCode = """
 			SELECT *
-			FROM user
+			FROM users
 			WHERE username = ?;
 		"""
 
@@ -287,4 +287,4 @@ if False:
 						if issue.id not in encounteredIssues:
 							encounteredIssues.add(issue.id)
 							issue.insert()
-conn.commit()
+	conn.commit()
