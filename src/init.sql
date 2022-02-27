@@ -4,7 +4,6 @@ CREATE TABLE user(
 	num_public_repos INTEGER NOT NULL,
 	num_followers INTEGER NOT NULL,
 	join_date TIMESTAMP NOT NULL
-
 );
 
 CREATE TABLE language(
