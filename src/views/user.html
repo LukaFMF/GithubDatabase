@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			aaa
+		</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<div>ID: {{user[0]}}</div>
+		<div>Uporabniško ime: {{user[1]}}</div>
+		<div>Število javnih repozitorijev: {{user[2]}}</div>
+		<div>Število sledilcev: {{user[3]}}</div>
+		<div>Datum pridružitve: {{user[4]}}</div>
+		
+		% if len(repos) != 0:
+			Repozitoriji:
+			% for repo in repos:
+			<div><a href="/repos/{{user[1]}}/{{repo}}">{{repo}}</a></div>
+			% end
+		% end
+
+		% if len(commits) != 0:
+		Prispevki:
+		<table>
+			<tr>
+				<th> Koda prispevka </th>
+				<th> Repozitorij </th>
+				<th> Sporočilo </th>
+				<th> Datum </th>
+			</tr>
+			% for commit in commits:
+			<tr>
+				<td> {{commit[0]}} </td>
+				<td> <a href="/repos/{{commit[3]}}/{{commit[4]}}">{{commit[3]}}/{{commit[4]}}</a> </td>
+				<td> {{commit[1]}} </td>
+				<td> {{commit[2]}} </td>
+			</tr>
+			% end
+		</table>
+		% end
+	</body>
+</html>

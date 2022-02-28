@@ -38,6 +38,17 @@ class Language:
 
 		return list(conn.execute(sqlCode).fetchall())
 
+	@staticmethod
+	def getLang(id):
+		sqlCode = """
+			SELECT name
+			FROM language
+			WHERE id = ?;
+		"""
+
+		return conn.execute(sqlCode,(id,)).fetchone()
+
+
 class User:
 	def __init__(self,id,username,numPublicRepos,numFollowers,joinDate):
 		self.id = id
@@ -80,11 +91,21 @@ class User:
 	def getUserInfo(username):
 		sqlCode = """
 			SELECT *
-			FROM users
+			FROM user
 			WHERE username = ?;
 		"""
 
 		return conn.execute(sqlCode,(username,)).fetchone()
+
+	@staticmethod
+	def getUsernameById(id):
+		sqlCode = """
+			SELECT username
+			FROM user
+			WHERE id = ?;
+		"""
+
+		return conn.execute(sqlCode,(id,)).fetchone()
 
 
 class Repository:
@@ -138,6 +159,37 @@ class Repository:
 		"""
 
 		return conn.execute(sqlCode,(id,)).fetchone()
+
+	@staticmethod
+	def getAllReposOfOwner(username):
+		sqlCode = """
+			SELECT r.title
+			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id)
+			WHERE u.username = ?;
+		"""
+
+		return list(map(lambda el: el[0],conn.execute(sqlCode,(username,)).fetchall()))
+
+	@staticmethod
+	def getRepoInfo(username,repoName):
+		sqlCode = """
+			SELECT r.*
+			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id)
+			WHERE u.username = ? AND r.title = ?;
+		"""
+
+		return conn.execute(sqlCode,(username,repoName)).fetchone()
+	
+	def getAllCommitsOfRepo(username,repoName):
+		sqlCode = """
+			SELECT c.*
+			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id) 
+			JOIN "commit" AS c ON (r.id = c.repo_id)
+			WHERE u.username = ? AND r.title = ?;
+		"""
+
+		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
+
 
 class Issue:
 	def __init__(self,id,title,state,dateOpened,userId,repoId):
@@ -195,7 +247,18 @@ class Commit:
 		"""
 
 		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
-		
+
+	@staticmethod
+	def getAllCommitsByUsername(username):
+		sqlCode = """
+			SELECT c.sha,c.msg,c.date_created,cO.username,r.title
+			FROM "commit" AS c JOIN user AS u ON (c.user_id = u.id) 
+			JOIN repository AS r ON(c.repo_id = r.id) JOIN user AS cO ON (r.owner_id = cO.id)
+			WHERE u.username = ?
+			ORDER BY c.date_created DESC;
+		"""
+
+		return list(conn.execute(sqlCode,(username,)).fetchall())
 
 
 
