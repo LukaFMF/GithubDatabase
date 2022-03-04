@@ -3,55 +3,56 @@ import bottle
 
 @bottle.route("/<filename:re:.*\.css>","GET")
 def getStylesheetFile(filename):
-	return bottle.static_file(filename,root='style/')
+	return bottle.static_file(filename,root='static/styles/')
+
+@bottle.route("/<filename:re:(.*\.jpg)|(.*\.png)>","GET")
+def getImageFile(filename):
+	return bottle.static_file(filename,root='static/images/')
+
+@bottle.route("/<filename:re:.*\.ttf>","GET")
+def getImageFile(filename):
+	return bottle.static_file(filename,root='static/fonts/')
 
 @bottle.route("/","GET")
-def mainPage():
-	return bottle.template("main.html",users=User.getAllUsernames())
+def main():
+	return bottle.template("main.html",title = "baza podatkov",users=User.getAllUsernames())
 
+@bottle.route("/users/","GET")
 @bottle.route("/users","GET")
-def allUsers():
-	return bottle.template("main.html",users=User.getAllUsernames())
+def users():
+	return bottle.template("users.html",title = "uporabniki",users=User.getAllUsernames())
 
+@bottle.route("/users/<username>/","GET")
 @bottle.route("/users/<username>","GET")
-def specificUser(username):
+def user(username):
 	user = User.getUserInfo(username)
-	if user == None:
+	if user == None: # ali uporabnik sploh obstaja
 		return bottle.template("userNotFound.html")
 
 	userRepos = Repository.getAllReposOfOwner(user[1])
-	commits = Commit.getAllCommitsByUsername(user[1])
-	return bottle.template("user.html",user=user,repos = userRepos,commits = commits)
+	userCommits = Commit.getAllCommitsByUsername(user[1])
+	return bottle.template("user.html",title = user[1],user=user,repos = userRepos,commits = userCommits)
 
+@bottle.route("/repos/","GET")
+@bottle.route("/repos","GET")
+def repos():
+	return bottle.template("repos.html",title = "repozitoriji",repos=Repository.getInfoAllRepos())
+
+@bottle.route("/repos/<username>/<repoName>/","GET")
 @bottle.route("/repos/<username>/<repoName>","GET")
-def specificRepo(username,repoName):
+def repo(username,repoName):
 	user = User.getUserInfo(username)
 	if user == None:
 		return bottle.template("userNotFound.html")
 
-	repo = Repository.getRepoInfo(user[1],repoName)
+	repo = Repository.getRepoInfo(username,repoName)
 	if repo == None:
 		return bottle.template("repoNotFound.html")
 	
-	l = Language.getLang(repo[6])
-	lang = "/" if l == None or l == (None,) else l[0]
 	commits = Repository.getAllCommitsOfRepo(username,repoName)
-
-	commiters = dict()
-	for commit in commits:
-		commiters[commit[3]] = None
-	
-	for commiter in commiters.keys():
-		commiters[commiter] = User.getUsernameById(commiter)[0]
-	
-	i = 0
-	while i < len(commits):
-		currCommit = commits[i]
-		commits[i] = (currCommit[0],currCommit[1],currCommit[2],commiters[currCommit[3]])
-		i += 1 
-
-	return bottle.template("repo.html",repoData = repo,owner=user[1],lang = lang,commits = commits)
+	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits)
 	
 
-
+bottle.TEMPLATE_PATH.insert(0,'static/views')
 bottle.run(reloader=True,debug=True)
+conn.close()

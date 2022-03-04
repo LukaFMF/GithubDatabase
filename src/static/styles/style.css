@@ -1,0 +1,63 @@
+@font-face {
+	font-family: OpenSans;
+	src: url(Open_sans/OpenSans-Regular.ttf);
+}
+
+body {
+	background-color: #96dddd;
+	font-family: OpenSans;
+}
+
+.top-bar{
+	display: grid;
+	grid-template-columns: .2fr 1fr 1fr 2fr;
+	border-radius: 5px;
+	background-color: #2586ac;
+	height: 75px;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th {
+	border: 2px solid black;
+}
+
+td {
+	border: 1px solid black;
+}
+
+.logo-container {
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 75px;
+}
+
+.users-button, .repos-button{
+	font-size: 30px;
+	line-height: 75px;
+	text-align: center;
+	transition: 0.3s;
+	border-left: 3px solid #4c9ebe; 
+	user-select: none;
+}
+.users-button:hover, .repos-button:hover {
+	background-color: #4c9ebe;
+	transition: 0.3s;
+}
+
+.repos-button {
+	border-right: 3px solid #4c9ebe; 
+}
+
+.monospace-font {
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: bold;
+}

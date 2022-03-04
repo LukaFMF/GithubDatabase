@@ -1,0 +1,23 @@
+% rebase("base.html")
+<h1> Repozitoriji </h1>
+<table>
+	<tr>
+		<th> Naslov </th>
+		<th> Lastnik </th>
+		<th> Opis </th>
+		<th> Število zvezdic </th>
+		<th> Programski jezik </th>
+		<th> Datum nastanka </th>
+	</tr>
+
+	% for repo in repos:
+	<tr>
+		<td> {{repo[0]}} </td>
+		<td> <a href="/users/{{repo[1]}}">{{repo[1]}}</a> </td>
+		<td> {{repo[2]}} </td>
+		<td> {{repo[3]}} </td>
+		<td> {{repo[4]}} </td>
+		<td> {{repo[5]}} </td>
+	</tr>
+	% end
+</table>

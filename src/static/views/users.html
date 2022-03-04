@@ -1,0 +1,8 @@
+% rebase("base.html")
+<h1> Uporabniki </h1>
+<table>
+	<tr><th> Uporabniško ime </th></tr>
+	% for user in users:
+	<tr><td> <a href="users/{{user}}">{{user}}</a> </td></tr>
+	% end
+</table>

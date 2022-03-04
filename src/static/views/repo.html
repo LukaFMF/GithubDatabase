@@ -1,0 +1,30 @@
+% rebase("base.html")
+<h1>Repozitorij - {{title}}</h1>
+
+<div>ID: {{repoData[0]}}</div>
+<div>Lastnik: <a href="/users/{{repoData[1]}}"> {{repoData[1]}}</a></div>
+<div>Naslov: {{repoData[2]}}</div>
+<div>Opis: {{repoData[3]}}</div>
+<div>Število zvezdic: {{repoData[4]}}</div>
+<div>Programski jezik: {{repoData[5]}} </div>
+<div>Datum nastanka: {{repoData[6]}}</div>
+
+% if len(commits) != 0:
+Prispevki:
+<table>
+	<tr>
+		<th> Koda prispevka </th>
+		<th> Uporabnik </th>
+		<th> Sporočilo </th>
+		<th> Datum </th>
+	</tr>
+	% for commit in commits:
+	<tr>
+		<td class="monospace-font"> {{commit[0]}} </td>
+		<td> <a href="/users/{{commit[1]}}">{{commit[1]}}</a> </td>
+		<td> {{commit[2]}} </td>
+		<td> {{commit[3]}} </td>
+	</tr>
+	% end
+</table>
+% end

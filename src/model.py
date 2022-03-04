@@ -149,7 +149,7 @@ class Repository:
 		return list(conn.execute(sqlCode).fetchall())
 
 	@staticmethod
-	def getRepoInfo(id):
+	def getRepoById(id):
 		sqlCode = """
 			SELECT r.id,r.title,r.description,r.num_stars,r.date_created,
 			u.username,l.name
@@ -173,22 +173,32 @@ class Repository:
 	@staticmethod
 	def getRepoInfo(username,repoName):
 		sqlCode = """
-			SELECT r.*
-			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id)
-			WHERE u.username = ? AND r.title = ?;
+			SELECT r.id,rO.username,r.title,r.description,r.num_stars,IFNULL(l.name,"/"),r.date_created
+			FROM repository AS r JOIN user AS rO ON (r.owner_id = rO.id) 
+			JOIN language AS l ON (r.lang_id = l.id)  
+			WHERE rO.username = ? AND r.title = ?;
 		"""
 
 		return conn.execute(sqlCode,(username,repoName)).fetchone()
 	
 	def getAllCommitsOfRepo(username,repoName):
 		sqlCode = """
-			SELECT c.*
-			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id) 
-			JOIN "commit" AS c ON (r.id = c.repo_id)
-			WHERE u.username = ? AND r.title = ?;
+			SELECT c.sha,com.username,c.msg,c.date_created
+			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
+			JOIN user AS com ON (com.id = c.user_id)
+			WHERE com.username = ? AND r.title = ?;
 		"""
 
 		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
+
+	def getInfoAllRepos():
+		sqlCode = """
+			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			FROM repository AS r JOIN user AS rO ON (rO.id = r.owner_id) 
+			JOIN language AS l ON (l.id = r.lang_id)
+		"""
+
+		return list(conn.execute(sqlCode).fetchall())
 
 
 class Issue:

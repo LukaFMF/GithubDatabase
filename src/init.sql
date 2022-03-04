@@ -18,15 +18,15 @@ CREATE TABLE repository(
 	num_stars INTEGER NOT NULL,
 	date_created TIMESTAMP NOT NULL,
 	owner_id INTEGER REFERENCES user(id),
-	lang_id INTEGER REFERENCES programski_jezik(id)
+	lang_id INTEGER REFERENCES language(id)
 );
 
 CREATE TABLE "commit"(
 	sha TEXT UNIQUE PRIMARY KEY,
 	msg TEXT,
 	date_created TIMESTAMP NOT NULL,
-	user_id INTEGER NOT NULL REFERENCES oseba(id),
-	repo_id INTEGER NOT NULL  REFERENCES repozitorij(id)
+	user_id INTEGER NOT NULL REFERENCES user(id),
+	repo_id INTEGER NOT NULL  REFERENCES repository(id)
 );
 
 CREATE TABLE issue(
@@ -34,6 +34,6 @@ CREATE TABLE issue(
 	title TEXT NOT NULL,
 	body TEXT,
 	date_opened TIMESTAMP NOT NULL,
-	user_id INTEGER NOT NULL REFERENCES oseba(id),
-	repo_id INTEGER NOT NULL REFERENCES repozitorij(id)
+	user_id INTEGER NOT NULL REFERENCES user(id),
+	repo_id INTEGER NOT NULL REFERENCES repository(id)
 );
