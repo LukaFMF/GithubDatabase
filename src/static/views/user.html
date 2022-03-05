@@ -1,31 +1,39 @@
 % rebase("base.html")
 <h1> Uporabnik - {{user[1]}} </h1>
 
-<div class = "userdata-bar top-curve">
-	<div class="item top-curve">ID</div>
-	<div class="item top-curve">Uporabniško ime</div>
-	<div class="item top-curve">Število javnih repozitorijev</div>
-	<div class="item top-curve">Število sledilcev</div>
-	<div class="item top-curve">Datum pridružitve</div>
+<div class = "user-data-bar">
+	<div class="info-header">ID</div>
+	<div class="info-header">Uporabniško ime</div>
+	<div class="info-header">Število javnih repozitorijev</div>
+	<div class="info-header">Število sledilcev</div>
+	<div class="info-header">Datum pridružitve</div>
 </div>
-<div class = "userdata-bar bottom-curve">
-	<div class="item bottom-curve">{{user[0]}}</div>
-	<div class="item bottom-curve">{{user[1]}}</div>
-	<div class="item bottom-curve">{{user[2]}}</div>
-	<div class="item bottom-curve">{{user[3]}}</div>
-	<div class="item bottom-curve">{{user[4]}}</div>
+<div class = "user-data-bar">
+	<div class="info-data">{{user[0]}}</div>
+	<div class="info-data">{{user[1]}}</div>
+	<div class="info-data">{{user[2]}}</div>
+	<div class="info-data">{{user[3]}}</div>
+	<div class="info-data">{{user[4]}}</div>
 </div>
-
-<p></p>
 
 % if len(repos) != 0:
+<h1> Repozitoriji </h1>
 <table>
 	<tr>
-		<th>Repozitoriji</th>   <!--Lahko onclick da se tabela skrije v header.-->
+		<th> Naslov </th>
+		<th> Opis </th>
+		<th> Število zvezdic </th>
+		<th> Programski jezik </th>
+		<th> Datum nastanka </th>
 	</tr>
+
 	% for repo in repos:
 	<tr>
-		<td><a href="/repos/{{user[1]}}/{{repo}}">{{repo}}</a></td>
+		<td> <a href="/repos/{{user[1]}}/{{repo[0]}}">{{repo[0]}}</a> </td>
+		<td> {{repo[1]}} </td>
+		<td> {{repo[2]}} </td>
+		<td> {{repo[3]}} </td>
+		<td> {{repo[4]}} </td>
 	</tr>
 	% end
 </table>

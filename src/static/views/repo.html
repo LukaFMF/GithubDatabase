@@ -1,16 +1,25 @@
 % rebase("base.html")
 <h1>Repozitorij - {{title}}</h1>
 
-<div>ID: {{repoData[0]}}</div>
-<div>Lastnik: <a href="/users/{{repoData[1]}}"> {{repoData[1]}}</a></div>
-<div>Naslov: {{repoData[2]}}</div>
-<div>Opis: {{repoData[3]}}</div>
-<div>Število zvezdic: {{repoData[4]}}</div>
-<div>Programski jezik: {{repoData[5]}} </div>
-<div>Datum nastanka: {{repoData[6]}}</div>
+<div class = "repo-data-bar">
+	<div class="info-header">ID</div>
+	<div class="info-header">Lastnik</div>
+	<div class="info-header">Opis</div>
+	<div class="info-header">Število zvezdic</div>
+	<div class="info-header">Programski jezik</div>
+	<div class="info-header">Datum nastanka</div>
+</div>
+<div class = "repo-data-bar">
+	<div class="info-data">{{repoData[0]}}</div>
+	<div class="info-data"><a href="/users/{{repoData[1]}}">{{repoData[1]}}</a></div>
+	<div class="info-data">{{repoData[3]}}</div>
+	<div class="info-data">{{repoData[4]}}</div>
+	<div class="info-data">{{repoData[5]}}</div>
+	<div class="info-data">{{repoData[6]}}</div>
+</div>
 
 % if len(commits) != 0:
-Prispevki:
+<h1> Prispevki </h1>
 <table>
 	<tr>
 		<th> Koda prispevka </th>

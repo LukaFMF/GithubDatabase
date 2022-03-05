@@ -52,6 +52,27 @@ def repo(username,repoName):
 	commits = Repository.getAllCommitsOfRepo(username,repoName)
 	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits)
 	
+@bottle.route("/login/","GET")
+@bottle.route("/login","GET")
+def login():
+	return bottle.template("login.html",title= "prijava")
+
+@bottle.route("/login/","POST")
+@bottle.route("/login","POST")
+def loginForm():
+	username = bottle.request.forms.get("username")
+	password = bottle.request.forms.get("password")
+	return f"{username} - {password}"
+
+@bottle.route("/register/","GET")
+@bottle.route("/register","GET")
+def register():
+	return bottle.template("register.html",title= "registracija")
+
+@bottle.route("/register/","POST")
+@bottle.route("/register","POST")
+def registerForm():
+	pass
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
 bottle.run(reloader=True,debug=True)

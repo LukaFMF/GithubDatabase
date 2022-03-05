@@ -10,31 +10,63 @@ body {
 
 .top-bar{
 	display: grid;
-	grid-template-columns: .2fr 1fr 1fr 2fr;
+	grid-template-columns: .2fr 1fr 1fr 1fr .5fr;
 	border-radius: 5px;
 	background-color: #2586ac;
 	height: 75px;
 }
 
-.userdata-bar{
+.user-data-bar{
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	height: 25px;
-	background-color: #96dddd;
+	width: 75%;
+	line-height: 30px;
+	height: 30px;
 }
 
-.top-curve{
-	border-radius: 5px 5px 0 0; /* koti zgoraj so zaokroženi, spodaj ne */
+.repo-data-bar{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 2.5fr 1fr 1fr 1fr;
+	width: 85%;
+	line-height: 30px;
+	height: 30px;
 }
 
-.bottom-curve{
-	border-radius: 0 0 5px 5px; /* koti spodaj so zaokroženi, zgoraj ne */
+
+.info-header {
+	background-color: #2586ac;
+	color: white;
 }
 
-.item{
-	border: 1.5px solid black;
-	border-left: 1.5px solid black;
+.info-data {
+	background-color: white;
+	border-left: 1px solid #2586ac;
+	border-right: 1px solid #2586ac;
+	border-bottom: 2px solid #2586ac;
+}
+
+.info-header:first-of-type {
+	border-top-left-radius: 5px;
+}
+
+.info-header:last-of-type {
+	border-top-right-radius: 5px;
+}
+
+.info-data:first-of-type {
+	border-bottom-left-radius: 5px;
+	border-left: 2px solid #2586ac;
+}
+
+.info-data:last-of-type {
+	border-bottom-right-radius: 5px;
+	border-right: 2px solid #2586ac;
 }
 
 h1 {
@@ -61,7 +93,7 @@ td {
 	height: 75px;
 }
 
-.users-button, .repos-button{
+.users-button, .repos-button, .langs-button{
 	font-size: 30px;
 	line-height: 75px;
 	text-align: center;
@@ -69,16 +101,20 @@ td {
 	border-left: 3px solid #4c9ebe; 
 	user-select: none;
 }
-.users-button:hover, .repos-button:hover {
+.users-button:hover, .repos-button:hover, .langs-button:hover{
 	background-color: #4c9ebe;
 	transition: 0.3s;
 }
 
-.repos-button {
+.langs-button {
 	border-right: 3px solid #4c9ebe; 
 }
 
 .monospace-font {
 	font-family: 'Courier New', Courier, monospace;
 	font-weight: bold;
+}
+
+form {
+	text-align: center;
 }

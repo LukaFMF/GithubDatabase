@@ -7,7 +7,7 @@ jeZeUstvarjena = os.path.exists("github.db")
 conn = dbapi.connect("github.db")
 
 if not jeZeUstvarjena:
-	file = open("init.sql")
+	file = open("init_github.sql")
 	sqlCode = file.read()
 
 	conn.executescript(sqlCode)
@@ -163,17 +163,18 @@ class Repository:
 	@staticmethod
 	def getAllReposOfOwner(username):
 		sqlCode = """
-			SELECT r.title
-			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id)
+			SELECT r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id) JOIN 
+			language AS l ON (r.lang_id = l.id)
 			WHERE u.username = ?;
 		"""
 
-		return list(map(lambda el: el[0],conn.execute(sqlCode,(username,)).fetchall()))
+		return list(conn.execute(sqlCode,(username,)).fetchall())
 
 	@staticmethod
 	def getRepoInfo(username,repoName):
 		sqlCode = """
-			SELECT r.id,rO.username,r.title,r.description,r.num_stars,IFNULL(l.name,"/"),r.date_created
+			SELECT r.id,rO.username,r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
 			FROM repository AS r JOIN user AS rO ON (r.owner_id = rO.id) 
 			JOIN language AS l ON (r.lang_id = l.id)  
 			WHERE rO.username = ? AND r.title = ?;
