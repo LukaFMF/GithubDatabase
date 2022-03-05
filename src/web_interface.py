@@ -10,7 +10,7 @@ def getImageFile(filename):
 	return bottle.static_file(filename,root='static/images/')
 
 @bottle.route("/<filename:re:.*\.ttf>","GET")
-def getImageFile(filename):
+def getFontFile(filename):
 	return bottle.static_file(filename,root='static/fonts/')
 
 @bottle.route("/","GET")

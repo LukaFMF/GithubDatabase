@@ -1,21 +1,38 @@
 % rebase("base.html")
 <h1> Uporabnik - {{user[1]}} </h1>
 
-<div>ID: {{user[0]}}</div>
-<div>Uporabniško ime: {{user[1]}}</div>
-<div>Število javnih repozitorijev: {{user[2]}}</div>
-<div>Število sledilcev: {{user[3]}}</div>
-<div>Datum pridružitve: {{user[4]}}</div>
+<div class = "userdata-bar top-curve">
+	<div class="item top-curve">ID</div>
+	<div class="item top-curve">Uporabniško ime</div>
+	<div class="item top-curve">Število javnih repozitorijev</div>
+	<div class="item top-curve">Število sledilcev</div>
+	<div class="item top-curve">Datum pridružitve</div>
+</div>
+<div class = "userdata-bar bottom-curve">
+	<div class="item bottom-curve">{{user[0]}}</div>
+	<div class="item bottom-curve">{{user[1]}}</div>
+	<div class="item bottom-curve">{{user[2]}}</div>
+	<div class="item bottom-curve">{{user[3]}}</div>
+	<div class="item bottom-curve">{{user[4]}}</div>
+</div>
+
+<p></p>
 
 % if len(repos) != 0:
-	Repozitoriji:
+<table>
+	<tr>
+		<th>Repozitoriji</th>   <!--Lahko onclick da se tabela skrije v header.-->
+	</tr>
 	% for repo in repos:
-	<div><a href="/repos/{{user[1]}}/{{repo}}">{{repo}}</a></div>
+	<tr>
+		<td><a href="/repos/{{user[1]}}/{{repo}}">{{repo}}</a></td>
+	</tr>
 	% end
+</table>
 % end
 
 % if len(commits) != 0:
-Prispevki:
+<h1> Prispevki </h1>
 <table>
 	<tr>
 		<th> Koda prispevka </th>

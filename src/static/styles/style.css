@@ -16,6 +16,27 @@ body {
 	height: 75px;
 }
 
+.userdata-bar{
+	text-align: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	height: 25px;
+	background-color: #96dddd;
+}
+
+.top-curve{
+	border-radius: 5px 5px 0 0; /* koti zgoraj so zaokroženi, spodaj ne */
+}
+
+.bottom-curve{
+	border-radius: 0 0 5px 5px; /* koti spodaj so zaokroženi, zgoraj ne */
+}
+
+.item{
+	border: 1.5px solid black;
+	border-left: 1.5px solid black;
+}
+
 h1 {
 	text-align: center;
 }
