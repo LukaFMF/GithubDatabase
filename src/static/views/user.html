@@ -58,3 +58,25 @@
 	% end
 </table>
 % end
+
+% if len(issues) != 0:
+<h1> Vprašanja </h1>
+<table>
+	<tr>
+		<th> Naslov </th>
+		<th> Repozitorij </th>
+		<th> Lastnik repozitorija </th>
+		<th> Stanje </th>
+		<th> Datum nastanka </th>
+	</tr>
+	% for issue in issues:
+	<tr>
+		<td> {{issue[0]}} </td>
+		<td> <a href="/repos/{{issue[5]}}/{{issue[1]}}">{{issue[1]}}</a></td>
+		<td> {{issue[2]}} </td>
+		<td> {{issue[3]}} </td>
+		<td> {{issue[4]}} </td>
+	</tr>
+	% end
+</table>
+% end

@@ -88,6 +88,16 @@ class User:
 		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
 
 	@staticmethod
+	def getAllUsersInfo(): #we get all data of all users
+		sqlCode = """
+			SELECT *
+			FROM user;
+		"""
+
+		return list(conn.execute(sqlCode).fetchall())
+
+
+	@staticmethod
 	def getUserInfo(username):
 		sqlCode = """
 			SELECT *
@@ -221,6 +231,27 @@ class Issue:
 		"""
 
 		conn.execute(sqlCode,self.get())
+
+	@staticmethod
+	def getAllIssuesOfUser(username):  #dobimo podatke: naslov vprašanja, naslov repozitorija, lastnik repozitorija, stanje, datum, avtor vprašanja
+		sqlCode = """
+			SELECT i.title,r.title,uo.username,IFNULL(i.body,"/"),i.date_opened,u.username  
+			FROM  issue AS i JOIN user AS u ON (i.user_id = u.id)
+			JOIN repository AS r ON (i.repo_id = r.id)
+			JOIN user AS uO ON (r.owner_id = uo.id)
+			WHERE u.username = ?;
+		"""
+		return list(conn.execute(sqlCode,(username,)).fetchall())
+
+
+	@staticmethod
+	def getAllIssuesOfRepo(repoName):
+		sqlCode = """
+			SELECT i.title,IFNULL(i.body,"/"),i.date_opened, u.username
+			FROM  issue AS i JOIN repository AS r ON (i.repo_id = r.id)
+			WHERE r.title = ?;
+		"""
+		return list(conn.execute(sqlCode,(repoName,)).fetchall())
 
 	@staticmethod
 	def getCurrIds():

@@ -20,18 +20,19 @@ def main():
 @bottle.route("/users/","GET")
 @bottle.route("/users","GET")
 def users():
-	return bottle.template("users.html",title = "uporabniki",users=User.getAllUsernames())
+	return bottle.template("users.html",title = "uporabniki",users=User.getAllUsersInfo())
 
 @bottle.route("/users/<username>/","GET")
 @bottle.route("/users/<username>","GET")
-def user(username):
+def user(username): 
 	user = User.getUserInfo(username)
 	if user == None: # ali uporabnik sploh obstaja
 		return bottle.template("userNotFound.html")
 
 	userRepos = Repository.getAllReposOfOwner(user[1])
 	userCommits = Commit.getAllCommitsByUsername(user[1])
-	return bottle.template("user.html",title = user[1],user=user,repos = userRepos,commits = userCommits)
+	userIssues = Issue.getAllIssuesOfUser(user[1]) # added issues
+	return bottle.template("user.html",title = user[1],user=user,repos = userRepos,commits = userCommits,issues = userIssues)
 
 @bottle.route("/repos/","GET")
 @bottle.route("/repos","GET")

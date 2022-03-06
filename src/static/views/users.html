@@ -1,8 +1,20 @@
 % rebase("base.html")
 <h1> Uporabniki </h1>
 <table>
-	<tr><th> Uporabniško ime </th></tr>
+	<tr>
+		<th> ID </th>
+		<th> Uporabniško ime </th>
+		<th> Število javnih repozitorijev </th>
+		<th> Število sledilcev </th>
+		<th> Datum pridružitve </th>
+	</tr>
 	% for user in users:
-	<tr><td> <a href="users/{{user}}">{{user}}</a> </td></tr>
+	<tr>
+		<td> {{user[0]}}</td>
+		<td> <a href="users/{{user[1]}}">{{user[1]}}</a> </td>
+		<td> {{user[2]}}</td>
+		<td> {{user[3]}}</td>
+		<td> {{user[4]}} </td>
+	</tr>
 	% end
 </table>
