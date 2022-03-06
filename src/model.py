@@ -259,8 +259,9 @@ class Commit:
 		sqlCode = """
 			SELECT c.sha,com.username,c.msg,c.date_created
 			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
-			JOIN user AS com ON (com.id = c.user_id)
-			WHERE com.username = ? AND r.title = ?;
+			JOIN user AS com ON (com.id = c.user_id) 
+			JOIN user AS rO ON (rO.id = r.owner_id)
+			WHERE rO.username = ? AND r.title = ?;
 		"""
 
 		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
