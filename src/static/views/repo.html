@@ -37,3 +37,23 @@
 	% end
 </table>
 % end
+
+% if len(issues) != 0:
+<h1> Odprta vprašanja </h1>
+<table>
+	<tr>
+		<th> Naslov </th>
+		<th> Avtor </th>
+		<th> Besedilo </th>
+		<th> Datum nastanka </th>
+	</tr>
+	% for issue in issues:
+	<tr>
+		<td> {{issue[0]}} </td>
+		<td> <a href="/users/{{issue[1]}}">{{issue[1]}}</a> </td>
+		<td> {{issue[2]}} </td>
+		<td> {{issue[3]}} </td>
+	</tr>
+	% end
+</table>
+% end

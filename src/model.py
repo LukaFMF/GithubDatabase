@@ -77,26 +77,7 @@ class User:
 		"""
 
 		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
-
-	@staticmethod
-	def getAllUsernames():
-		sqlCode = """
-			SELECT username
-			FROM user;
-		"""
-
-		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
-
-	@staticmethod
-	def getAllUsersInfo(): #we get all data of all users
-		sqlCode = """
-			SELECT *
-			FROM user;
-		"""
-
-		return list(conn.execute(sqlCode).fetchall())
-
-
+	
 	@staticmethod
 	def getUserInfo(username):
 		sqlCode = """
@@ -108,15 +89,13 @@ class User:
 		return conn.execute(sqlCode,(username,)).fetchone()
 
 	@staticmethod
-	def getUsernameById(id):
+	def getAllUsersInfo(): #we get all data of all users
 		sqlCode = """
-			SELECT username
-			FROM user
-			WHERE id = ?;
+			SELECT *
+			FROM user;
 		"""
 
-		return conn.execute(sqlCode,(id,)).fetchone()
-
+		return list(conn.execute(sqlCode).fetchall())
 
 class Repository:
 	def __init__(self,id,title,description,numStars,createDate,ownerId,langId):
@@ -148,27 +127,26 @@ class Repository:
 		"""
 
 		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
-	
+
 	@staticmethod
-	def getAllRepoNamesAndIds():
+	def getRepoInfo(username,repoName):
 		sqlCode = """
-			SELECT id,title
-			FROM repository;
+			SELECT r.id,rO.username,r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			FROM repository AS r JOIN user AS rO ON (r.owner_id = rO.id) 
+			JOIN language AS l ON (r.lang_id = l.id)  
+			WHERE rO.username = ? AND r.title = ?;
+		"""
+
+		return conn.execute(sqlCode,(username,repoName)).fetchone()
+
+	def getAllReposInfo():
+		sqlCode = """
+			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			FROM repository AS r JOIN user AS rO ON (rO.id = r.owner_id) 
+			JOIN language AS l ON (l.id = r.lang_id)
 		"""
 
 		return list(conn.execute(sqlCode).fetchall())
-
-	@staticmethod
-	def getRepoById(id):
-		sqlCode = """
-			SELECT r.id,r.title,r.description,r.num_stars,r.date_created,
-			u.username,l.name
-			FROM repository AS r JOIN user AS u ON (r.owner_id = u.id) 
-			JOIN language AS l ON (r.lang_id = l.id)  
-			WHERE r.id = ?;
-		"""
-
-		return conn.execute(sqlCode,(id,)).fetchone()
 
 	@staticmethod
 	def getAllReposOfOwner(username):
@@ -181,78 +159,27 @@ class Repository:
 
 		return list(conn.execute(sqlCode,(username,)).fetchall())
 
-	@staticmethod
-	def getRepoInfo(username,repoName):
-		sqlCode = """
-			SELECT r.id,rO.username,r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
-			FROM repository AS r JOIN user AS rO ON (r.owner_id = rO.id) 
-			JOIN language AS l ON (r.lang_id = l.id)  
-			WHERE rO.username = ? AND r.title = ?;
-		"""
-
-		return conn.execute(sqlCode,(username,repoName)).fetchone()
-	
-	def getAllCommitsOfRepo(username,repoName):
-		sqlCode = """
-			SELECT c.sha,com.username,c.msg,c.date_created
-			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
-			JOIN user AS com ON (com.id = c.user_id)
-			WHERE com.username = ? AND r.title = ?;
-		"""
-
-		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
-
-	def getInfoAllRepos():
-		sqlCode = """
-			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
-			FROM repository AS r JOIN user AS rO ON (rO.id = r.owner_id) 
-			JOIN language AS l ON (l.id = r.lang_id)
-		"""
-
-		return list(conn.execute(sqlCode).fetchall())
-
-
 class Issue:
-	def __init__(self,id,title,state,dateOpened,userId,repoId):
+	def __init__(self,id,title,body,state,dateOpened,userId,repoId):
 		self.id = id
 		self.title = title
+		self.body = body
 		self.state = state
 		self.dateOpened = dateOpened
 		self.userId = userId
 		self.repoId = repoId
 
 	def get(self):
-		return (self.id,self.title,self.state,self.dateOpened,self.userId,self.repoId)
+		return (self.id,self.title,self.body,self.state,self.dateOpened,self.userId,self.repoId)
 
 	def insert(self):
 		sqlCode = """
 			INSERT INTO issue
-			VALUES (?,?,?,?,?,?);
+			VALUES (?,?,?,?,?,?,?);
 		"""
 
 		conn.execute(sqlCode,self.get())
-
-	@staticmethod
-	def getAllIssuesOfUser(username):  #dobimo podatke: naslov vprašanja, naslov repozitorija, lastnik repozitorija, stanje, datum, avtor vprašanja
-		sqlCode = """
-			SELECT i.title,r.title,uo.username,IFNULL(i.body,"/"),i.date_opened,u.username  
-			FROM  issue AS i JOIN user AS u ON (i.user_id = u.id)
-			JOIN repository AS r ON (i.repo_id = r.id)
-			JOIN user AS uO ON (r.owner_id = uo.id)
-			WHERE u.username = ?;
-		"""
-		return list(conn.execute(sqlCode,(username,)).fetchall())
-
-
-	@staticmethod
-	def getAllIssuesOfRepo(repoName):
-		sqlCode = """
-			SELECT i.title,IFNULL(i.body,"/"),i.date_opened, u.username
-			FROM  issue AS i JOIN repository AS r ON (i.repo_id = r.id)
-			WHERE r.title = ?;
-		"""
-		return list(conn.execute(sqlCode,(repoName,)).fetchall())
-
+	
 	@staticmethod
 	def getCurrIds():
 		sqlCode = """
@@ -261,6 +188,31 @@ class Issue:
 		"""
 
 		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
+
+	@staticmethod
+	def getAllIssuesOfUser(username):  #dobimo podatke: naslov vprašanja, naslov repozitorija, lastnik repozitorija, stanje, datum, avtor vprašanja
+		sqlCode = """
+			SELECT i.title,r.title,rO.username,IFNULL(i.body,"/"),i.date_opened
+			FROM issue AS i JOIN user AS u ON (i.user_id = u.id)
+			JOIN repository AS r ON (i.repo_id = r.id)
+			JOIN user AS rO ON (r.owner_id = rO.id)
+			WHERE u.username = ?;
+		"""
+		return list(conn.execute(sqlCode,(username,)).fetchall())
+
+
+	@staticmethod
+	def getAllIssuesOfRepo(username,repoName):
+		sqlCode = """
+			SELECT i.title,u.username,IFNULL(i.body,"/"),i.date_opened
+			FROM issue AS i JOIN repository AS r ON (i.repo_id = r.id)
+			JOIN user AS u ON (i.user_id = u.id) 
+			JOIN user AS rO ON (rO.id = r.owner_id) 
+			WHERE rO.username = ? AND r.title = ?;
+		"""
+		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
+
+
 
 class Commit:
 	def __init__(self,sha,message,date,userId,repoId):
@@ -302,6 +254,17 @@ class Commit:
 
 		return list(conn.execute(sqlCode,(username,)).fetchall())
 
+	@staticmethod	
+	def getAllCommitsOfRepo(username,repoName):
+		sqlCode = """
+			SELECT c.sha,com.username,c.msg,c.date_created
+			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
+			JOIN user AS com ON (com.id = c.user_id)
+			WHERE com.username = ? AND r.title = ?;
+		"""
+
+		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
+
 
 
 import requests as r
@@ -315,81 +278,82 @@ if not successful:
 	print("Secret parameters for comunicating with github api are invalid!")
 	exit(-1)
 
-if False:
-	encounteredUsers = set(User.getCurrIds())
-	encounteredRepos = set(Repository.getCurrIds())
-	encounteredCommits = set(Commit.getCurrShas())
-	encounteredIssues = set(Issue.getCurrIds())
-	encounteredLangs = dict(Language.getCurrLangs())
-	storedUsers = ["LukaFMF","jaanos"]
-	for user in storedUsers:
-		userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
+encounteredUsers = set(User.getCurrIds())
+encounteredRepos = set(Repository.getCurrIds())
+encounteredCommits = set(Commit.getCurrShas())
+encounteredIssues = set(Issue.getCurrIds())
+encounteredLangs = dict(Language.getCurrLangs())
+storedUsers = ["LukaFMF","jaanos"]
+for user in storedUsers:
+	userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
 
-		usr = User(userData["id"],userData["login"],userData["public_repos"],
-			userData["followers"],userData["created_at"])
+	usr = User(userData["id"],userData["login"],userData["public_repos"],
+		userData["followers"],userData["created_at"])
 
-		if usr.id not in encounteredUsers:
-			encounteredUsers.add(usr.id)
-			usr.insert()
+	if usr.id not in encounteredUsers:
+		encounteredUsers.add(usr.id)
+		usr.insert()
 
-		# dodaj podatke o repozitorijih in commitih 
-		userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
-		for repoData in userReposData:
-			if not repoData["fork"]:
-				lang = repoData["language"]
+	# dodaj podatke o repozitorijih in prispevkih
+	userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
+	for repoData in userReposData:
+		if not repoData["fork"]:
+			lang = repoData["language"]
 
-				if lang not in encounteredLangs:
-					progLang = Language(lang)
-					encounteredLangs[lang] = progLang.insert()
+			if lang not in encounteredLangs:
+				progLang = Language(lang)
+				encounteredLangs[lang] = progLang.insert()
 
-				repo = Repository(repoData["id"],repoData["name"],repoData["description"],
-					repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
+			repo = Repository(repoData["id"],repoData["name"],repoData["description"],
+				repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
 
-				if repo.id not in encounteredRepos:
-					encounteredRepos.add(repo.id)
-					repo.insert()
-				
+			if repo.id not in encounteredRepos:
+				encounteredRepos.add(repo.id)
+				repo.insert()
+			else: # ce imamo podatke o enem repozitoriju, imamo verjetno tudi vse ostale podatke o uporabniku
+				break
+			
 
-				commitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits",
-					auth = authUsr).text)
-				for commitData in commitsData:
-					if commitData != None and "author" in commitData and commitData["author"] != None:
-						commiterUsername = commitData["author"]["login"]
-						commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
+			commitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits",
+				auth = authUsr).text)
+			for commitData in commitsData:
+				if commitData != None and "author" in commitData and commitData["author"] != None:
+					commiterUsername = commitData["author"]["login"]
+					commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
 
-						commitUsr = User(commiterData["id"],commiterData["login"],commiterData["public_repos"],
-							commiterData["followers"],commiterData["created_at"])
+					commitUsr = User(commiterData["id"],commiterData["login"],commiterData["public_repos"],
+						commiterData["followers"],commiterData["created_at"])
 
-						if commitUsr.id not in encounteredUsers:
-							encounteredUsers.add(commitUsr.id)
-							commitUsr.insert()
+					if commitUsr.id not in encounteredUsers:
+						encounteredUsers.add(commitUsr.id)
+						commitUsr.insert()
 
-						comData = commitData["commit"]
-						commit = Commit(commitData["sha"],comData["message"],comData["author"]["date"],commitUsr.id,repo.id)
+					comData = commitData["commit"]
+					commit = Commit(commitData["sha"],comData["message"],comData["author"]["date"],commitUsr.id,repo.id)
 
-						if commit.sha not in encounteredCommits:
-							encounteredCommits.add(commit.sha)
-							commit.insert()
+					if commit.sha not in encounteredCommits:
+						encounteredCommits.add(commit.sha)
+						commit.insert()
 
-				# dobi le prvih 20 ali 25 vprasanj
-				issuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues",
-					auth = authUsr).text)
-				for issueData in issuesData:
-					if issueData != None and "user" in issueData and issueData["user"] != None:
-						issuerUsername = issueData["user"]["login"]
-						issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
+			# dobi le prvih 20 ali 25 vprasanj
+			issuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues",
+				auth = authUsr).text)
+			for issueData in issuesData:
+				if issueData != None and "user" in issueData and issueData["user"] != None:
+					issuerUsername = issueData["user"]["login"]
+					issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
 
-						issueUsr = User(issuerData["id"],issuerData["login"],issuerData["public_repos"],
-							issuerData["followers"],issuerData["created_at"])
+					issueUsr = User(issuerData["id"],issuerData["login"],issuerData["public_repos"],
+						issuerData["followers"],issuerData["created_at"])
 
-						if issueUsr.id not in encounteredUsers:
-							encounteredUsers.add(issueUsr.id)
-							issueUsr.insert()
+					if issueUsr.id not in encounteredUsers:
+						encounteredUsers.add(issueUsr.id)
+						issueUsr.insert()
 
-						issue = Issue(issueData["id"],issueData["title"],issueData["state"],
-							issueData["created_at"],issueUsr.id,repo.id)
+					issue = Issue(issueData["id"],issueData["title"],issueData["body"],
+						issueData["created_at"],issueUsr.id,repo.id)
 
-						if issue.id not in encounteredIssues:
-							encounteredIssues.add(issue.id)
-							issue.insert()
+					if issue.id not in encounteredIssues:
+						encounteredIssues.add(issue.id)
+						issue.insert()
 	conn.commit()

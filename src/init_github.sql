@@ -1,5 +1,5 @@
 CREATE TABLE user(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY,
 	username TEXT UNIQUE NOT NULL,
 	num_public_repos INTEGER NOT NULL,
 	num_followers INTEGER NOT NULL,
@@ -8,13 +8,13 @@ CREATE TABLE user(
 
 CREATE TABLE language(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	name TEXT UNIQUE
+	"name" TEXT UNIQUE
 );
 
 CREATE TABLE repository(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY,
 	title TEXT NOT NULL,
-	description TEXT,
+	"description" TEXT,
 	num_stars INTEGER NOT NULL,
 	date_created TIMESTAMP NOT NULL,
 	owner_id INTEGER REFERENCES user(id),
@@ -22,18 +22,19 @@ CREATE TABLE repository(
 );
 
 CREATE TABLE "commit"(
-	sha TEXT UNIQUE PRIMARY KEY,
+	sha TEXT PRIMARY KEY,
 	msg TEXT,
 	date_created TIMESTAMP NOT NULL,
-	user_id INTEGER NOT NULL REFERENCES user(id),
+	"user_id" INTEGER NOT NULL REFERENCES user(id),
 	repo_id INTEGER NOT NULL  REFERENCES repository(id)
 );
 
 CREATE TABLE issue(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY,
 	title TEXT NOT NULL,
 	body TEXT,
+	"state" TEXT NOT NULL,
 	date_opened TIMESTAMP NOT NULL,
-	user_id INTEGER NOT NULL REFERENCES user(id),
+	"user_id" INTEGER NOT NULL REFERENCES user(id),
 	repo_id INTEGER NOT NULL REFERENCES repository(id)
 );

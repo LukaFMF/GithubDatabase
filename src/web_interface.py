@@ -15,7 +15,7 @@ def getFontFile(filename):
 
 @bottle.route("/","GET")
 def main():
-	return bottle.template("main.html",title = "baza podatkov",users=User.getAllUsernames())
+	return bottle.template("main.html",title = "baza podatkov")
 
 @bottle.route("/users/","GET")
 @bottle.route("/users","GET")
@@ -37,7 +37,7 @@ def user(username):
 @bottle.route("/repos/","GET")
 @bottle.route("/repos","GET")
 def repos():
-	return bottle.template("repos.html",title = "repozitoriji",repos=Repository.getInfoAllRepos())
+	return bottle.template("repos.html",title = "repozitoriji",repos=Repository.getAllReposInfo())
 
 @bottle.route("/repos/<username>/<repoName>/","GET")
 @bottle.route("/repos/<username>/<repoName>","GET")
@@ -50,8 +50,9 @@ def repo(username,repoName):
 	if repo == None:
 		return bottle.template("repoNotFound.html")
 	
-	commits = Repository.getAllCommitsOfRepo(username,repoName)
-	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits)
+	commits = Commit.getAllCommitsOfRepo(username,repoName)
+	issues = Issue.getAllIssuesOfRepo(username, repoName)
+	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits,issues = issues)
 	
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")

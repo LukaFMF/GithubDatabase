@@ -2,7 +2,6 @@
 <h1> Uporabniki </h1>
 <table>
 	<tr>
-		<th> ID </th>
 		<th> Uporabniško ime </th>
 		<th> Število javnih repozitorijev </th>
 		<th> Število sledilcev </th>
@@ -10,7 +9,6 @@
 	</tr>
 	% for user in users:
 	<tr>
-		<td> {{user[0]}}</td>
 		<td> <a href="users/{{user[1]}}">{{user[1]}}</a> </td>
 		<td> {{user[2]}}</td>
 		<td> {{user[3]}}</td>
