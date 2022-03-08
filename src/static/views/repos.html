@@ -1,23 +1,23 @@
 % rebase("base.html")
 <h1> Repozitoriji </h1>
-<table>
-	<tr>
-		<th> Naslov </th>
-		<th> Lastnik </th>
-		<th> Opis </th>
-		<th> Število zvezdic </th>
-		<th> Programski jezik </th>
-		<th> Datum nastanka </th>
+<table class="custom-table">
+	<tr class="header-row">
+		<th class="header-el"> Naslov </th>
+		<th class="header-el"> Lastnik </th>
+		<th class="header-el"> Opis </th>
+		<th class="header-el"> Število zvezdic </th>
+		<th class="header-el"> Programski jezik </th>
+		<th class="header-el"> Datum nastanka </th>
 	</tr>
 
 	% for repo in repos:
-	<tr>
-		<td> <a href="/repos/{{repo[1]}}/{{repo[0]}}">{{repo[0]}}</a> </td>
-		<td> <a href="/users/{{repo[1]}}">{{repo[1]}}</a> </td>
-		<td> {{repo[2]}} </td>
-		<td> {{repo[3]}} </td>
-		<td> {{repo[4]}} </td>
-		<td> {{repo[5]}} </td>
+	<tr class="data-row">
+		<td class="data-el"> <a href="/repos/{{repo[1]}}/{{repo[0]}}">{{repo[0]}}</a> </td>
+		<td class="data-el"> <a href="/users/{{repo[1]}}">{{repo[1]}}</a> </td>
+		<td class="data-el text-mode"> {{repo[2]}} </td>
+		<td class="data-el"> {{repo[3]}} </td>
+		<td class="data-el"> {{repo[4]}} </td>
+		<td class="data-el"> {{repo[5]}} </td>
 	</tr>
 	% end
 </table>
