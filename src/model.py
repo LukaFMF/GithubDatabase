@@ -92,7 +92,7 @@ class User:
 	@staticmethod
 	def getUserInfo(username):
 		sqlCode = """
-			SELECT *
+			SELECT id,username,num_public_repos,num_followers,SUBSTR(join_date,1,10)
 			FROM user
 			WHERE username = ?;
 		"""
@@ -102,7 +102,7 @@ class User:
 	@staticmethod
 	def getAllUsersInfo(): #we get all data of all users
 		sqlCode = """
-			SELECT *
+			SELECT username,num_public_repos,num_followers,SUBSTR(join_date,1,10)
 			FROM user;
 		"""
 
@@ -142,7 +142,7 @@ class Repository:
 	@staticmethod
 	def getRepoInfo(username,repoName):
 		sqlCode = """
-			SELECT r.id,rO.username,r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			SELECT r.id,rO.username,r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),SUBSTR(r.date_created,1,10)
 			FROM repository AS r JOIN user AS rO ON (r.owner_id = rO.id) 
 			JOIN language AS l ON (r.lang_id = l.id)  
 			WHERE rO.username = ? AND r.title = ?;
@@ -152,7 +152,7 @@ class Repository:
 
 	def getAllReposInfo():
 		sqlCode = """
-			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),SUBSTR(r.date_created,1,10)
 			FROM repository AS r JOIN user AS rO ON (rO.id = r.owner_id) 
 			JOIN language AS l ON (l.id = r.lang_id)
 		"""
@@ -162,7 +162,7 @@ class Repository:
 	@staticmethod
 	def getAllReposOfOwner(username):
 		sqlCode = """
-			SELECT r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),r.date_created
+			SELECT r.title,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),SUBSTR(r.date_created,1,10)
 			FROM repository AS r JOIN user AS u ON (u.id = r.owner_id) JOIN 
 			language AS l ON (r.lang_id = l.id)
 			WHERE u.username = ?;
@@ -203,7 +203,7 @@ class Issue:
 	@staticmethod
 	def getAllIssuesOfUser(username):  #dobimo podatke: naslov vprašanja, naslov repozitorija, lastnik repozitorija, stanje, datum, avtor vprašanja
 		sqlCode = """
-			SELECT i.title,r.title,rO.username,IFNULL(i.body,"/"),i.date_opened
+			SELECT i.title,r.title,rO.username,IFNULL(i.body,"/"),SUBSTR(r.date_created,12,8),SUBSTR(r.date_created,1,10)
 			FROM issue AS i JOIN user AS u ON (i.user_id = u.id)
 			JOIN repository AS r ON (i.repo_id = r.id)
 			JOIN user AS rO ON (r.owner_id = rO.id)
@@ -215,7 +215,7 @@ class Issue:
 	@staticmethod
 	def getAllIssuesOfRepo(username,repoName):
 		sqlCode = """
-			SELECT i.title,u.username,IFNULL(i.body,"/"),i.date_opened
+			SELECT i.title,u.username,IFNULL(i.body,"/"),SUBSTR(r.date_created,12,8),SUBSTR(r.date_created,1,10)
 			FROM issue AS i JOIN repository AS r ON (i.repo_id = r.id)
 			JOIN user AS u ON (i.user_id = u.id) 
 			JOIN user AS rO ON (rO.id = r.owner_id) 
@@ -256,11 +256,10 @@ class Commit:
 	@staticmethod
 	def getAllCommitsByUsername(username):
 		sqlCode = """
-			SELECT c.sha,c.msg,c.date_created,cO.username,r.title
+			SELECT c.sha,c.msg,rO.username,r.title,SUBSTR(c.date_created,12,8),SUBSTR(c.date_created,1,10)
 			FROM "commit" AS c JOIN user AS u ON (c.user_id = u.id) 
-			JOIN repository AS r ON(c.repo_id = r.id) JOIN user AS cO ON (r.owner_id = cO.id)
+			JOIN repository AS r ON(c.repo_id = r.id) JOIN user AS rO ON (r.owner_id = rO.id)
 			WHERE u.username = ?
-			ORDER BY c.date_created DESC;
 		"""
 
 		return list(conn.execute(sqlCode,(username,)).fetchall())
@@ -268,7 +267,7 @@ class Commit:
 	@staticmethod	
 	def getAllCommitsOfRepo(username,repoName):
 		sqlCode = """
-			SELECT c.sha,com.username,c.msg,c.date_created
+			SELECT c.sha,com.username,c.msg,SUBSTR(c.date_created,12,8),SUBSTR(c.date_created,1,10)
 			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
 			JOIN user AS com ON (com.id = c.user_id) 
 			JOIN user AS rO ON (rO.id = r.owner_id)

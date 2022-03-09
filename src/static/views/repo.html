@@ -29,14 +29,14 @@
 		<th class="header-el"> Koda prispevka </th>
 		<th class="header-el"> Uporabnik </th>
 		<th class="header-el"> Sporočilo </th>
-		<th class="header-el"> Datum </th>
+		<th class="header-el"> Čas in datum </th>
 	</tr>
 	% for commit in commits:
 	<tr class="data-row">
 		<td class="data-el monospace-font"> {{commit[0]}} </td>
 		<td class="data-el"> <a href="/users/{{commit[1]}}">{{commit[1]}}</a> </td>
 		<td class="data-el text-mode"> {{commit[2]}} </td>
-		<td class="data-el"> {{commit[3]}} </td>
+		<td class="data-el"> {{commit[3]}}<br>{{commit[4]}} </td>
 	</tr>
 	% end
 </table>
@@ -49,14 +49,14 @@
 		<th class="header-el"> Naslov </th>
 		<th class="header-el"> Avtor </th>
 		<th class="header-el"> Besedilo </th>
-		<th class="header-el"> Datum nastanka </th>
+		<th class="header-el"> Čas in datum </th>
 	</tr>
 	% for issue in issues:
 	<tr class="data-row">
 		<td class="data-el"> {{issue[0]}} </td>
 		<td class="data-el"> <a href="/users/{{issue[1]}}">{{issue[1]}}</a> </td>
 		<td class="data-el text-mode"> {{issue[2]}} </td>
-		<td class="data-el"> {{issue[3]}} </td>
+		<td class="data-el"> {{issue[3]}}<br>{{issue[4]}} </td>
 	</tr>
 	% end
 </table>

@@ -73,11 +73,6 @@ h1 {
 	text-align: center;
 }
 
-.monospace-font {
-	font-family: 'Courier New', Courier, monospace;
-	font-weight: bold;
-}
-
 form {
 	text-align: center;
 }
@@ -137,4 +132,9 @@ form {
 
 .text-mode {
 	text-align: left;
+}
+
+.monospace-font {
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: bold;
 }

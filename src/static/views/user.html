@@ -1,7 +1,7 @@
 % rebase("base.html")
 <h1> Uporabnik - {{user[1]}} </h1>
 
-<table class="custom-table" >
+<table class="custom-table">
 	<tr class="header-row">
 		<th class="header-el"> ID </th>	
 		<th class="header-el"> Uporabniško ime </th>	
@@ -45,17 +45,17 @@
 <h1> Prispevki </h1>
 <table class="custom-table">
 	<tr class="header-row">
-		<th class="header-el"> Koda prispevka </th>
+		<th class="header-el"> Koda </th>
 		<th class="header-el"> Repozitorij </th>
 		<th class="header-el"> Sporočilo </th>
-		<th class="header-el"> Datum </th>
+		<th class="header-el"> Čas in datum </th>
 	</tr>
 	% for commit in commits:
 	<tr class="data-row">
 		<td class="data-el monospace-font"> {{commit[0]}} </td>
-		<td class="data-el"> <a href="/repos/{{commit[3]}}/{{commit[4]}}">{{commit[3]}}/{{commit[4]}}</a> </td>
+		<td class="data-el"> <a href="/repos/{{commit[2]}}/{{commit[3]}}">{{commit[2]}}/{{commit[3]}}</a> </td>
 		<td class="data-el text-mode"> {{commit[1]}} </td>
-		<td class="data-el"> {{commit[2]}} </td>
+		<td class="data-el"> {{commit[4]}}<br>{{commit[5]}} </td>
 	</tr>
 	% end
 </table>
@@ -69,7 +69,7 @@
 		<th class="header-el"> Repozitorij </th>
 		<th class="header-el"> Lastnik repozitorija </th>
 		<th class="header-el"> Besedilo </th>
-		<th class="header-el"> Datum nastanka </th>
+		<th class="header-el"> Čas in datum </th>
 	</tr>
 	% for issue in issues:
 	<tr class="data-row">
@@ -77,7 +77,7 @@
 		<td class="data-el"> <a href="/repos/{{issue[2]}}/{{issue[1]}}">{{issue[1]}}</a></td>
 		<td class="data-el"> <a href="/users/{{issue[2]}}">{{issue[2]}}</a> </td>
 		<td class="data-el text-mode"> {{issue[3]}} </td>
-		<td class="data-el"> {{issue[4]}} </td>
+		<td class="data-el"> {{issue[4]}}<br>{{issue[5]}}</td>
 	</tr>
 	% end
 </table>
