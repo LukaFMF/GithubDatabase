@@ -1,0 +1,17 @@
+% rebase("base.html")
+
+<h1> Programski jeziki </h1>
+<table  class="custom-table" >
+    <tr class="header-row">
+        <th  class="header-el"> Jezik </th>
+        <th  class="header-el"> Uporaba </th>
+    </tr>
+    %for lang in languages:
+        %if lang[0] != None:
+        <tr class="data-row">
+            <td class="data-el"> {{lang[0]}} </td>
+            <td class="data-el"> {{lang[1]}} </td>
+        </tr>
+        %end
+    %end
+</table>

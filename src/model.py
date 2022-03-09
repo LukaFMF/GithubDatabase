@@ -47,6 +47,17 @@ class Language:
 		"""
 
 		return conn.execute(sqlCode,(id,)).fetchone()
+	
+	@staticmethod
+	def GetLangUsage(): # Dobimo količino commitov za posamezen jezik 
+		sqlCode = """
+			SELECT l.name, COUNT(*) AS usage
+			FROM repository AS r JOIN language AS l ON (l.id = r.lang_id)
+			JOIN "commit" AS c ON (c.repo_id = r.id)
+			GROUP BY l.name
+		"""
+		
+		return list(conn.execute(sqlCode).fetchall())
 
 
 class User:

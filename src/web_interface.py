@@ -53,7 +53,13 @@ def repo(username,repoName):
 	commits = Commit.getAllCommitsOfRepo(username,repoName)
 	issues = Issue.getAllIssuesOfRepo(username, repoName)
 	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits,issues = issues)
-	
+
+@bottle.route("/languages/","GET")
+@bottle.route("/languages","GET")
+def languages():
+	langsAndVolume = Language.GetLangUsage() # dobimo tabelo z 2 elementoma, jezik in količino commitov v njem.
+	return bottle.template("languages.html", title="languages", languages = langsAndVolume)
+
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")
 def login():
