@@ -1,12 +1,11 @@
 import sqlite3 as dbapi
 import os
-import time as t
 
-jeZeUstvarjena = os.path.exists("github.db")
+alreadyExists = os.path.exists("github.db")
 
 conn = dbapi.connect("github.db")
 
-if not jeZeUstvarjena:
+if not alreadyExists:
 	file = open("init_github.sql")
 	sqlCode = file.read()
 
@@ -203,7 +202,7 @@ class Issue:
 	@staticmethod
 	def getAllIssuesOfUser(username):  #dobimo podatke: naslov vprašanja, naslov repozitorija, lastnik repozitorija, stanje, datum, avtor vprašanja
 		sqlCode = """
-			SELECT i.title,r.title,rO.username,IFNULL(i.body,"/"),SUBSTR(r.date_created,12,8),SUBSTR(r.date_created,1,10)
+			SELECT i.title,r.title,rO.username,IFNULL(i.body,"/"),SUBSTR(i.date_opened,1,10),SUBSTR(i.date_opened,12,8) 
 			FROM issue AS i JOIN user AS u ON (i.user_id = u.id)
 			JOIN repository AS r ON (i.repo_id = r.id)
 			JOIN user AS rO ON (r.owner_id = rO.id)
@@ -215,7 +214,7 @@ class Issue:
 	@staticmethod
 	def getAllIssuesOfRepo(username,repoName):
 		sqlCode = """
-			SELECT i.title,u.username,IFNULL(i.body,"/"),SUBSTR(r.date_created,12,8),SUBSTR(r.date_created,1,10)
+			SELECT i.title,u.username,IFNULL(i.body,"/"),SUBSTR(i.date_opened,1,10),SUBSTR(i.date_opened,12,8)
 			FROM issue AS i JOIN repository AS r ON (i.repo_id = r.id)
 			JOIN user AS u ON (i.user_id = u.id) 
 			JOIN user AS rO ON (rO.id = r.owner_id) 
@@ -256,7 +255,7 @@ class Commit:
 	@staticmethod
 	def getAllCommitsByUsername(username):
 		sqlCode = """
-			SELECT c.sha,c.msg,rO.username,r.title,SUBSTR(c.date_created,12,8),SUBSTR(c.date_created,1,10)
+			SELECT c.sha,c.msg,rO.username,r.title,SUBSTR(c.date_created,1,10),SUBSTR(c.date_created,12,8)
 			FROM "commit" AS c JOIN user AS u ON (c.user_id = u.id) 
 			JOIN repository AS r ON(c.repo_id = r.id) JOIN user AS rO ON (r.owner_id = rO.id)
 			WHERE u.username = ?
@@ -267,7 +266,7 @@ class Commit:
 	@staticmethod	
 	def getAllCommitsOfRepo(username,repoName):
 		sqlCode = """
-			SELECT c.sha,com.username,c.msg,SUBSTR(c.date_created,12,8),SUBSTR(c.date_created,1,10)
+			SELECT c.sha,com.username,c.msg,SUBSTR(c.date_created,1,10),SUBSTR(c.date_created,12,8) 
 			FROM repository AS r JOIN "commit" AS c ON (r.id = c.repo_id) 
 			JOIN user AS com ON (com.id = c.user_id) 
 			JOIN user AS rO ON (rO.id = r.owner_id)

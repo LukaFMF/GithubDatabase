@@ -4,8 +4,9 @@
 		<title>GitHub - {{title}}</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="/style.css">
+		<script type="text/javascript" src="/tableSort.js"></script>
 	</head>
-	<body>
+	<body onload="addClickers()">
 		<div class="top-bar">
 			<div class="logo-container">
 				<img onclick="location.href='/'" class="logo" src="/logo.png" alt="Logo" width="75"/>
@@ -21,7 +22,7 @@
 				Programski jeziki
 			</div>
 			<div class="user-section">
-				<a href="/login">Prijava</a>/
+				<a href="/login">Prijava</a> /
 				<a href="/register">Registracija</a>
 			</div>
 		</div>

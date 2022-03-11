@@ -1,5 +1,4 @@
 % rebase("base.html")
-
 <form action="/login" method="POST">
 	<label for="username"> Uporabniško ime</label>
 	<input name="username" type="text">
@@ -7,3 +6,6 @@
 	<input name="password" type="password">
 	<input type="submit" value="Prijava">
 </form>
+% if invalid:
+	<p style="color:red;">Nepravilo uporabniški ime ali geslo</p>
+% end

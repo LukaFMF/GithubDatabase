@@ -1,5 +1,13 @@
 from model import *
+from site_users import *
 import bottle
+
+
+def secretKeyGen():
+	from random import choices
+	return "".join(choices("0123456789abcdf",k = 64))
+
+secretCkKey = secretKeyGen()
 
 @bottle.route("/<filename:re:.*\.css>","GET")
 def getStylesheetFile(filename):
@@ -13,9 +21,14 @@ def getImageFile(filename):
 def getFontFile(filename):
 	return bottle.static_file(filename,root='static/fonts/')
 
+@bottle.route("/<filename:re:.*\.js>","GET")
+def getScriptFile(filename):
+	return bottle.static_file(filename,root='static/scripts/')
+
 @bottle.route("/","GET")
 def main():
-	return bottle.template("main.html",title = "baza podatkov")
+	username = bottle.request.get_cookie("account",secret=secretCkKey)
+	return bottle.template("main.html",title = "baza podatkov",username = username)
 
 @bottle.route("/users/","GET")
 @bottle.route("/users","GET")
@@ -58,19 +71,25 @@ def repo(username,repoName):
 @bottle.route("/languages","GET")
 def languages():
 	langsAndVolume = Language.GetLangUsage() # dobimo tabelo z 2 elementoma, jezik in količino commitov v njem.
-	return bottle.template("languages.html", title="languages", languages = langsAndVolume)
+	return bottle.template("languages.html", title="programski jeziki", languages = langsAndVolume)
 
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")
 def login():
-	return bottle.template("login.html",title= "prijava")
+	username = bottle.request.get_cookie("account",secret=secretCkKey)
+	invalid = bottle.request.query.get("invalidLogIn")
+	return bottle.template("login.html",title="prijava",invalid = invalid,username=username)
 
 @bottle.route("/login/","POST")
 @bottle.route("/login","POST")
 def loginForm():
 	username = bottle.request.forms.get("username")
 	password = bottle.request.forms.get("password")
-	return f"{username} - {password}"
+
+	if attemptLogin(username,password):
+		bottle.response.set_cookie("account",username,secret=secretCkKey)
+		bottle.redirect("/")
+	bottle.redirect("/login?invalidLogIn=1")
 
 @bottle.route("/register/","GET")
 @bottle.route("/register","GET")
@@ -81,6 +100,7 @@ def register():
 @bottle.route("/register","POST")
 def registerForm():
 	pass
+
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
 bottle.run(reloader=True,debug=True)

@@ -17,28 +17,6 @@ body {
 	border: 3px solid #4c9ebe;
 }
 
-.user-data-bar{
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	width: 75%;
-	line-height: 30px;
-	height: 30px;
-}
-
-.repo-data-bar{
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	display: grid;
-	grid-template-columns: 1fr 1fr 2.5fr 1fr 1fr 1fr;
-	width: 85%;
-	line-height: 30px;
-	height: 30px;
-}
-
 .logo-container {
 	margin-left: 15px;
 	margin-right: 15px;
