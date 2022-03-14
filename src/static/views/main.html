@@ -1,5 +1,27 @@
 % rebase("base.html")
-<div class="search-bar">
-    <input name="searchBar" type="text">
+<script type="text/javascript" src="/search.js"></script>
+<form class="search-form" action="/search" method="GET">
+    <input class="search-bar" name="search" list="users" placeholder="Uporabnik">
+
+	<br>Išči po:
+	<div>
+		<input class="users-opt" type="radio" name="category" value="users" checked>
+		<label for="category">Uporabniki</label>
+	</div>
+	<div>
+		<input class="repos-opt" type="radio" name="category" value="repos">
+		<label for="category">Repozitorji</label>
+	</div>
+
+	<datalist id="users">
+	% for user in users:
+		<option value="{{user}}">
+	% end
+	</datalist>
+	<datalist id="repos">
+	% for repo in repos:
+		<option value="{{repo[1]}}/{{repo[0]}}">
+	% end
+	</datalist>
     <input type="submit" value="Iskanje">
-</div>
+</form>

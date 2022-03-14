@@ -33,7 +33,6 @@ CREATE TABLE issue(
 	id INTEGER PRIMARY KEY,
 	title TEXT NOT NULL,
 	body TEXT,
-	"state" TEXT NOT NULL,
 	date_opened TIMESTAMP NOT NULL,
 	"user_id" INTEGER NOT NULL REFERENCES user(id),
 	repo_id INTEGER NOT NULL REFERENCES repository(id)

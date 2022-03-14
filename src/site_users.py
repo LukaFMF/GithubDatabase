@@ -36,5 +36,13 @@ def attemptLogin(username,password):
 	
 	return userConn.execute(sqlCode,(username,hashedPw)).fetchone() != None
 
+def checkIfUsernameIsAvailable(username):
+	sqlCode = """
+		SELECT *
+		FROM site_user
+		WHERE username = ?;
+	"""
+
+	return userConn.execute(sqlCode,(username,)).fetchone() == None 
 
 userConn.commit()

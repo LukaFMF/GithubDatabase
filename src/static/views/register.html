@@ -8,3 +8,6 @@
 	<input name="conf_password" type="password">
 	<input type="submit" value="Registracija">
 </form>
+% if invalid:
+	<p style="color:red;">Nepravilo uporabniški ime ali geslo</p>
+% end

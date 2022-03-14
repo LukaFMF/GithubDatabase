@@ -99,13 +99,22 @@ class User:
 		return conn.execute(sqlCode,(username,)).fetchone()
 
 	@staticmethod
-	def getAllUsersInfo(): #we get all data of all users
+	def getAllUsersInfo(): # we get all data of all users
 		sqlCode = """
 			SELECT username,num_public_repos,num_followers,SUBSTR(join_date,1,10)
 			FROM user;
 		"""
 
 		return list(conn.execute(sqlCode).fetchall())
+
+	@staticmethod
+	def getAllUsernames():
+		sqlCode = """
+			SELECT username
+			FROM user;
+		"""
+
+		return list(map(lambda el: el[0],conn.execute(sqlCode).fetchall()))
 
 class Repository:
 	def __init__(self,id,title,description,numStars,createDate,ownerId,langId):
@@ -149,6 +158,7 @@ class Repository:
 
 		return conn.execute(sqlCode,(username,repoName)).fetchone()
 
+	@staticmethod
 	def getAllReposInfo():
 		sqlCode = """
 			SELECT r.title,rO.username,IFNULL(r.description,"/"),r.num_stars,IFNULL(l.name,"/"),SUBSTR(r.date_created,1,10)
@@ -169,23 +179,31 @@ class Repository:
 
 		return list(conn.execute(sqlCode,(username,)).fetchall())
 
+	@staticmethod
+	def getAllReposAndOwners():
+		sqlCode = """
+			SELECT r.title,rO.username
+			FROM repository AS r JOIN user AS rO ON (rO.id = r.owner_id);
+		"""
+
+		return list(conn.execute(sqlCode).fetchall())
+
 class Issue:
-	def __init__(self,id,title,body,state,dateOpened,userId,repoId):
+	def __init__(self,id,title,body,dateOpened,userId,repoId):
 		self.id = id
 		self.title = title
 		self.body = body
-		self.state = state
 		self.dateOpened = dateOpened
 		self.userId = userId
 		self.repoId = repoId
 
 	def get(self):
-		return (self.id,self.title,self.body,self.state,self.dateOpened,self.userId,self.repoId)
+		return (self.id,self.title,self.body,self.dateOpened,self.userId,self.repoId)
 
 	def insert(self):
 		sqlCode = """
 			INSERT INTO issue
-			VALUES (?,?,?,?,?,?,?);
+			VALUES (?,?,?,?,?,?);
 		"""
 
 		conn.execute(sqlCode,self.get())
@@ -331,7 +349,7 @@ for user in storedUsers:
 					commiterUsername = commitData["author"]["login"]
 					commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
 
-					commitUsr = User(commiterData["id"],commiterData["login"],commiterData["public_repos"],
+					commitUsr = User(commiterData["id"],commiterData["login"],0,
 						commiterData["followers"],commiterData["created_at"])
 
 					if commitUsr.id not in encounteredUsers:
@@ -353,7 +371,7 @@ for user in storedUsers:
 					issuerUsername = issueData["user"]["login"]
 					issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
 
-					issueUsr = User(issuerData["id"],issuerData["login"],issuerData["public_repos"],
+					issueUsr = User(issuerData["id"],issuerData["login"],0,
 						issuerData["followers"],issuerData["created_at"])
 
 					if issueUsr.id not in encounteredUsers:
@@ -366,4 +384,14 @@ for user in storedUsers:
 					if issue.id not in encounteredIssues:
 						encounteredIssues.add(issue.id)
 						issue.insert()
+	sqlCode = """
+		UPDATE user AS u
+		SET num_public_repos = (
+			SELECT COUNT(*)
+			FROM repository AS rO
+			WHERE u.id = rO.owner_id
+		)
+		WHERE id = ?;
+	"""
+	conn.execute(sqlCode,(usr.id,))
 	conn.commit()
