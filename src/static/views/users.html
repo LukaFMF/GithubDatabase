@@ -1,18 +1,18 @@
 % rebase("base.html")
-<h1> Uporabniki </h1>
-<table class="custom-table">
+<h1 class="title"> Uporabniki </h1>
+<table class="custom-table sorting">
 	<tr class="header-row">
-		<th class="header-el"> Uporabniško ime </th>
-		<th class="header-el"> Število javnih repozitorijev </th>
-		<th class="header-el"> Število sledilcev </th>
-		<th class="header-el"> Datum pridružitve </th>
+		<th class="header-el"> Uporabniško ime <span class="sort-btn line"></span></th>
+		<th class="header-el"> Število javnih repozitorijev <span class="sort-btn line"></span></th>
+		<th class="header-el"> Število sledilcev <span class="sort-btn line"></span></th>
+		<th class="header-el"> Datum pridružitve <span class="sort-btn line"></span></th>
 	</tr>
 	% for user in users:
 	<tr class="data-row">
-		<td class="data-el"> <a href="users/{{user[0]}}">{{user[0]}}</a> </td>
-		<td class="data-el"> {{user[1]}}</td>
-		<td class="data-el"> {{user[2]}}</td>
-		<td class="data-el"> {{user[3]}} </td>
+		<td class="data-el"><a href="users/{{user[0]}}">{{user[0]}}</a></td>
+		<td class="data-el">{{user[1]}}</td>
+		<td class="data-el">{{user[2]}}</td>
+		<td class="data-el">{{user[3]}}</td>
 	</tr>
 	% end
 </table>

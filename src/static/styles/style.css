@@ -47,18 +47,10 @@ body {
 	border-right: 3px solid #4c9ebe; 
 }
 
-h1 {
+/* Title centering */
+.title {
 	text-align: center;
 }
-
-form {
-	text-align: center;
-}
-
-.search-bar{
-	text-align:center;
-}
-
 
 /* Custom table style */
 .custom-table {
@@ -71,9 +63,9 @@ form {
 	border-radius: 5px;
 }
 
-.data-row:first-of-type .data-el{
+/* .data-row:first-of-type .data-el{
 	border-top: 0px;
-}
+} */
 
 .data-row:last-of-type .data-el{
 	border-bottom: 0px;
@@ -115,4 +107,103 @@ form {
 .monospace-font {
 	font-family: 'Courier New', Courier, monospace;
 	font-weight: bold;
+}
+
+/* Sorting arrows  */
+.sort-btn {
+	width: 15px;
+	max-width: 15px;
+}
+
+.uparrow, .downarrow {
+	padding: 3px;
+	font-size: 15px;
+	display: inline-block;
+    transform: rotate(90deg);
+}
+
+.line {
+	font-size: 15px;
+    display: inline-block;
+    padding: 3px;
+	font-weight: bold;
+}
+
+.uparrow::before {
+    content: '\276E';
+}
+
+.downarrow::before {
+    content: '\276F';
+}
+
+.line::before {
+	content: '\2014';
+}
+
+/* Input fields style */
+.search-container {
+	display: grid;
+	height: 67.5vh;
+	place-items: center;
+}
+.switch-container {
+	text-align: center;
+	width: 250px; 
+	background-color: #2586ac;
+	padding: 3px 8px;
+	color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.users-opt, .repos-opt {
+	accent-color: #2586ac;
+}
+
+.search-form, .login-form, .register-form {
+	text-align: center;
+}
+
+.search-input {
+	width: 250px;
+	font-size: 20px;
+	padding: 6px 8px;
+	border: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	text-align: center;
+}
+.search-input::-webkit-calendar-picker-indicator {
+	display: none !important;
+}
+
+.username-input, .password-input {
+	font-size: 18px;
+	padding: 5px 8px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+.search-input:focus, .username-input:focus, .password-input:focus {
+	outline-color: #2586ac;
+}
+
+.confirm-btn {
+	font-size: 20px;
+	background-color: #2586ac;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 6px 10px;
+	transition: .3s;
+}
+
+.confirm-btn:hover {
+	background-color: #3f90b2;
+	transition: .3s;
+	user-select: none;
+	cursor: pointer;
+	box-shadow: 0 0 2px 1px #3f90b2;
 }

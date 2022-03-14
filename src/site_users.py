@@ -1,5 +1,6 @@
 import sqlite3 as dbapi
 import os
+from random import randint
 from hashlib import pbkdf2_hmac,sha256
 
 alreadyExists = os.path.exists("github_users.db")
@@ -14,20 +15,33 @@ if not alreadyExists:
 	
 	file.close()
 
-salt = b'\xdd\x99\x11\x1e.\xd6\xc5t\xe9\x1atGT\x8e`\xfd\xa4\x03ks\x19K\xbaK\x881F>\xe0\x1dF\xda'
-iters = 50000
+
 def createNewUser(username,password,admin):
+	salt = os.urandom(64)
+	iters = 64000 + randint(0,1000)
 	hashedPw = pbkdf2_hmac("sha256",bytes(password,"ascii"),salt,iters) 
 	sqlCode = """
-		INSERT INTO site_user(username,password,admin)
-		VALUES (?,?,?);
+		INSERT INTO site_user(username,"password",salt,num_iters,"admin")
+		VALUES (?,?,?,?,?);
 	"""
 	
-	userConn.execute(sqlCode,(username,hashedPw,admin))
+	userConn.execute(sqlCode,(username,hashedPw,salt,iters,admin))
 	userConn.commit()
 
 def attemptLogin(username,password):
-	hashedPw = pbkdf2_hmac("sha256",bytes(password,"ascii"),salt,iters) 
+	# get user info
+	sqlCode = """
+		SELECT salt,num_iters
+		FROM site_user
+		WHERE username = ?;
+	"""
+	userPwInfo = userConn.execute(sqlCode,(username,)).fetchone()
+	if userPwInfo == None:
+		return False
+	
+	salt,iters = userPwInfo
+	hashedPw = pbkdf2_hmac("sha256",bytes(password,"ascii"),salt,iters)
+
 	sqlCode = """
 		SELECT username
 		FROM site_user
@@ -45,4 +59,5 @@ def checkIfUsernameIsAvailable(username):
 
 	return userConn.execute(sqlCode,(username,)).fetchone() == None 
 
+# createNewUser("luka","abcd",1)
 userConn.commit()

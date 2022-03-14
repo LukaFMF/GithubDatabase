@@ -1,11 +1,11 @@
 % rebase("base.html")
-<form action="/login" method="POST">
-	<label for="username"> Uporabniško ime</label>
-	<input name="username" type="text">
-	<label for="password"> Geslo</label>
-	<input name="password" type="password">
-	<input type="submit" value="Prijava">
+<h1 class="title">Vpis</h1>
+<form class="login-form" action="/login" method="POST">
+	% if failedLogin:
+	
+	% end
+	% currName = username if username != None else ""
+	<input class="username-input" name="username" type="text" value="{{currName}}" placeholder="Uporabniško ime"><br>
+	<input class="password-input" name="password" type="password" placeholder="Geslo"><br>
+	<input class="confirm-btn" type="submit" value="Vpiši se">
 </form>
-% if invalid:
-	<p style="color:red;">Nepravilo uporabniški ime ali geslo</p>
-% end

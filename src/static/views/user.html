@@ -1,5 +1,5 @@
 % rebase("base.html")
-<h1> Uporabnik - {{user[1]}} </h1>
+<h1 class="title"> Uporabnik - {{user[1]}} </h1>
 
 <table class="custom-table">
 	<tr class="header-row">
@@ -10,74 +10,74 @@
 		<th class="header-el"> Datum pridružitve </th>	
 	</tr>
 	<tr class="data-row">
-		<td class="data-el"> {{user[0]}} </td>	
-		<td class="data-el"> {{user[1]}} </td>	
-		<td class="data-el"> {{user[2]}} </td>	
-		<td class="data-el"> {{user[3]}} </td>	
-		<td class="data-el"> {{user[4]}} </td>	
+		<td class="data-el">{{user[0]}}</td>	
+		<td class="data-el">{{user[1]}}</td>	
+		<td class="data-el">{{user[2]}}</td>	
+		<td class="data-el">{{user[3]}}</td>	
+		<td class="data-el">{{user[4]}}</td>	
 	</tr>
 </table>
 
 % if len(repos) != 0:
-<h1> Repozitoriji </h1>
-<table class="custom-table">
+<h1 class="title"> Repozitoriji </h1>
+<table class="custom-table sorting">
 	<tr class="header-row">
-		<th class="header-el"> Naslov </th>
-		<th class="header-el"> Opis </th>
-		<th class="header-el"> Število zvezdic </th>
-		<th class="header-el"> Programski jezik </th>
-		<th class="header-el"> Datum nastanka </th>
+		<th class="header-el"> Naslov <span class="sort-btn line"></span></th>
+		<th class="header-el"> Opis <span class="sort-btn line"></span></th>
+		<th class="header-el"> Število zvezdic <span class="sort-btn line"></span></th>
+		<th class="header-el"> Programski jezik <span class="sort-btn line"></span></th>
+		<th class="header-el"> Datum nastanka <span class="sort-btn line"></span></th>
 	</tr>
 
 	% for repo in repos:
 	<tr class="data-row">
-		<td class="data-el"> <a href="/repos/{{user[1]}}/{{repo[0]}}">{{repo[0]}}</a> </td>
-		<td class="data-el text-mode"> {{repo[1]}} </td>
-		<td class="data-el"> {{repo[2]}} </td>
-		<td class="data-el"> {{repo[3]}} </td>
-		<td class="data-el"> {{repo[4]}} </td>
+		<td class="data-el"><a href="/repos/{{user[1]}}/{{repo[0]}}">{{repo[0]}}</a></td>
+		<td class="data-el text-mode">{{repo[1]}}</td>
+		<td class="data-el">{{repo[2]}}</td>
+		<td class="data-el">{{repo[3]}}</td>
+		<td class="data-el">{{repo[4]}}</td>
 	</tr>
 	% end
 </table>
 % end
 
 % if len(commits) != 0:
-<h1> Prispevki </h1>
-<table class="custom-table">
+<h1 class="title"> Prispevki </h1>
+<table class="custom-table sorting">
 	<tr class="header-row">
-		<th class="header-el"> Koda </th>
-		<th class="header-el"> Repozitorij </th>
-		<th class="header-el"> Sporočilo </th>
-		<th class="header-el"> Datum in čas </th>
+		<th class="header-el"> Koda <span class="sort-btn line"></span></th>
+		<th class="header-el"> Repozitorij <span class="sort-btn line"></span></th>
+		<th class="header-el"> Sporočilo <span class="sort-btn line"></span></th>
+		<th class="header-el"> Datum in čas <span class="sort-btn line"></span></th>
 	</tr>
 	% for commit in commits:
 	<tr class="data-row">
-		<td class="data-el monospace-font"> {{commit[0]}} </td>
-		<td class="data-el"> <a href="/repos/{{commit[2]}}/{{commit[3]}}">{{commit[2]}}/{{commit[3]}}</a> </td>
-		<td class="data-el text-mode"> {{commit[1]}} </td>
-		<td class="data-el"> {{commit[4]}}<br>{{commit[5]}} </td>
+		<td class="data-el monospace-font">{{commit[0]}}</td>
+		<td class="data-el"><a href="/repos/{{commit[2]}}/{{commit[3]}}">{{commit[2]}}/{{commit[3]}}</a></td>
+		<td class="data-el text-mode">{{commit[1]}}</td>
+		<td class="data-el">{{commit[4]}}<br>{{commit[5]}}</td>
 	</tr>
 	% end
 </table>
 % end
 
 % if len(issues) != 0:
-<h1> Zastavljena vprašanja </h1>
-<table class="custom-table">
+<h1 class="title"> Zastavljena vprašanja </h1>
+<table class="custom-table sorting">
 	<tr class="header-row">
-		<th class="header-el"> Naslov </th>
-		<th class="header-el"> Repozitorij </th>
-		<th class="header-el"> Lastnik repozitorija </th>
-		<th class="header-el"> Besedilo </th>
-		<th class="header-el"> Datum in čas </th>
+		<th class="header-el"> Naslov <span class="sort-btn line"></span></th>
+		<th class="header-el"> Repozitorij <span class="sort-btn line"></span></th>
+		<th class="header-el"> Lastnik repozitorija <span class="sort-btn line"></span></th>
+		<th class="header-el"> Besedilo <span class="sort-btn line"></span></th>
+		<th class="header-el"> Datum in čas <span class="sort-btn line"></span></th>
 	</tr>
 	% for issue in issues:
 	<tr class="data-row">
-		<td class="data-el"> {{issue[0]}} </td>
-		<td class="data-el"> <a href="/repos/{{issue[2]}}/{{issue[1]}}">{{issue[1]}}</a></td>
-		<td class="data-el"> <a href="/users/{{issue[2]}}">{{issue[2]}}</a> </td>
-		<td class="data-el text-mode"> {{issue[3]}} </td>
-		<td class="data-el"> {{issue[4]}}<br>{{issue[5]}}</td>
+		<td class="data-el">{{issue[0]}}</td>
+		<td class="data-el"><a href="/repos/{{issue[2]}}/{{issue[1]}}">{{issue[1]}}</a></td>
+		<td class="data-el"><a href="/users/{{issue[2]}}">{{issue[2]}}</a></td>
+		<td class="data-el text-mode">{{issue[3]}}</td>
+		<td class="data-el">{{issue[4]}}<br>{{issue[5]}}</td>
 	</tr>
 	% end
 </table>

@@ -1,12 +1,10 @@
 % rebase("base.html")
-<form action="/register" method="POST">
-	<label for="username"> Uporabniško ime </label>
-	<input name="username" type="text">
-	<label for="password"> Geslo </label>
-	<input name="password" type="password">
-	<label for="conf_password"> Potrditev gesla </label>
-	<input name="conf_password" type="password">
-	<input type="submit" value="Registracija">
+<h1 class="title">Registracija</h1>
+<form class="register-form" action="/register" method="POST">
+	<input class="username-input" name="username" type="text" placeholder="Uporabniško ime"><br>
+	<input class="password-input" name="password" type="password" placeholder="Geslo"><br>
+	<input class="password-input" name="conf_password" type="password" placeholder="Potrditev gesla"><br>
+	<input class="confirm-btn" type="submit" value="Registriraj se">
 </form>
 % if invalid:
 	<p style="color:red;">Nepravilo uporabniški ime ali geslo</p>

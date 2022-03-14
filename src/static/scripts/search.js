@@ -1,6 +1,6 @@
 window.onload = () => {
 	let form = document.querySelector(".search-form");
-	let searchBar = form.querySelector(".search-bar");
+	let searchBar = form.querySelector(".search-input");
 
 	form.querySelector(".users-opt").addEventListener("click",() => {
 		searchBar.value = "";
@@ -13,4 +13,4 @@ window.onload = () => {
 		searchBar.setAttribute("list","repos");
 		searchBar.setAttribute("placeholder","Repozitorij");
 	});
-}
+};

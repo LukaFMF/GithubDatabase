@@ -1,16 +1,16 @@
 % rebase("base.html")
 
-<h1> Programski jeziki </h1>
-<table  class="custom-table" >
+<h1 class="title"> Programski jeziki </h1>
+<table  class="custom-table sorting">
     <tr class="header-row">
-        <th  class="header-el"> Jezik </th>
-        <th  class="header-el"> Uporaba </th>
+        <th  class="header-el"> Jezik <span class="sort-btn line"></span></th>
+        <th  class="header-el"> Uporaba <span class="sort-btn line"></span></th>
     </tr>
     %for lang in languages:
         %if lang[0] != None:
         <tr class="data-row">
-            <td class="data-el"> {{lang[0]}} </td>
-            <td class="data-el"> {{lang[1]}} </td>
+            <td class="data-el">{{lang[0]}}</td>
+            <td class="data-el">{{lang[1]}}</td>
         </tr>
         %end
     %end

@@ -1,6 +1,8 @@
 CREATE TABLE site_user(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	username TEXT UNIQUE NOT NULL,
-	password TEXT NOT NULL,
-	admin INTEGER NOT NULL
+	"password" TEXT NOT NULL,
+	salt BLOB NOT NULL,
+	num_iters INTEGER NOT NULL,
+	"admin" INTEGER NOT NULL
 );

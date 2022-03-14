@@ -110,9 +110,13 @@ def languages():
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")
 def login():
-	username = bottle.request.get_cookie("account",secret=secretCkKey)
-	invalid = bottle.request.query.get("invalidLogIn")
-	return bottle.template("login.html",title="prijava",invalid = invalid,account = getAccountCookie())
+	accCookie = getAccountCookie()
+	if accCookie != None: # if logged in you cant do it again
+		bottle.redirect("/")
+
+	username = bottle.request.query.get("username")
+	failedLogin = bottle.request.query.get("loginFailed")
+	return bottle.template("login.html",title="prijava",username = username,failedLogin = failedLogin,account = accCookie)
 
 @bottle.route("/login/","POST")
 @bottle.route("/login","POST")
@@ -123,7 +127,7 @@ def loginForm():
 	if attemptLogin(username,password):
 		bottle.response.set_cookie("account",username,secret=secretCkKey)
 		bottle.redirect("/")
-	bottle.redirect("/login?invalidLogIn=1")
+	bottle.redirect(f"/login?username={username}&loginFailed=1")
 
 @bottle.route("/logout/","POST")
 @bottle.route("/logout","POST")
@@ -134,8 +138,12 @@ def logout():
 @bottle.route("/register/","GET")
 @bottle.route("/register","GET")
 def register():
-	invalid = bottle.request.forms.get("invalidLogIn")
-	return bottle.template("register.html",title= "registracija",invalid = invalid,account = getAccountCookie())
+	accCookie = getAccountCookie()
+	if accCookie != None: # if logged in you cant register
+		bottle.redirect("/")
+
+	invalid = bottle.request.query.get("invalidLogIn")
+	return bottle.template("register.html",title= "registracija",invalid = invalid,account = accCookie)
 
 @bottle.route("/register/","POST")
 @bottle.route("/register","POST")
@@ -155,4 +163,5 @@ def registerForm():
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
 bottle.run(reloader=True,debug=True)
+userConn.close()
 conn.close()

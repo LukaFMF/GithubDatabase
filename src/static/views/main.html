@@ -1,27 +1,31 @@
 % rebase("base.html")
 <script type="text/javascript" src="/search.js"></script>
-<form class="search-form" action="/search" method="GET">
-    <input class="search-bar" name="search" list="users" placeholder="Uporabnik">
+<div class="search-container">
+	<form class="search-form" action="/search" method="GET">
+		
+		<input type="text" autocomplete="off" class="search-input" name="search" list="users" placeholder="Uporabnik" >
+		<input class="confirm-btn" type="submit" value="Iskanje"><br>
 
-	<br>Išči po:
-	<div>
-		<input class="users-opt" type="radio" name="category" value="users" checked>
-		<label for="category">Uporabniki</label>
-	</div>
-	<div>
-		<input class="repos-opt" type="radio" name="category" value="repos">
-		<label for="category">Repozitorji</label>
-	</div>
+		<div class="switch-container">
+			<label class="user-switch">
+				<input class="users-opt" type="radio" name="category" value="users" checked>
+				Uporabniki
+			</label>
+			<label class="repos-switch">
+				<input class="repos-opt" type="radio" name="category" value="repos">
+				Repozitorji
+			</label>
+		</div>
 
-	<datalist id="users">
-	% for user in users:
-		<option value="{{user}}">
-	% end
-	</datalist>
-	<datalist id="repos">
-	% for repo in repos:
-		<option value="{{repo[1]}}/{{repo[0]}}">
-	% end
-	</datalist>
-    <input type="submit" value="Iskanje">
-</form>
+		<datalist id="users">
+			% for user in users:
+				<option value="{{user}}">
+			% end
+		</datalist>
+		<datalist id="repos">
+			% for repo in repos:
+				<option value="{{repo[1]}}/{{repo[0]}}">
+			% end
+		</datalist>
+	</form>
+</div>
