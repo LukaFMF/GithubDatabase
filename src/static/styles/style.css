@@ -10,7 +10,7 @@ body {
 
 .top-bar{
 	display: grid;
-	grid-template-columns: .2fr 1fr 1fr 1fr .5fr;
+	grid-template-columns: .2fr 1fr 1fr 1fr 0.5fr;
 	border-radius: 5px;
 	background-color: #2586ac;
 	height: 75px;
@@ -38,10 +38,16 @@ body {
 	transition: 0.3s;
 }
 
-.user-section{
+.user-section-loged-out{
 	text-align:center;
 	line-height: 75px;
 }
+.user-section-loged-in{
+	text-align: center;
+	line-height: 35px;
+	font-size: auto;
+}
+
 
 .langs-button {
 	border-right: 3px solid #4c9ebe; 

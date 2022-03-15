@@ -21,15 +21,18 @@
 			<div class="langs-button" onclick="location.href='/languages'">
 				Programski jeziki
 			</div>
-			<div class="user-section">
 			% if account:
-				Prijavljen kot {{account}}
-				<form action="/logout" method="POST">
-					<input type="submit" value="Odjava">
-				</form>
+				<div class="user-section-loged-in">
+					Prijavljen kot {{account}}
+					<form action="/logout" method="POST">
+						<input type="submit" value="Odjava">
+					</form>
+				</div>
 			% else:
-				<a href="/login">Prijava</a> /
-				<a href="/register">Registracija</a>
+				<div class="user-section-loged-out">
+					<a href="/login">Prijava</a> /
+					<a href="/register">Registracija</a>
+				</div>
 			% end
 			</div>
 		</div>
