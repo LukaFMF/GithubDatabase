@@ -1,8 +1,11 @@
 % rebase("base.html")
 <h1 class="title">Vpis</h1>
+<script type="text/javascript" src="/hideAlert.js"></script>
 <form class="login-form" action="/login" method="POST">
-	% if failedLogin:
-	
+	% if failedLogin == "0":
+	<div class="auth-alert" onclick="hideAlert();">
+		Napačno uporabniško ime ali geslo
+	</div><br class="alert-spacing">
 	% end
 	% currName = username if username != None else ""
 	<input class="username-input" name="username" type="text" value="{{currName}}" placeholder="Uporabniško ime"><br>

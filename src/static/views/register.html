@@ -1,11 +1,29 @@
 % rebase("base.html")
 <h1 class="title">Registracija</h1>
+<script type="text/javascript" src="/hideAlert.js"></script>
 <form class="register-form" action="/register" method="POST">
-	<input class="username-input" name="username" type="text" placeholder="Uporabniško ime"><br>
+	% if failedRegistration == "0":
+	<div class="auth-alert" onclick="hideAlert();">
+		Uporabniško ime mora vsebovati le velike in male črke angleške<br>
+		abecede ter številke, dovoljena dolžina je od 3 do 15 znakov
+	</div><br class="alert-spacing">
+	% elif failedRegistration == "1":
+	<div class="auth-alert" onclick="hideAlert();">
+		Uporabniško ime je že zasedeno
+	</div><br class="alert-spacing">
+	% elif failedRegistration == "2":
+	<div class="auth-alert" onclick="hideAlert();">
+		Geslo mora vsebovati le velike in male črke angleške<br>
+		abecede ter številke, dovoljena dolžina je od 6 do 32 znakov
+	</div><br class="alert-spacing">
+	% elif failedRegistration == "3":
+	<div class="auth-alert" onclick="hideAlert();">
+		Vnešeni gesli se ne ujemata
+	</div><br class="alert-spacing">
+	% end
+	% currName = username if username != None else ""
+	<input class="username-input" name="username" type="text" value="{{currName}}" placeholder="Uporabniško ime"><br>
 	<input class="password-input" name="password" type="password" placeholder="Geslo"><br>
 	<input class="password-input" name="conf_password" type="password" placeholder="Potrditev gesla"><br>
 	<input class="confirm-btn" type="submit" value="Registriraj se">
 </form>
-% if invalid:
-	<p style="color:red;">Nepravilo uporabniški ime ali geslo</p>
-% end

@@ -311,7 +311,7 @@ encounteredRepos = set(Repository.getCurrIds())
 encounteredCommits = set(Commit.getCurrShas())
 encounteredIssues = set(Issue.getCurrIds())
 encounteredLangs = dict(Language.getCurrLangs())
-storedUsers = ["LukaFMF","jaanos"]
+storedUsers = [] #["matijapretnar","anzeozimek","jaanos","LukaFMF"]
 for user in storedUsers:
 	userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
 
@@ -341,9 +341,17 @@ for user in storedUsers:
 			else: # ce imamo podatke o enem repozitoriju, imamo verjetno tudi vse ostale podatke o uporabniku
 				break
 			
+			i = 1
+			commitsData = []
+			while True:
+				pageCommitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits?page={i}&per_page=100",
+					auth = authUsr).text)
+				
+				if len(pageCommitsData) == 0:
+					break
+				commitsData.extend(pageCommitsData)
+				i += 1
 
-			commitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits",
-				auth = authUsr).text)
 			for commitData in commitsData:
 				if commitData != None and "author" in commitData and commitData["author"] != None:
 					commiterUsername = commitData["author"]["login"]
@@ -363,9 +371,17 @@ for user in storedUsers:
 						encounteredCommits.add(commit.sha)
 						commit.insert()
 
-			# dobi le prvih 20 ali 25 vprasanj
-			issuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues",
+			i = 1
+			issuesData = []
+			while True:
+				pageIssuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues?page={i}&per_page=100",
 				auth = authUsr).text)
+
+				if len(pageIssuesData) == 0:
+					break
+				issuesData.extend(pageIssuesData)
+				i += 1
+
 			for issueData in issuesData:
 				if issueData != None and "user" in issueData and issueData["user"] != None:
 					issuerUsername = issueData["user"]["login"]

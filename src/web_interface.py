@@ -127,7 +127,7 @@ def loginForm():
 	if attemptLogin(username,password):
 		bottle.response.set_cookie("account",username,secret=secretCkKey)
 		bottle.redirect("/")
-	bottle.redirect(f"/login?username={username}&loginFailed=1")
+	bottle.redirect(f"/login?username={username}&loginFailed=0")
 
 @bottle.route("/logout/","POST")
 @bottle.route("/logout","POST")
@@ -142,8 +142,9 @@ def register():
 	if accCookie != None: # if logged in you cant register
 		bottle.redirect("/")
 
-	invalid = bottle.request.query.get("invalidLogIn")
-	return bottle.template("register.html",title= "registracija",invalid = invalid,account = accCookie)
+	username = bottle.request.query.get("username")
+	failedRegistration = bottle.request.query.get("registrationFailed")
+	return bottle.template("register.html",title= "registracija",username = username,failedRegistration = failedRegistration,account = accCookie)
 
 @bottle.route("/register/","POST")
 @bottle.route("/register","POST")
@@ -152,13 +153,22 @@ def registerForm():
 	password = bottle.request.forms.get("password")
 	cPassword = bottle.request.forms.get("conf_password")
 
-	if checkIfUsernameIsAvailable(username) and password == cPassword:
-		createNewUser(username,password,0)
+	if not validUsername(username): # username is invaild(len or illegal chars)
+		bottle.redirect("/register?registrationFailed=0")
+	elif not isUsernameFree(username): # username is already taken
+		bottle.redirect("/register?registrationFailed=1")
+	elif not validPassword(password): # password is invaild(len or illegal chars)
+		bottle.redirect(f"/register?username={username}&registrationFailed=2")
+	elif password != cPassword: # confirmation password doesnt match
+		bottle.redirect(f"/register?username={username}&registrationFailed=3")
+
+	# after validation, we create a new user
+	createNewUser(username,password,0) 
 
 	if attemptLogin(username,password):
 		bottle.response.set_cookie("account",username,secret=secretCkKey)
 		bottle.redirect("/")
-	bottle.redirect("/register?invalidLogIn=1")
+	bottle.redirect("/login?loginFailed=0")
 
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')

@@ -8,28 +8,35 @@
 	</head>
 	<body>
 		<div class="top-bar">
-			<div class="logo-container">
-				<img onclick="location.href='/'" class="logo" src="/logo.png" alt="Logo" width="75"/>
-			</div>
-			
-			<div class="users-button" onclick="location.href='/users'">
-				Uporabniki
-			</div>
-			<div class="repos-button" onclick="location.href='/repos'">
-				Repozitoriji
-			</div>
-			<div class="langs-button" onclick="location.href='/languages'">
-				Programski jeziki
-			</div>
-			<div class="user-section">
-			% if account:
-				Prijavljen kot {{account}}
-				<form action="/logout" method="POST">
-					<input type="submit" value="Odjava">
+			<div class="data-tabs-container">
+				<form class="data-tab" action="/users" method="GET">
+					<input class="confirm-btn" type="submit" value="Uporabniki">
 				</form>
+				<form class="data-tab" action="/repos" method="GET">
+					<input class="confirm-btn" type="submit" value="Repozitoriji">
+				</form>
+				<form class="data-tab" action="/languages" method="GET">
+					<input class="confirm-btn" type="submit" value="Programski jezki">
+				</form>
+			</div>
+			<div class="logo-container" onclick="location.href='/'">
+				<img class="logo" src="/logo.png" alt="Logo" width="75"/>
+			</div>
+			<div class="account-container">
+			% if account:
+				<form class="account-tab" action="/logout" method="POST">
+					<input class="confirm-btn" type="submit" value="Odjava">
+				</form>
+				<div class="account-tab account-tab-text">
+					Prijavljen kot {{account}}
+				</div>
 			% else:
-				<a href="/login">Prijava</a> /
-				<a href="/register">Registracija</a>
+				<form class="account-tab" action="/register" method="GET">
+					<input class="confirm-btn" type="submit" value="Registracija">
+				</form>
+				<form class="account-tab" action="/login" method="GET">
+					<input class="confirm-btn" type="submit" value="Vpis">
+				</form>
 			% end
 			</div>
 		</div>

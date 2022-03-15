@@ -50,14 +50,40 @@ def attemptLogin(username,password):
 	
 	return userConn.execute(sqlCode,(username,hashedPw)).fetchone() != None
 
-def checkIfUsernameIsAvailable(username):
+def isUsernameFree(username):
 	sqlCode = """
 		SELECT *
 		FROM site_user
 		WHERE username = ?;
 	"""
 
-	return userConn.execute(sqlCode,(username,)).fetchone() == None 
+	return userConn.execute(sqlCode,(username,)).fetchone() == None
+
+def validUsername(username):
+	""" Username must be 3 - 15 chars long and contain only letters and numbers """
+	usrLen = len(username)
+	if usrLen < 3 or usrLen > 15:
+		return False
+
+	
+
+	for ch in username:
+		if not (("0" <= ch <= "9") or ("a" <= ch <= "z") or ("A" <= ch <= "Z")):
+			return False 
+
+	return True
+
+def validPassword(password):
+	""" Password must be 6 - 32 chars long and contain only letters and numbers """
+	pwLen = len(password)
+	if pwLen < 6 or pwLen > 32:
+		return False
+
+	for ch in password:
+		if not (("0" <= ch <= "9") or ("a" <= ch <= "z") or ("A" <= ch <= "Z")):
+			return False 
+
+	return True
 
 # createNewUser("luka","abcd",1)
 userConn.commit()
