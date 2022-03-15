@@ -9,7 +9,7 @@
 	<body>
 		<div class="top-bar">
 			<div class="data-tabs-container">
-				<form class="data-tab" action="/users" method="GET">
+				<!-- <form class="data-tab" action="/users" method="GET">
 					<input class="confirm-btn" type="submit" value="Uporabniki">
 				</form>
 				<form class="data-tab" action="/repos" method="GET">
@@ -17,7 +17,10 @@
 				</form>
 				<form class="data-tab" action="/languages" method="GET">
 					<input class="confirm-btn" type="submit" value="Programski jezki">
-				</form>
+				</form> -->
+				<button class="confirm-btn data-tab" onclick="location.href='/users'">Uporabniki</button>
+				<button class="confirm-btn data-tab" onclick="location.href='/repos'">Repozitoriji</button>
+				<button class="confirm-btn data-tab" onclick="location.href='/langs'">Programski jeziki</button>
 			</div>
 			<div class="logo-container" onclick="location.href='/'">
 				<img class="logo" src="/logo.png" alt="Logo" width="75"/>
@@ -31,12 +34,14 @@
 					Prijavljen kot {{account}}
 				</div>
 			% else:
-				<form class="account-tab" action="/register" method="GET">
+				<!-- <form class="account-tab" action="/register" method="GET">
 					<input class="confirm-btn" type="submit" value="Registracija">
 				</form>
 				<form class="account-tab" action="/login" method="GET">
 					<input class="confirm-btn" type="submit" value="Vpis">
-				</form>
+				</form> -->
+				<button class="confirm-btn account-tab" onclick="location.href='/register'">Registracija</button>
+				<button class="confirm-btn account-tab" onclick="location.href='/login'">Vpis</button>
 			% end
 			</div>
 		</div>

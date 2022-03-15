@@ -16,7 +16,7 @@ def getAccountCookie():
 def getStylesheetFile(filename):
 	return bottle.static_file(filename,root='static/styles/')
 
-@bottle.route("/<filename:re:(.*\.jpg)|(.*\.png)>","GET")
+@bottle.route("/<filename:re:(.*\.jpg)|(.*\.png)|(.*\.gif)>","GET")
 def getImageFile(filename):
 	return bottle.static_file(filename,root='static/images/')
 
@@ -34,8 +34,8 @@ def main():
 	repos = Repository.getAllReposAndOwners()
 	return bottle.template("main.html",title = "baza podatkov",users = users,repos = repos,account = getAccountCookie())
 
-@bottle.route("/search","GET")
 @bottle.route("/search/","GET")
+@bottle.route("/search","GET")
 def search():
 	value = bottle.request.query.get("search")
 	category = bottle.request.query.get("category")
@@ -61,8 +61,8 @@ def search():
 			return bottle.template("repoNotFound.html")
 
 		bottle.redirect(f"/repos/{username}/{repoName}")
-	else:
-		pass
+	bottle.redirect("/")
+		
 
 @bottle.route("/users/","GET")
 @bottle.route("/users","GET")
@@ -74,12 +74,14 @@ def users():
 def user(username): 
 	user = User.getUserInfo(username)
 	if user == None: # ali uporabnik sploh obstaja
-		return bottle.template("userNotFound.html")
+		return bottle.redirect(f"/userNotFound?username={username}")
 
 	userRepos = Repository.getAllReposOfOwner(user[1])
 	userCommits = Commit.getAllCommitsByUsername(user[1])
 	userIssues = Issue.getAllIssuesOfUser(user[1]) # added issues
-	return bottle.template("user.html",title = user[1],user=user,repos = userRepos,commits = userCommits,issues = userIssues,account = getAccountCookie())
+	favLang = Language.getFavoriteLangOfUser(username)
+	return bottle.template("user.html",title = user[1],user=user,favLang = favLang,repos = userRepos,
+	commits = userCommits,issues = userIssues,account = getAccountCookie())
 
 @bottle.route("/repos/","GET")
 @bottle.route("/repos","GET")
@@ -91,21 +93,22 @@ def repos():
 def repo(username,repoName):
 	user = User.getUserInfo(username)
 	if user == None:
-		return bottle.template("userNotFound.html")
+		return bottle.redirect(f"/userNotFound?username={username}")
 
 	repo = Repository.getRepoInfo(username,repoName)
 	if repo == None:
-		return bottle.template("repoNotFound.html")
+		return bottle.redirect(f"/repoNotFound?username={username}&repoName={repoName}")
 	
 	commits = Commit.getAllCommitsOfRepo(username,repoName)
 	issues = Issue.getAllIssuesOfRepo(username, repoName)
-	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits,issues = issues,account = getAccountCookie())
+	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits,
+	issues = issues,account = getAccountCookie())
 
-@bottle.route("/languages/","GET")
-@bottle.route("/languages","GET")
+@bottle.route("/langs/","GET")
+@bottle.route("/langs","GET")
 def languages():
-	langsAndVolume = Language.GetLangUsage() # dobimo tabelo z 2 elementoma, jezik in količino commitov v njem.
-	return bottle.template("languages.html", title="programski jeziki", languages = langsAndVolume,account = getAccountCookie())
+	langData = Language.getLangUsage() # dobimo tabelo z 2 elementoma, jezik in količino commitov v njem.
+	return bottle.template("languages.html", title="programski jeziki", langData = langData,account = getAccountCookie())
 
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")
@@ -144,7 +147,8 @@ def register():
 
 	username = bottle.request.query.get("username")
 	failedRegistration = bottle.request.query.get("registrationFailed")
-	return bottle.template("register.html",title= "registracija",username = username,failedRegistration = failedRegistration,account = accCookie)
+	return bottle.template("register.html",title= "registracija",username = username,
+	failedRegistration = failedRegistration,account = accCookie)
 
 @bottle.route("/register/","POST")
 @bottle.route("/register","POST")
@@ -170,6 +174,20 @@ def registerForm():
 		bottle.redirect("/")
 	bottle.redirect("/login?loginFailed=0")
 
+@bottle.route("/userNotFound/","GET")
+@bottle.route("/userNotFound","GET")
+def userNotFound():
+	username = bottle.request.query.get("username")
+	return bottle.template("userNotFound.html",title = f"uporabnik ne obstaja",username = username,account=getAccountCookie())
+
+@bottle.route("/repoNotFound/","GET")
+@bottle.route("/repoNotFound","GET")
+def repoNotFound():
+	username = bottle.request.query.get("username")
+	repoName = bottle.request.query.get("repoName")
+
+	return bottle.template("repoNotFound.html",title = f"repozitorij ne obstaja",username = username,repoName = repoName,
+	account=getAccountCookie())
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
 bottle.run(reloader=True,debug=True)

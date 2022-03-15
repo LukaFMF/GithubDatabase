@@ -225,3 +225,11 @@ body {
 	box-shadow: 0 0 2px 1px #f54d42;
 	transition: .3s;
 }
+
+/* Not found pages */
+.not-found-container {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 150px;
+}

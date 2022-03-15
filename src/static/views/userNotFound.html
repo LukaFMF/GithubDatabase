@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>
-			aaa
-		</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/style.css">
-	</head>
-	<body>
-		User was not found
-	</body>
-</html>
+% rebase("base.html")
+<div class="not-found-container">
+	% if username == None:
+	<p>Uporabnik ne obstaja</p>
+	% else:
+	<p>Uporabnik '{{username}}' ne obstaja</p>
+	% end
+	<img src="/sussy.gif" alt="Sussy" width="250"/>
+</div>

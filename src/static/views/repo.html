@@ -3,19 +3,23 @@
 
 <table class="custom-table">
 	<tr class="header-row">
-		<th class="header-el"> ID </th>	
-		<th class="header-el"> Naslov </th>	
-		<th class="header-el"> Lastnik </th>	
-		<th class="header-el"> Opis </th>	
-		<th class="header-el"> Število zvezdic </th>	
-		<th class="header-el"> Programski jezik </th>	
-		<th class="header-el"> Datum nastanka </th>	
+		<th class="header-el"> ID </th>
+		<th class="header-el"> Naslov </th>
+		<th class="header-el"> Lastnik </th>
+		<th class="header-el"> Opis </th>
+		<th class="header-el"> Število prispevkov </th>
+		<th class="header-el"> Število vprašanj </th>
+		<th class="header-el"> Število zvezdic </th>
+		<th class="header-el"> Programski jezik </th>
+		<th class="header-el"> Datum nastanka </th>
 	</tr>
 	<tr class="data-row">
 		<td class="data-el"> {{repoData[0]}} </td>	
 		<td class="data-el"> {{repoData[2]}} </td>	
 		<td class="data-el"> <a href="/users/{{repoData[1]}}">{{repoData[1]}}</a> </td>	
-		<td class="data-el text-mode"> {{repoData[3]}} </td>	
+		<td class="data-el text-mode"> {{repoData[3]}} </td>
+		<td class="data-el"> {{len(commits)}} </td>
+		<td class="data-el"> {{len(issues)}} </td>
 		<td class="data-el"> {{repoData[4]}} </td>	
 		<td class="data-el"> {{repoData[5]}} </td>	
 		<td class="data-el"> {{repoData[6]}} </td>	

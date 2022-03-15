@@ -4,14 +4,14 @@
 <table  class="custom-table sorting">
     <tr class="header-row">
         <th class="header-el"> Jezik <span class="sort-btn line"></span></th>
+		<th class="header-el"> Št. repozitorijev, kjer se jezik uporablja <span class="sort-btn line"></span></th>
         <th class="header-el"> Št. prispevkov, kjer se jezik uporablja <span class="sort-btn line"></span></th>
     </tr>
-    %for lang in languages:
-        %if lang[0] != None:
+    %for lang in langData:
         <tr class="data-row">
             <td class="data-el">{{lang[0]}}</td>
             <td class="data-el">{{lang[1]}}</td>
+            <td class="data-el">{{lang[2]}}</td>
         </tr>
-        %end
     %end
 </table>

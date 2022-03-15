@@ -4,17 +4,23 @@
 <table class="custom-table">
 	<tr class="header-row">
 		<th class="header-el"> ID </th>	
-		<th class="header-el"> Uporabniško ime </th>	
+		<th class="header-el"> Uporabniško ime </th>
+		<th class="header-el"> Najljubši prog. jezik </th>	
 		<th class="header-el"> Število javnih repozitorijev </th>	
+		<th class="header-el"> Število prispevkov </th>	
+		<th class="header-el"> Št. zastavljenih vprašanj </th>	
 		<th class="header-el"> Število sledilcev </th>	
 		<th class="header-el"> Datum pridružitve </th>	
 	</tr>
 	<tr class="data-row">
-		<td class="data-el">{{user[0]}}</td>	
-		<td class="data-el">{{user[1]}}</td>	
-		<td class="data-el">{{user[2]}}</td>	
-		<td class="data-el">{{user[3]}}</td>	
-		<td class="data-el">{{user[4]}}</td>	
+		<td class="data-el">{{user[0]}}</td>
+		<td class="data-el">{{user[1]}}</td>
+		<td class="data-el">{{favLang}}</td>
+		<td class="data-el">{{user[2]}}</td>
+		<td class="data-el">{{len(commits)}}</td>
+		<td class="data-el">{{len(issues)}}</td>
+		<td class="data-el">{{user[3]}}</td>
+		<td class="data-el">{{user[4]}}</td>
 	</tr>
 </table>
 

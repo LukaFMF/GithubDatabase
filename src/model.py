@@ -48,16 +48,34 @@ class Language:
 		return conn.execute(sqlCode,(id,)).fetchone()
 	
 	@staticmethod
-	def GetLangUsage(): # Dobimo količino commitov za posamezen jezik 
+	def getLangUsage(): # Dobimo količino commitov za posamezen jezik 
 		sqlCode = """
-			SELECT l.name, COUNT(*) AS usage
+			SELECT l.name,COUNT(DISTINCT r.id),COUNT(DISTINCT c.sha)
 			FROM repository AS r JOIN language AS l ON (l.id = r.lang_id)
 			JOIN "commit" AS c ON (c.repo_id = r.id)
-			GROUP BY l.name
+			WHERE l.name IS NOT NULL
+			GROUP BY l.name;
 		"""
 		
 		return list(conn.execute(sqlCode).fetchall())
 
+	@staticmethod
+	def getFavoriteLangOfUser(username):
+		sqlCode = """
+			SELECT l.name,COUNT(DISTINCT c.sha) AS usage
+			FROM user AS u JOIN "commit" AS c ON (u.id = c.user_id) 
+			JOIN repository AS r ON (c.repo_id = r.id) 
+			JOIN language AS l ON (l.id = r.lang_id) 
+			WHERE u.username = ? AND l.name IS NOT NULL
+			GROUP BY l.name
+			ORDER BY usage DESC
+			LIMIT 1;
+		"""
+
+		res = conn.execute(sqlCode,(username,)).fetchone()
+		if res == None:
+			return "/"
+		return res[0]
 
 class User:
 	def __init__(self,id,username,numPublicRepos,numFollowers,joinDate):
