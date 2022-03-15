@@ -311,7 +311,7 @@ encounteredRepos = set(Repository.getCurrIds())
 encounteredCommits = set(Commit.getCurrShas())
 encounteredIssues = set(Issue.getCurrIds())
 encounteredLangs = dict(Language.getCurrLangs())
-storedUsers = [] #["matijapretnar","anzeozimek","jaanos","LukaFMF"]
+storedUsers = ["matijapretnar","anzeozimek","jaanos","LukaFMF"]
 for user in storedUsers:
 	userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
 
