@@ -30,8 +30,8 @@ def getScriptFile(filename):
 
 @bottle.route("/","GET")
 def main():
-	users = User.getAllUsernames()
-	repos = Repository.getAllReposAndOwners()
+	users = User.getAllUsernamesInOrder()
+	repos = Repository.getAllReposAndOwnersInOrder()
 	return bottle.template("main.html",title = "baza podatkov",users = users,repos = repos,account = getAccountCookie())
 
 @bottle.route("/search/","GET")
@@ -43,22 +43,22 @@ def search():
 		username = value 
 		user = User.getUserInfo(username)
 		if user == None:
-			return bottle.template("userNotFound.html")
+			return bottle.redirect(f"/userNotFound?username={username}")
 
 		bottle.redirect(f"/users/{username}")
 	elif category == "repos":
 		split = value.split("/")
 		if len(split) != 2:
-			return bottle.template("repoNotFound.html")
+			return bottle.redirect(f"/userNotFound")
 
 		username,repoName = split
 		user = User.getUserInfo(username)
 		if user == None:
-			return bottle.template("userNotFound.html")
+			return bottle.redirect(f"/userNotFound?username={username}")
 
 		repo = Repository.getRepoInfo(username,repoName)
 		if repo == None:
-			return bottle.template("repoNotFound.html")
+			return bottle.redirect(f"/repoNotFound?username={username}&repoName={repoName}")
 
 		bottle.redirect(f"/repos/{username}/{repoName}")
 	bottle.redirect("/")
@@ -190,6 +190,6 @@ def repoNotFound():
 	account=getAccountCookie())
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
-bottle.run(reloader=True,debug=True)
+bottle.run()
 userConn.close()
 conn.close()

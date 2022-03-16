@@ -85,5 +85,5 @@ def validPassword(password):
 
 	return True
 
-# createNewUser("luka","abcd",1)
+# createNewUser("luka","1234567890",1)
 userConn.commit()

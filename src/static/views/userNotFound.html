@@ -1,6 +1,6 @@
 % rebase("base.html")
 <div class="not-found-container">
-	% if username == None:
+	% if username == None or len(username) == 0:
 	<p>Uporabnik ne obstaja</p>
 	% else:
 	<p>Uporabnik '{{username}}' ne obstaja</p>
