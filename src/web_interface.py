@@ -3,6 +3,8 @@ from site_users import *
 import bottle
 
 
+# secret key is generated on server startup and used 
+# as key for hashing cookies
 def secretKeyGen():
 	from random import choices
 	return "".join(choices("0123456789abcdf",k = 64))
@@ -10,29 +12,29 @@ def secretKeyGen():
 secretCkKey = secretKeyGen()
 
 def getAccountCookie():
-	return bottle.request.get_cookie("account",secret=secretCkKey)
+	return bottle.request.get_cookie("account",secret = secretCkKey)
 
 @bottle.route("/<filename:re:.*\.css>","GET")
 def getStylesheetFile(filename):
-	return bottle.static_file(filename,root='static/styles/')
+	return bottle.static_file(filename,root = 'static/styles/')
 
 @bottle.route("/<filename:re:(.*\.jpg)|(.*\.png)|(.*\.gif)>","GET")
 def getImageFile(filename):
-	return bottle.static_file(filename,root='static/images/')
+	return bottle.static_file(filename,root = 'static/images/')
 
 @bottle.route("/<filename:re:.*\.ttf>","GET")
 def getFontFile(filename):
-	return bottle.static_file(filename,root='static/fonts/')
+	return bottle.static_file(filename,root = 'static/fonts/')
 
 @bottle.route("/<filename:re:.*\.js>","GET")
 def getScriptFile(filename):
-	return bottle.static_file(filename,root='static/scripts/')
+	return bottle.static_file(filename,root = 'static/scripts/')
 
 @bottle.route("/","GET")
 def main():
 	users = User.getAllUsernamesInOrder()
 	repos = Repository.getAllReposAndOwnersInOrder()
-	return bottle.template("main.html",title = "baza podatkov",users = users,repos = repos,account = getAccountCookie())
+	return bottle.template("main.html",users = users,repos = repos,account = getAccountCookie())
 
 @bottle.route("/search/","GET")
 @bottle.route("/search","GET")
@@ -67,7 +69,8 @@ def search():
 @bottle.route("/users/","GET")
 @bottle.route("/users","GET")
 def users():
-	return bottle.template("users.html",title = "uporabniki",users=User.getAllUsersInfo(),account = getAccountCookie())
+	users = User.getAllUsersInfo()
+	return bottle.template("users.html",users = users,account = getAccountCookie())
 
 @bottle.route("/users/<username>/","GET")
 @bottle.route("/users/<username>","GET")
@@ -80,13 +83,14 @@ def user(username):
 	userCommits = Commit.getAllCommitsByUsername(user[1])
 	userIssues = Issue.getAllIssuesOfUser(user[1]) # added issues
 	favLang = Language.getFavoriteLangOfUser(username)
-	return bottle.template("user.html",title = user[1],user=user,favLang = favLang,repos = userRepos,
+	return bottle.template("user.html",user = user,favLang = favLang,repos = userRepos,
 	commits = userCommits,issues = userIssues,account = getAccountCookie())
 
 @bottle.route("/repos/","GET")
 @bottle.route("/repos","GET")
 def repos():
-	return bottle.template("repos.html",title = "repozitoriji",repos=Repository.getAllReposInfo(),account = getAccountCookie())
+	repos = Repository.getAllReposInfo()
+	return bottle.template("repos.html",repos = repos,account = getAccountCookie())
 
 @bottle.route("/repos/<username>/<repoName>/","GET")
 @bottle.route("/repos/<username>/<repoName>","GET")
@@ -101,14 +105,14 @@ def repo(username,repoName):
 	
 	commits = Commit.getAllCommitsOfRepo(username,repoName)
 	issues = Issue.getAllIssuesOfRepo(username, repoName)
-	return bottle.template("repo.html",title= f"{username}/{repoName}",repoData = repo,commits = commits,
+	return bottle.template("repo.html",repoData = repo,commits = commits,
 	issues = issues,account = getAccountCookie())
 
 @bottle.route("/langs/","GET")
 @bottle.route("/langs","GET")
 def languages():
-	langData = Language.getLangUsage() # dobimo tabelo z 2 elementoma, jezik in količino commitov v njem.
-	return bottle.template("languages.html", title="programski jeziki", langData = langData,account = getAccountCookie())
+	langData = Language.getLangUsage()
+	return bottle.template("languages.html",langData = langData,account = getAccountCookie())
 
 @bottle.route("/login/","GET")
 @bottle.route("/login","GET")
@@ -119,7 +123,7 @@ def login():
 
 	username = bottle.request.query.get("username")
 	failedLogin = bottle.request.query.get("loginFailed")
-	return bottle.template("login.html",title="prijava",username = username,failedLogin = failedLogin,account = accCookie)
+	return bottle.template("login.html",username = username,failedLogin = failedLogin,account = accCookie)
 
 @bottle.route("/login/","POST")
 @bottle.route("/login","POST")
@@ -147,7 +151,7 @@ def register():
 
 	username = bottle.request.query.get("username")
 	failedRegistration = bottle.request.query.get("registrationFailed")
-	return bottle.template("register.html",title= "registracija",username = username,
+	return bottle.template("register.html",username = username,
 	failedRegistration = failedRegistration,account = accCookie)
 
 @bottle.route("/register/","POST")
@@ -170,7 +174,7 @@ def registerForm():
 	createNewUser(username,password,0) 
 
 	if attemptLogin(username,password):
-		bottle.response.set_cookie("account",username,secret=secretCkKey)
+		bottle.response.set_cookie("account",username,secret = secretCkKey)
 		bottle.redirect("/")
 	bottle.redirect("/login?loginFailed=0")
 
@@ -178,7 +182,7 @@ def registerForm():
 @bottle.route("/userNotFound","GET")
 def userNotFound():
 	username = bottle.request.query.get("username")
-	return bottle.template("userNotFound.html",title = f"uporabnik ne obstaja",username = username,account=getAccountCookie())
+	return bottle.template("userNotFound.html",username = username,account = getAccountCookie())
 
 @bottle.route("/repoNotFound/","GET")
 @bottle.route("/repoNotFound","GET")
@@ -186,10 +190,10 @@ def repoNotFound():
 	username = bottle.request.query.get("username")
 	repoName = bottle.request.query.get("repoName")
 
-	return bottle.template("repoNotFound.html",title = f"repozitorij ne obstaja",username = username,repoName = repoName,
-	account=getAccountCookie())
+	return bottle.template("repoNotFound.html",username = username,repoName = repoName,
+	account = getAccountCookie())
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
-bottle.run()
+bottle.run(reloader = True,debug = True)
 userConn.close()
 conn.close()

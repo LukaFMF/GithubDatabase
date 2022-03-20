@@ -20,7 +20,7 @@ def displayTable(header,cellSizes,data):
 	totalContentWidth = sum(newCellSizes)
 	print("-" * (totalContentWidth + len(cellSizes) - 1)) # add len of "|" chars
 	for row in data:
-		trimmedRow = (str(row[i])[:newCellSizes[i]] for i in range(len(row)))
+		trimmedRow = (repr(str(row[i]))[1:-1][:newCellSizes[i]] for i in range(len(row)))
 		print(modelRow.format(*trimmedRow))
 	print()
 
@@ -62,7 +62,7 @@ def displayUsers():
 				print(f"Join date: {userInfo[4]}")
 				print()
 
-				repoHeader = ("Title","Description","Num. followers","Prog. language","Date created")
+				repoHeader = ("Title","Description","Num. stars","Prog. language","Date created")
 				repoSizes = (25,45,14,15,12)
 				print("Repositories:")
 				if len(repos) != 0:
