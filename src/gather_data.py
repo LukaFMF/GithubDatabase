@@ -3,12 +3,7 @@ import json
 import csv
 import os
 
-# define csv file structure
-csvDialectName = "githubDB"
-csv.register_dialect(csvDialectName,delimiter = ";",
-doublequote = False,quoting = csv.QUOTE_NONNUMERIC,
-escapechar="\\",strict = True)
-
+import functions as f
 from model import *
 
 # there should be a file named "secret.py",
@@ -47,14 +42,6 @@ def mostRecentActionDate(searchRepoId,existingActions):
 				mostRecentDate = actionDate
 
 	return mostRecentDate
-
-
-def writeData(filename,data,mode,dialectName):
-	with open(f"data/{filename}",mode,newline = "",encoding = "utf8") as file:
-		writer = csv.writer(file,dialect = dialectName)
-		
-		sanitizedData = [tuple(map(lambda a: repr(a)[1:-1] if isinstance(a,str) else a,el.get())) for el in data]
-		writer.writerows(sanitizedData)
 # ^^^ Helpful functions ^^^
 
 code,authData = makeGithubRequest("/user")
@@ -67,27 +54,15 @@ wantedUsernames = ["matijapretnar","jaanos","LukaFMF","anzeozimek","lapajnea",
 "Martina333","HanaL123","anaberdnik","titoo1234","Argonfmf","benisa21"]
 
 
-redownloadData = False
-while True:
-	try:
-		choice = input("Redownload all data? (Y/N) ")
-		if choice == "y" or choice == "Y":
-			redownloadData = True
-			break
-		elif choice == "n" or choice == "N":
-			break
-		else:
-			raise Exception()
-	except:
-		print("Invalid input! Try again...")
+redownloadData = f.getInputYN("Redownload all data?")
 
 storageFilenames = ("languages.csv","users.csv","repositories.csv","commits.csv","issues.csv")
 
 # if some files are missing, we recreate them
 for filename in storageFilenames:
 	if not os.path.exists(f"data/{filename}"):
-		f = open(f"data/{filename}","w")
-		f.close()
+		# create empty file or empty it if it exists
+		f.emptyFile(f"data/{filename}")
 
 encounteredLangs = dict()
 encounteredUsers = set()
@@ -102,8 +77,6 @@ if not redownloadData:
 	encounteredRepos = Repository.cacheExisting(storageFilenames[2],csvDialectName)
 	encounteredCommits = Commit.cacheExisting(storageFilenames[3],csvDialectName)
 	encounteredIssues = Issue.cacheExisting(storageFilenames[4],csvDialectName)
-
-print(encounteredLangs)
 
 # language id is the only id we dont get from api so we make our own
 currLangId = 1 if len(encounteredLangs) == 0 else (
@@ -130,7 +103,7 @@ for wantedUsername in wantedUsernames:
 		encounteredUsers.add(wantedUser.id)
 		users.append(wantedUser)
 	
-	print(f"\tRetrieving repositories for user {wantedUsername}... ",end="")
+	print(f"\tRetrieving repositories for user {wantedUsername}... ",end="",flush = True)
 	i = 1
 	userReposData = []
 	while True:
@@ -164,7 +137,7 @@ for wantedUsername in wantedUsernames:
 			encounteredRepos.add(repo.id)
 			repos.append(repo)
 
-		print(f"\t\tRetrieving commits of {wantedUsername}/{repo.title}... ",end="")
+		print(f"\t\tRetrieving commits of {wantedUsername}/{repo.title}... ",end="",flush = True)
 		i = 1
 		repoCommitsData = []
 		recentCommitDate = mostRecentActionDate(repo.id,encounteredCommits)
@@ -209,7 +182,7 @@ for wantedUsername in wantedUsernames:
 				commits.append(commit)
 			print("OK")
 
-		print(f"\t\tRetrieving issues of {wantedUsername}/{repo.title}... ",end="")
+		print(f"\t\tRetrieving issues of {wantedUsername}/{repo.title}... ",end="",flush = True)
 		i = 1
 		repoIssuesData = []
 		recentIssueDate = mostRecentActionDate(repo.id,encounteredIssues)
@@ -248,7 +221,7 @@ for wantedUsername in wantedUsernames:
 			issue = Issue.makeFrom(issueData,issuerId,repo.id)
 
 			if issue.id not in encounteredIssues:
-				encounteredIssues[issue.id] = (repo.id,issue.dateOpened)
+				encounteredIssues[issue.id] = (repo.id,issue.creationTimestamp)
 				issues.append(issue)
 			print("OK")
 
@@ -257,10 +230,9 @@ if not redownloadData:
 	fileMode = "a"
 
 # collect all data in one place
-classRefs = (Language,User,Repository,Commit,Issue)
 allData = (langs,users,repos,commits,issues)
 for i in range(len(allData)):
-	print(f"Writing data to {storageFilenames[i]}... ",end="")
-	writeData(storageFilenames[i],allData[i],fileMode,csvDialectName)
+	print(f"Writing data to data/{storageFilenames[i]}... ",end="")
+	f.writeCsvData(storageFilenames[i],allData[i],fileMode)
 	print("OK")
 

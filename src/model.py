@@ -2,17 +2,20 @@ import sqlite3 as dbapi
 import os
 import csv
 
-alreadyExists = os.path.exists("github.db")
+conn = dbapi.connect("db/github.db")
 
-conn = dbapi.connect("github.db")
-
-if not alreadyExists:
-	file = open("init_github.sql")
+def createTablesFromScriptInMainDb(scriptPath):
+	"""
+	Creates tables in db/github.db from code 
+	contained in scriptPath
+	"""
+	file = open(scriptPath)
 	sqlCode = file.read()
+	file.close()
 
 	conn.executescript(sqlCode)
-	
-	file.close()
+
+import functions as f
 
 class Language:
 	def __init__(self,id,name):
@@ -21,6 +24,13 @@ class Language:
 
 	def get(self):
 		return (self.id,self.name)
+
+	def insert(self):
+		sqlCode = """
+			INSERT INTO language
+			VALUES (?,?);
+		"""
+		conn.execute(sqlCode,self.get())
 
 	@staticmethod
 	def cacheExisting(filename,dialectName):
@@ -39,17 +49,6 @@ class Language:
 				existingLangs[name] = int(langId)
 
 			return existingLangs
-
-	# def insert(self):
-	# 	sqlCode = """
-	# 		INSERT INTO language(name)
-	# 		VALUES (?);
-	# 	"""
-
-	# 	cur = conn.cursor()
-	# 	cur.execute(sqlCode,(self.langName,))
-
-	# 	return cur.lastrowid
 
 	@staticmethod
 	def getCurrLangs():
@@ -124,10 +123,17 @@ class User:
 	def get(self):
 		return (self.id,self.username,self.numFollowers,self.joinDate)
 
+	def insert(self):
+		sqlCode = """
+			INSERT INTO user
+			VALUES (?,?,?,?);
+		"""
+		conn.execute(sqlCode,self.get())
+	
 	@staticmethod
 	def makeFrom(userJson):
 		return User(userJson["id"],userJson["login"],
-		userJson["followers"],userJson["created_at"])
+		userJson["followers"],f.extractDate(userJson["created_at"]))
 
 	@staticmethod
 	def cacheExisting(filename,dialectName):
@@ -140,25 +146,6 @@ class User:
 				existingUsers.add(int(id))
 
 			return existingUsers
-
-	# def __init__(self,id,username,numPublicRepos,numFollowers,joinDate):
-	# 	self.id = id
-	# 	self.username = username
-	# 	self.numPublicRepos = numPublicRepos
-	# 	self.numFollowers = numFollowers
-	# 	self.joinDate = joinDate
-	
-	# def get(self):
-	# 	return (self.id,self.username,self.numPublicRepos,
-	# 		self.numFollowers,self.joinDate)
-
-	def insert(self):
-		sqlCode = """
-			INSERT INTO user
-			VALUES (?,?,?,?,?);
-		"""
-
-		conn.execute(sqlCode,self.get())
 
 	@staticmethod
 	def getCurrIds():
@@ -210,16 +197,15 @@ class Repository:
 		self.langId = langId
 
 	def get(self):
-		return (self.id,self.title,self.description,self.numStars,
-		self.createDate,self.ownerId,self.langId)
+		return (self.id,self.title,f.sanitizeStr(self.description),
+		self.numStars,f.extractDate(self.createDate),self.ownerId,self.langId)
 
-	# def insert(self):
-	# 	sqlCode = """
-	# 		INSERT INTO repository
-	# 		VALUES (?,?,?,?,?,?,?);
-	# 	"""
-
-	# 	conn.execute(sqlCode,self.get())
+	def insert(self):
+		sqlCode = """
+			INSERT INTO repository
+			VALUES (?,?,?,?,?,?,?);
+		"""
+		conn.execute(sqlCode,self.get())
 
 	@staticmethod
 	def makeFrom(repoJson,ownerId,langId):
@@ -312,15 +298,15 @@ class Commit:
 		self.repoId = repoId
 
 	def get(self):
-		return (self.sha,self.message,self.timestamp,self.commiterId,self.repoId)
+		return (self.sha,f.sanitizeStr(self.message),
+		self.timestamp,self.commiterId,self.repoId)
 
-	# def insert(self):
-	# 	sqlCode = """
-	# 		INSERT INTO "commit"
-	# 		VALUES (?,?,?,?,?);
-	# 	"""
-
-	# 	conn.execute(sqlCode,self.get())
+	def insert(self):
+		sqlCode = """
+			INSERT INTO "commit"
+			VALUES (?,?,?,?,?);
+		"""
+		conn.execute(sqlCode,self.get())
 
 	@staticmethod
 	def makeFrom(commitJson,commiterId,repoId):
@@ -399,27 +385,26 @@ class Commit:
 		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
 
 class Issue:
-	def __init__(self,id,title,body,state,numComments,dateOpened,issuerId,repoId):
+	def __init__(self,id,title,body,state,numComments,creationTimestamp,issuerId,repoId):
 		self.id = id
 		self.title = title
 		self.body = body
 		self.state = state
 		self.numComments = numComments 
-		self.dateOpened = dateOpened
+		self.creationTimestamp = creationTimestamp
 		self.issuerId = issuerId
 		self.repoId = repoId
 
 	def get(self):
-		return (self.id,self.title,self.body,self.state,self.numComments,
-		self.dateOpened,self.issuerId,self.repoId)
+		return (self.id,self.title,f.sanitizeStr(self.body),self.state,
+		self.numComments,self.creationTimestamp,self.issuerId,self.repoId)
 
-	# def insert(self):
-	# 	sqlCode = """
-	# 		INSERT INTO issue
-	# 		VALUES (?,?,?,?,?,?);
-	# 	"""
-
-	# 	conn.execute(sqlCode,self.get())
+	def insert(self):
+		sqlCode = """
+			INSERT INTO issue
+			VALUES (?,?,?,?,?,?,?,?);
+		"""
+		conn.execute(sqlCode,self.get())
 	
 	@staticmethod
 	def makeFrom(issueJson,issuerId,repoId):
@@ -496,126 +481,126 @@ class Issue:
 		"""
 		return list(conn.execute(sqlCode,(username,repoName)).fetchall())
 
-if __name__ == "__main__":
-	import requests as r
-	import json
-	from secret import secretUsername,secretToken
+# if __name__ == "__main__":
+# 	import requests as r
+# 	import json
+# 	from secret import secretUsername,secretToken
 
-	authUsr = (secretUsername,secretToken)
+# 	authUsr = (secretUsername,secretToken)
 
-	successful = r.get(f"https://api.github.com/users/{secretUsername}",headers = {"Authorization": f"token {secretToken}"}).status_code == 200
-	if not successful:
-		print("Secret parameters for comunicating with github api are invalid!")
-		exit(-1)
+# 	successful = r.get(f"https://api.github.com/users/{secretUsername}",headers = {"Authorization": f"token {secretToken}"}).status_code == 200
+# 	if not successful:
+# 		print("Secret parameters for comunicating with github api are invalid!")
+# 		exit(-1)
 
-	encounteredUsers = set(User.getCurrIds())
-	encounteredRepos = set(Repository.getCurrIds())
-	encounteredCommits = set(Commit.getCurrShas())
-	encounteredIssues = set(Issue.getCurrIds())
-	encounteredLangs = dict(Language.getCurrLangs())
-	storedUsers = ["matijapretnar","jaanos","LukaFMF","anzeozimek","lapajnea","Martina333","HanaL123","anaberdnik","titoo1234","Argonfmf","benisa21"]
-	print("Fetching data... ")
-	for user in storedUsers:
-		userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
+# 	encounteredUsers = set(User.getCurrIds())
+# 	encounteredRepos = set(Repository.getCurrIds())
+# 	encounteredCommits = set(Commit.getCurrShas())
+# 	encounteredIssues = set(Issue.getCurrIds())
+# 	encounteredLangs = dict(Language.getCurrLangs())
+# 	storedUsers = ["matijapretnar","jaanos","LukaFMF","anzeozimek","lapajnea","Martina333","HanaL123","anaberdnik","titoo1234","Argonfmf","benisa21"]
+# 	print("Fetching data... ")
+# 	for user in storedUsers:
+# 		userData = json.loads(r.get(f"https://api.github.com/users/{user}",auth = authUsr).text)
 
-		usr = User(userData["id"],userData["login"],userData["public_repos"],
-			userData["followers"],userData["created_at"])
+# 		usr = User(userData["id"],userData["login"],userData["public_repos"],
+# 			userData["followers"],userData["created_at"])
 
-		# print(f"User: {user}")
-		if usr.id not in encounteredUsers:
-			encounteredUsers.add(usr.id)
-			usr.insert()
+# 		# print(f"User: {user}")
+# 		if usr.id not in encounteredUsers:
+# 			encounteredUsers.add(usr.id)
+# 			usr.insert()
 
-		# dodaj podatke o repozitorijih in prispevkih
-		userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
-		for repoData in userReposData:
-			if not repoData["fork"]:
-				lang = repoData["language"]
+# 		# dodaj podatke o repozitorijih in prispevkih
+# 		userReposData = json.loads(r.get(userData["repos_url"],auth = authUsr).text)
+# 		for repoData in userReposData:
+# 			if not repoData["fork"]:
+# 				lang = repoData["language"]
 
-				if lang not in encounteredLangs:
-					progLang = Language(lang)
-					encounteredLangs[lang] = progLang.insert()
+# 				if lang not in encounteredLangs:
+# 					progLang = Language(lang)
+# 					encounteredLangs[lang] = progLang.insert()
 
-				repo = Repository(repoData["id"],repoData["name"],repoData["description"],
-					repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
+# 				repo = Repository(repoData["id"],repoData["name"],repoData["description"],
+# 					repoData["stargazers_count"],repoData["created_at"],usr.id,encounteredLangs[lang])
 
-				# print(f"\tRepo: {repoData['name']}")
-				if repo.id not in encounteredRepos:
-					encounteredRepos.add(repo.id)
-					repo.insert()
-				else: # ce imamo podatke o enem repozitoriju, imamo verjetno tudi vse ostale podatke o uporabniku
-					break
+# 				# print(f"\tRepo: {repoData['name']}")
+# 				if repo.id not in encounteredRepos:
+# 					encounteredRepos.add(repo.id)
+# 					repo.insert()
+# 				else: # ce imamo podatke o enem repozitoriju, imamo verjetno tudi vse ostale podatke o uporabniku
+# 					break
 				
-				i = 1
-				commitsData = []
-				while True:
-					pageCommitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits?page={i}&per_page=100",
-						auth = authUsr).text)
+# 				i = 1
+# 				commitsData = []
+# 				while True:
+# 					pageCommitsData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/commits?page={i}&per_page=100",
+# 						auth = authUsr).text)
 					
-					if not isinstance(pageCommitsData,list) or len(pageCommitsData) == 0:
-						break
-					commitsData.extend(pageCommitsData)
-					i += 1
+# 					if not isinstance(pageCommitsData,list) or len(pageCommitsData) == 0:
+# 						break
+# 					commitsData.extend(pageCommitsData)
+# 					i += 1
 
-				for commitData in commitsData:
-					if commitData != None and "author" in commitData and commitData["author"] != None:
-						commiterUsername = commitData["author"]["login"]
-						commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
+# 				for commitData in commitsData:
+# 					if commitData != None and "author" in commitData and commitData["author"] != None:
+# 						commiterUsername = commitData["author"]["login"]
+# 						commiterData = json.loads(r.get(f"https://api.github.com/users/{commiterUsername}",auth = authUsr).text)
 
-						commitUsr = User(commiterData["id"],commiterData["login"],0,
-							commiterData["followers"],commiterData["created_at"])
+# 						commitUsr = User(commiterData["id"],commiterData["login"],0,
+# 							commiterData["followers"],commiterData["created_at"])
 
-						if commitUsr.id not in encounteredUsers:
-							encounteredUsers.add(commitUsr.id)
-							commitUsr.insert()
+# 						if commitUsr.id not in encounteredUsers:
+# 							encounteredUsers.add(commitUsr.id)
+# 							commitUsr.insert()
 
-						comData = commitData["commit"]
-						commit = Commit(commitData["sha"],comData["message"],comData["author"]["date"],commitUsr.id,repo.id)
+# 						comData = commitData["commit"]
+# 						commit = Commit(commitData["sha"],comData["message"],comData["author"]["date"],commitUsr.id,repo.id)
 
-						# print(f"\t\tCommit: {commitData['sha']}")
-						if commit.sha not in encounteredCommits:
-							encounteredCommits.add(commit.sha)
-							commit.insert()
+# 						# print(f"\t\tCommit: {commitData['sha']}")
+# 						if commit.sha not in encounteredCommits:
+# 							encounteredCommits.add(commit.sha)
+# 							commit.insert()
 
-				i = 1
-				issuesData = []
-				while True:
-					pageIssuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues?page={i}&per_page=100",
-					auth = authUsr).text)
+# 				i = 1
+# 				issuesData = []
+# 				while True:
+# 					pageIssuesData = json.loads(r.get(f"https://api.github.com/repos/{usr.username}/{repo.title}/issues?page={i}&per_page=100",
+# 					auth = authUsr).text)
 
-					if not isinstance(pageIssuesData,list) or len(pageIssuesData) == 0:
-						break
-					issuesData.extend(pageIssuesData)
-					i += 1
+# 					if not isinstance(pageIssuesData,list) or len(pageIssuesData) == 0:
+# 						break
+# 					issuesData.extend(pageIssuesData)
+# 					i += 1
 
-				for issueData in issuesData:
-					if issueData != None and "user" in issueData and issueData["user"] != None:
-						issuerUsername = issueData["user"]["login"]
-						issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
+# 				for issueData in issuesData:
+# 					if issueData != None and "user" in issueData and issueData["user"] != None:
+# 						issuerUsername = issueData["user"]["login"]
+# 						issuerData = json.loads(r.get(f"https://api.github.com/users/{issuerUsername}",auth = authUsr).text)
 
-						issueUsr = User(issuerData["id"],issuerData["login"],0,
-							issuerData["followers"],issuerData["created_at"])
+# 						issueUsr = User(issuerData["id"],issuerData["login"],0,
+# 							issuerData["followers"],issuerData["created_at"])
 
-						if issueUsr.id not in encounteredUsers:
-							encounteredUsers.add(issueUsr.id)
-							issueUsr.insert()
+# 						if issueUsr.id not in encounteredUsers:
+# 							encounteredUsers.add(issueUsr.id)
+# 							issueUsr.insert()
 
-						issue = Issue(issueData["id"],issueData["title"],issueData["body"],
-							issueData["created_at"],issueUsr.id,repo.id)
+# 						issue = Issue(issueData["id"],issueData["title"],issueData["body"],
+# 							issueData["created_at"],issueUsr.id,repo.id)
 
-						# print(f"\t\tIssue: {issueData['id']}")
-						if issue.id not in encounteredIssues:
-							encounteredIssues.add(issue.id)
-							issue.insert()
-		# print(f"Calculation number of repos...")
-		sqlCode = """
-			UPDATE user AS u
-			SET num_public_repos = (
-				SELECT COUNT(*)
-				FROM repository AS rO
-				WHERE u.id = rO.owner_id
-			)
-			WHERE id = ?;
-		"""
-		conn.execute(sqlCode,(usr.id,))
-		conn.commit()
+# 						# print(f"\t\tIssue: {issueData['id']}")
+# 						if issue.id not in encounteredIssues:
+# 							encounteredIssues.add(issue.id)
+# 							issue.insert()
+# 		# print(f"Calculation number of repos...")
+# 		sqlCode = """
+# 			UPDATE user AS u
+# 			SET num_public_repos = (
+# 				SELECT COUNT(*)
+# 				FROM repository AS rO
+# 				WHERE u.id = rO.owner_id
+# 			)
+# 			WHERE id = ?;
+# 		"""
+# 		conn.execute(sqlCode,(usr.id,))
+# 		conn.commit()

@@ -3,18 +3,18 @@ import os
 from random import randint
 from hashlib import pbkdf2_hmac,sha256
 
-alreadyExists = os.path.exists("github_users.db")
+userConn = dbapi.connect("db/github_web_users.db")
 
-userConn = dbapi.connect("github_users.db")
-
-if not alreadyExists:
-	file = open("init_site_users.sql")
+def createTablesFromScriptInWebUsersDb(scriptPath):
+	"""
+	Creates tables in db/github_web_users.db from code 
+	contained in scriptPath
+	"""
+	file = open(scriptPath)
 	sqlCode = file.read()
-
-	userConn.executescript(sqlCode)
-	
 	file.close()
 
+	userConn.executescript(sqlCode)
 
 def createNewUser(username,password,admin):
 	salt = os.urandom(64)
@@ -29,7 +29,6 @@ def createNewUser(username,password,admin):
 	userConn.commit()
 
 def attemptLogin(username,password):
-	# get user info
 	sqlCode = """
 		SELECT salt,num_iters
 		FROM site_user
@@ -65,13 +64,7 @@ def validUsername(username):
 	if usrLen < 3 or usrLen > 15:
 		return False
 
-	
-
-	for ch in username:
-		if not (("0" <= ch <= "9") or ("a" <= ch <= "z") or ("A" <= ch <= "Z")):
-			return False 
-
-	return True
+	return username.isalnum()
 
 def validPassword(password):
 	""" Password must be 6 - 32 chars long and contain only letters and numbers """
@@ -79,11 +72,4 @@ def validPassword(password):
 	if pwLen < 6 or pwLen > 32:
 		return False
 
-	for ch in password:
-		if not (("0" <= ch <= "9") or ("a" <= ch <= "z") or ("A" <= ch <= "Z")):
-			return False 
-
-	return True
-
-# createNewUser("luka","1234567890",1)
-userConn.commit()
+	return password.isalnum()

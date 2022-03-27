@@ -10,10 +10,10 @@
 298648297;"Dve napakici";"Sem opazil in popravil dve malenkosti.";0;2;"2018-02-20T15:58:39Z";6708236;52275510
 1113892486;"Dodani testni primeri";"Dodani računalniško zgenerirani testni primeri. Dodal sem še nekaj rešitev sudokujev, ki so manjkale (običajni 10-17).";0;1;"2022-01-25T13:30:41Z";77148745;43541611
 1097013954;"Popravljen sudoku s termometri";"Iz vira ni bila prepisana 7 v 3. vrstici, zaradi česar je imel sudoku 2 rešitvi.";0;1;"2022-01-08T19:15:11Z";77148745;43541611
-1093745559;"Dn";"";0;3;"2022-01-04T20:54:58Z";82776305;43541611
-1090111992;"Dodaj \\n na konec 1. datoteke v vsaki seriji testov";"Preostale testne datoteke se vse koncajo pravilno";0;0;"2021-12-28T20:25:12Z";15659253;43541611
-1089570594;"Popravi manjše napake v navodilih";"";0;1;"2021-12-28T02:39:48Z";15659253;43541611
-1045642891;"Pobriši rec iz funkcij, ki niso rekurzije";"";1;0;"2021-11-05T09:52:49Z";13329220;43541611
+1093745559;"Dn";"on";0;3;"2022-01-04T20:54:58Z";82776305;43541611
+1090111992;"Dodaj \n na konec 1. datoteke v vsaki seriji testov";"Preostale testne datoteke se vse koncajo pravilno";0;0;"2021-12-28T20:25:12Z";15659253;43541611
+1089570594;"Popravi manjše napake v navodilih";"on";0;1;"2021-12-28T02:39:48Z";15659253;43541611
+1045642891;"Pobriši rec iz funkcij, ki niso rekurzije";"on";1;0;"2021-11-05T09:52:49Z";13329220;43541611
 1045637924;"Niso vse funkcije rekurzivne";"Popravek uvodnih vaj iz Ocamla";0;0;"2021-11-05T09:47:06Z";13329220;43541611
 1007954572;"Popravljena napačna definicija operatorja '+'";"Operator `+` števil v Pythonu ne množi, ampak jih sešteva. ";0;0;"2021-09-27T10:07:54Z";26526085;43541611
 807791863;"popravek napake";"V tabeli, ki predstavlja pomnilnik za pythonov seznam s = [6, 2, 4] je vrstni red števil 11 in 29 zamenjan.";0;0;"2021-02-13T17:32:27Z";64791959;43541611
@@ -23,7 +23,7 @@
 743315432;"Popravek rešitev";"V zadnji nalogi pri uvod.ml je bila uporabljena funkcija delete, čeprav smo jo prej definirali kot remove. Program se je torej sesul.\r\n(to da github ne dovoli pull requesta za točno določene comitte je grozno)";0;4;"2020-11-15T18:29:28Z";49908672;43541611
 739102477;"Pull request branch";"Popravil rešitev zadnje naloge pri vajah iz uvoda v Ocaml";0;3;"2020-11-09T15:01:06Z";49908672;43541611
 729103565;"Merge";"";0;2;"2020-10-25T20:13:47Z";65187879;43541611
-720575268;"Dodal vzorca \\b in \\B, ter odstranil podvojeno vrstico metode findall.";"";0;1;"2020-10-13T17:25:00Z";49908672;43541611
+720575268;"Dodal vzorca \b in \B, ter odstranil podvojeno vrstico metode findall.";"";0;1;"2020-10-13T17:25:00Z";49908672;43541611
 489874274;"Tiskarska napaka";"V dokazu se nekajkrat pojavi neznan y, namesto x.";0;0;"2019-09-05T16:35:04Z";42772549;43541611
 291431511;"Fixed some errors";"Fixed some translation errors, and a few recursive functions were missing.";0;1;"2018-01-25T02:41:22Z";28565741;43541611
 290264061;"Update dinamicno.py";"";0;4;"2018-01-21T11:01:59Z";13104460;43541611
@@ -36,8 +36,8 @@
 270918237;"Add proofs for \"No value restriction is needed for algebraic effects and handlers\"";"Add Twelf proofs given in https://ora.ox.ac.uk/objects/uuid:ab54ef8d-373e-448b-8466-dbb12e6b644e";0;0;"2017-11-03T09:28:25Z";1502128;14789114
 199535759;"Formatiranje ne dela";"Verzija, kje trenutno na spletni strani, Mathematica 10.0.2.0, ko poženem `SestaviNaloge`, pri *nekaterih* študentih (ne vseh) dobim \"rdeč kvadrat\", ki ga povzroča napaka v formatiranju:\r\n\r\n    The specified setting for the option GridBoxOptions, RowAlignments cannot be used.\r\n";0;2;"2017-01-09T11:59:13Z";646599;4430155
 1157810903;"Grammars for articulating effects, for state machines with strongly typed transitions";"Hi, I'm not familiar with the literature, and my naive searches lead to nothing so far. This may not be a new idea, if it's been experimented with I'd love get pointers. This may also be off base...\r\n\r\nA natural extension of typed effects would be to let users articulate grammars. E.G. for file operations, with a RegExp-like syntax, `Open(Read|Write)*Close` would prevent one from writing to a file that hasn't been opened yet (I know there are better ways to enforce this, this is for the sake of the example).\r\n\r\nThis would enable one to ensure at compile time that a piece of code respects a given protocol (e.g. that you can't write HTTP headers while the body is being sent).";1;1;"2022-03-02T23:48:50Z";54515;3625723
-1114386218;"Param variance";"";1;0;"2022-01-25T21:35:41Z";6787313;3625723
-1096727902;"Clean up inference engine";"";0;0;"2022-01-07T22:39:18Z";1502128;3625723
+1114386218;"Param variance";"on";1;0;"2022-01-25T21:35:41Z";6787313;3625723
+1096727902;"Clean up inference engine";"on";0;0;"2022-01-07T22:39:18Z";1502128;3625723
 1037334932;"JSON database implementation and conversions";"Does EFF support for JSON conversions. This includes converting files/strings/classes to dictionaries; and dictionaries to json formatted strings ?";0;3;"2021-10-27T12:02:16Z";74971701;3625723
 978536102;"Add JavaScript backend.";"Compile the code to JavaScript using the `--compile-js` option.";1;0;"2021-08-24T22:33:16Z";6898398;3625723
 806370202;"Replace externals with a more robust implementation";"I replaced externals with something that is more robust to future additions and alternative backends. @zigaLuksic - the only thing that is missing is `_ocaml_tophandler` and `failwith` because they are not standard builtins. Would you be so kind and take a look at how to incorporate them best? Thanks!";0;8;"2021-02-11T13:03:02Z";1502128;3625723
@@ -121,9 +121,9 @@
 736737567;"Posodobitev";"";0;0;"2020-11-05T08:50:41Z";57100714;298123563
 736693833;"Nič še ne deluje!";"* Začni *delo* na **projektu**!\r\n```R\r\nx <- y + z\r\ncat(x, y)\r\n```";0;1;"2020-11-05T07:43:32Z";6708236;298123563
 1107131183;"Predgovor";"Sedaj imajo vse naloge v zbirki napisane rešitve, tako da manjka samo še predgovor, ki bo vključen v tem pull requestu. V njem se zahvalim tudi študentom, ki ste prispevali rešitve in popravke: @Babnik21, @evadezelak, @larajagodnik, @mperbil, @RenkoT97, @MatejRojec, @juresternad, @zalastopar, @kuco23, @AnjaTrobec in @JanSifrer. Če ima kdo kakršnekoli pripombe ali predloge, mi jih lahko sporočite tukaj ali po e-pošti.";0;1;"2022-01-18T16:43:36Z";6708236;174718101
-1090201941;"Še en odvečen stavek";"";0;0;"2021-12-29T00:52:38Z";6708236;174718101
-1090197010;"Odstranjeno odvečno besedilo";"";0;0;"2021-12-29T00:40:15Z";6708236;174718101
-1090192267;"Vse naloge so rešene";"";0;0;"2021-12-29T00:25:58Z";6708236;174718101
+1090201941;"Še en odvečen stavek";"on";0;0;"2021-12-29T00:52:38Z";6708236;174718101
+1090197010;"Odstranjeno odvečno besedilo";"on";0;0;"2021-12-29T00:40:15Z";6708236;174718101
+1090192267;"Vse naloge so rešene";"on";0;0;"2021-12-29T00:25:58Z";6708236;174718101
 1088600390;"Resitve nalog iz algoritmov na grafih";"Še zadnji sklop rešitev nalog.";0;0;"2021-12-25T13:14:00Z";6708236;174718101
 923865827;"Napaka v rešitvi naloge 3.11";"Na koncu rešitve je podan postopek odločanja: \r\n\r\n• Če je 0 ≤ p < 3/22, se odločimo za pot preko vozlišča C v list z vrednostjo 0.\r\n• Če je 1/7  ≤ p < 3/22, se odločimo za pot preko vozlišča B.\r\n\r\nMislim, da je v drugem primeru pravi interval: 3/22 ≤  p ≤ 1/4.";0;1;"2021-06-17T12:26:27Z";64798112;174718101
 920615145;"Napaka v rešitvi pri nalogi 2.7";"V rešitvi je kot iskana vrednost naveden maksimum vsote samo po i-jih: $max(\\sum_{i=1}^{12} j p_{ij} x_{ij}$). Mislim, da bi morala biti vključena še vsota po j-jih: $max(\\sum_{i=1}^{12} (\\sum_{j=1}^3 j p_{ij} x_{ij}))$.\r\n\r\nPrav tako ni naveden pogoj:$\\forall i = 1, \\dots, 12, \\forall j = 1, 2, 3: 0 \\le x_{ij} \\le 1, x_{ij} \\in \\mathbb{Z}$";0;1;"2021-06-14T17:14:46Z";64798112;174718101
