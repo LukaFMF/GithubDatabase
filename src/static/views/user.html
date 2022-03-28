@@ -17,11 +17,11 @@
 		<td class="data-el">{{user[0]}}</td>
 		<td class="data-el">{{user[1]}}</td>
 		<td class="data-el">{{favLang}}</td>
-		<td class="data-el">{{user[2]}}</td>
+		<td class="data-el">{{len(repos)}}</td>
 		<td class="data-el">{{len(commits)}}</td>
 		<td class="data-el">{{len(issues)}}</td>
+		<td class="data-el">{{user[2]}}</td>
 		<td class="data-el">{{user[3]}}</td>
-		<td class="data-el">{{user[4]}}</td>
 	</tr>
 </table>
 
@@ -76,15 +76,20 @@
 		<th class="header-el"> Repozitorij <span class="sort-btn line"></span></th>
 		<th class="header-el"> Lastnik repozitorija <span class="sort-btn line"></span></th>
 		<th class="header-el"> Besedilo <span class="sort-btn line"></span></th>
+		<th class="header-el"> Stanje <span class="sort-btn line"></span></th>
+		<th class="header-el"> Št. komentarjev <span class="sort-btn line"></span></th>
 		<th class="header-el"> Datum in čas <span class="sort-btn line"></span></th>
 	</tr>
 	% for issue in issues:
 	<tr class="data-row">
+		% issueState = "odprto" if issue[4] == 1 else "zaprto"
 		<td class="data-el">{{issue[0]}}</td>
 		<td class="data-el"><a href="/repos/{{issue[2]}}/{{issue[1]}}">{{issue[1]}}</a></td>
 		<td class="data-el"><a href="/users/{{issue[2]}}">{{issue[2]}}</a></td>
 		<td class="data-el text-mode">{{issue[3]}}</td>
-		<td class="data-el">{{issue[4]}}<br>{{issue[5]}}</td>
+		<td class="data-el">{{issueState}}</td>
+		<td class="data-el">{{issue[5]}}</td>
+		<td class="data-el">{{issue[6]}}<br>{{issue[7]}}</td>
 	</tr>
 	% end
 </table>

@@ -5,6 +5,7 @@ from hashlib import pbkdf2_hmac,sha256
 
 userConn = dbapi.connect("db/github_web_users.db")
 
+
 def createTablesFromScriptInWebUsersDb(scriptPath):
 	"""
 	Creates tables in db/github_web_users.db from code 
@@ -58,13 +59,23 @@ def isUsernameFree(username):
 
 	return userConn.execute(sqlCode,(username,)).fetchone() == None
 
+def isAlphaNumericAscii(s):
+	"""
+	Checks if the provided string s is composed only of alpha numeric 
+	ascii characters
+	"""
+	for ch in s:
+		if not ("a" <= ch <= "z") and not ("A" <= ch <= "z") and not ("0" <= ch <= "9"):
+			return False
+	return True
+
 def validUsername(username):
 	""" Username must be 3 - 15 chars long and contain only letters and numbers """
 	usrLen = len(username)
 	if usrLen < 3 or usrLen > 15:
 		return False
 
-	return username.isalnum()
+	return isAlphaNumericAscii(username)
 
 def validPassword(password):
 	""" Password must be 6 - 32 chars long and contain only letters and numbers """
@@ -72,4 +83,4 @@ def validPassword(password):
 	if pwLen < 6 or pwLen > 32:
 		return False
 
-	return password.isalnum()
+	return isAlphaNumericAscii(password)

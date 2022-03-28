@@ -47,7 +47,6 @@ print("")
 
 # Site users db
 print("Creating db/github_web_users.db:")
-# clear the db contents
 f.emptyFile("db/github_web_users.db")
 
 from site_users import *

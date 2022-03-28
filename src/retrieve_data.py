@@ -54,7 +54,21 @@ wantedUsernames = ["matijapretnar","jaanos","LukaFMF","anzeozimek","lapajnea",
 "Martina333","HanaL123","anaberdnik","titoo1234","Argonfmf","benisa21"]
 
 
-redownloadData = f.getInputYN("Redownload all data?")
+# if user wants to download all of the data again
+redownloadData = False
+while True:
+	try:
+		choice = input("Redownload all data? (Y/N) ")
+		if choice == "y" or choice == "Y":
+			redownloadData = True
+			break
+		elif choice == "n" or choice == "N":
+			break
+		else:
+			raise Exception()
+	except:
+		print("Invalid input! Try again...")
+
 
 storageFilenames = ("languages.csv","users.csv","repositories.csv","commits.csv","issues.csv")
 

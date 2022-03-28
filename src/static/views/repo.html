@@ -1,6 +1,6 @@
-% title = f"repozitorij {repoData[1]}/{repoData[2]}"
+% title = f"repozitorij {repoData[2]}/{repoData[1]}"
 % rebase("base.html")
-<h1 class="title">Repozitorij - {{repoData[1]}}/{{repoData[2]}}</h1>
+<h1 class="title">Repozitorij - {{repoData[2]}}/{{repoData[1]}}</h1>
 
 <table class="custom-table">
 	<tr class="header-row">
@@ -16,8 +16,8 @@
 	</tr>
 	<tr class="data-row">
 		<td class="data-el"> {{repoData[0]}} </td>	
-		<td class="data-el"> {{repoData[2]}} </td>	
-		<td class="data-el"> <a href="/users/{{repoData[1]}}">{{repoData[1]}}</a> </td>	
+		<td class="data-el"> {{repoData[1]}} </td>	
+		<td class="data-el"> <a href="/users/{{repoData[2]}}">{{repoData[2]}}</a> </td>	
 		<td class="data-el text-mode"> {{repoData[3]}} </td>
 		<td class="data-el"> {{len(commits)}} </td>
 		<td class="data-el"> {{len(issues)}} </td>
@@ -48,20 +48,25 @@
 % end
 
 % if len(issues) != 0:
-<h1 class="title"> Odprta vprašanja </h1>
+<h1 class="title"> Vprašanja </h1>
 <table class="custom-table sorting">
 	<tr class="header-row">
 		<th class="header-el"> Naslov <span class="sort-btn line"></span></th>
 		<th class="header-el"> Avtor <span class="sort-btn line"></span></th>
 		<th class="header-el"> Besedilo <span class="sort-btn line"></span></th>
+		<th class="header-el"> Stanje <span class="sort-btn line"></span></th>
+		<th class="header-el"> Št. komentarjev <span class="sort-btn line"></span></th>
 		<th class="header-el"> Datum in čas <span class="sort-btn line"></span></th>
 	</tr>
 	% for issue in issues:
 	<tr class="data-row">
+		% issueState = "odprto" if issue[3] == 1 else "zaprto"
 		<td class="data-el">{{issue[0]}}</td>
 		<td class="data-el"><a href="/users/{{issue[1]}}">{{issue[1]}}</a></td>
 		<td class="data-el text-mode">{{issue[2]}}</td>
-		<td class="data-el">{{issue[3]}}<br>{{issue[4]}}</td>
+		<td class="data-el">{{issueState}}</td>
+		<td class="data-el">{{issue[4]}}</td>
+		<td class="data-el">{{issue[5]}}<br>{{issue[6]}}</td>
 	</tr>
 	% end
 </table>

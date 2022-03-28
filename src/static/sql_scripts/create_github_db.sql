@@ -34,7 +34,7 @@ CREATE TABLE issue(
 	body TEXT,
 	"state" INTEGER NOT NULL CHECK("state" IN (0,1)), -- 1 = open,0 = closed
 	num_comments INTEGER NOT NULL,
-	creation_timestamp TIMESTAMP NOT NULL,
+	timestamp_opened TIMESTAMP NOT NULL,
 	issuer_id INTEGER NOT NULL REFERENCES user(id),
 	repo_id INTEGER NOT NULL REFERENCES repository(id)
 );

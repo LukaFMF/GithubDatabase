@@ -607,7 +607,7 @@
 "4c4fb3b0b0cee59f5d485d925a7f0ef0316351b1";"Zapiski in prosojnice za rekurzijo";"2018-02-26T12:59:31Z";1502128;52275510
 "12d3fdd63507562d4e370fc823c40bc1802128b0";"Merge pull request #1 from jaanos/patch-1\n\nDve napakici";"2018-02-20T22:50:32Z";1502128;52275510
 "5ba0b84fdd21b6bd75baa4d0ee6396703ebe1a98";"``if`` umaknjen iz poševne pisave\n\nTako se prikaže kot koda.";"2018-02-20T15:54:59Z";6708236;52275510
-"f5613877c4ae8da3acfcafef211ced2561637b0b";"Dodan manjkajoč \"bi\"";"2018-02-20T15:52:12Z";6708236;52275510
+"f5613877c4ae8da3acfcafef211ced2561637b0b";"Dodan manjkajoč ""bi""";"2018-02-20T15:52:12Z";6708236;52275510
 "11a6d15f4f7eb31375f657ceef8f2de4327f7b4a";"Datoteke s predavanj";"2018-02-20T10:58:13Z";1502128;52275510
 "0b48d8b3bcab0832f088c30604d0d035da2b61bc";"Popravki zapiskov";"2018-02-19T13:03:16Z";1502128;52275510
 "329961a8ed40104ae93b5b924d32d5c1d6418df6";"Popravki prosojnic";"2018-02-19T13:02:47Z";1502128;52275510
@@ -874,7 +874,7 @@
 "8bf58f90d1c64899934a6624c31cf330502f4344";"Datoteka za ustni izpit";"2019-09-26T13:55:08Z";1502128;43541611
 "5cd5e33d416af124793ed94c1681d27fe9631d43";"Uredil datoteke z zajetimi in obdelanimi podatki";"2019-09-26T13:48:18Z";1502128;43541611
 "1ae098f1f8766989f911324b5dde5e9acebe968e";"Merge remote-tracking branch 'origin/master'";"2019-09-26T07:29:26Z";1502128;43541611
-"b867049fa605a3a9a08296c4c0803668a4882b7b";"Revert \"Pobrisal angleške datoteke\"\n\nThis reverts commit 9876c23270a70a4033b895e124193a0d5e67b00e.";"2019-09-26T06:41:38Z";1502128;43541611
+"b867049fa605a3a9a08296c4c0803668a4882b7b";"Revert ""Pobrisal angleške datoteke""\n\nThis reverts commit 9876c23270a70a4033b895e124193a0d5e67b00e.";"2019-09-26T06:41:38Z";1502128;43541611
 "c40dc2fd5033584b8649ee337fdce77ec617ac28";"Uredil datoteke z izpiti";"2019-09-26T06:31:35Z";1502128;43541611
 "5c0e8cb264e7067e0c0df2a9c0e666a017549c59";"Pobrisal rešitve izpitov";"2019-09-26T06:27:18Z";1502128;43541611
 "b4b20e93f1bd81a9ac110d3b051afe1838244e29";"Pobrisal stare datoteke";"2019-09-25T13:13:08Z";1502128;43541611
@@ -1437,7 +1437,7 @@
 "ccd33640aa33da223a034fef05fc07f6594d3efe";"Prove uniqueness of term erasure";"2017-10-23T10:10:19Z";1502128;14789114
 "23f852e992128628d2c51ce69b6f993b453160aa";"Continue with proof refinement";"2017-10-21T19:07:44Z";1502128;14789114
 "aac19bdcfdcc50458b437619fe31849087b7aab5";"Refine proofs";"2017-10-21T12:16:46Z";1502128;14789114
-"58b62696b543cef2470f07453c90282e2f1ab4ec";"Add proofs for the \"Explicit Effect Subtyping\" paper";"2017-10-21T09:51:23Z";1502128;14789114
+"58b62696b543cef2470f07453c90282e2f1ab4ec";"Add proofs for the ""Explicit Effect Subtyping"" paper";"2017-10-21T09:51:23Z";1502128;14789114
 "43a47934244b0647f8fe982af18aa843c8d4beb7";"Fix proof numbering";"2017-06-15T12:21:37Z";1502128;14789114
 "5b211738cac3d98bf5ca3e4953caa1dc56977a43";"Adapt the translation proofs to computation products";"2017-05-24T13:50:51Z";1502128;14789114
 "4f35da69667d05e96c32485c8cc131059cac21ab";"Adapt the translation scaffolding to computation products";"2017-05-24T06:33:47Z";1502128;14789114
@@ -1495,7 +1495,7 @@
 "d2fcda4c55acbaccfaac2374bf73d3a569849b51";"Remove stack semantics";"2015-08-26T19:40:09Z";1502128;14789114
 "677a3a2c4b19f88c663c0c202e567cadc85d2ef3";"Simplify safety lemmas";"2015-08-26T19:39:49Z";1502128;14789114
 "e8ea6409f00669c53caecf14379e5c915dc1e942";"Finished all the proofs";"2015-08-26T19:15:37Z";1502128;14789114
-"8bc72185a369fda56ff43cfa4a8ffea330fd989c";"Revert \"Removed effect annotations\"\n\nThis reverts commit 44217eeec91843be887483ef42b3c01580cc7752.\n\nConflicts:\n    preservation-lemmas.elf\n    preservation.elf\n    progress-lemmas.elf\n    progress.elf\n    subtyping-lemmas.elf\n    syntax.elf\n    typing-lemmas.elf\n    typing.elf";"2015-08-26T11:46:58Z";1502128;14789114
+"8bc72185a369fda56ff43cfa4a8ffea330fd989c";"Revert ""Removed effect annotations""\n\nThis reverts commit 44217eeec91843be887483ef42b3c01580cc7752.\n\nConflicts:\n    preservation-lemmas.elf\n    preservation.elf\n    progress-lemmas.elf\n    progress.elf\n    subtyping-lemmas.elf\n    syntax.elf\n    typing-lemmas.elf\n    typing.elf";"2015-08-26T11:46:58Z";1502128;14789114
 "f8b8e81d0fae4868f2a26188721800f33dd593a7";"Finish preservation (modulo a few %trustmes)";"2015-08-26T08:46:29Z";1502128;14789114
 "270eb35cdc199591f9acc72c38993e56adef38f9";"Half-way through preservation";"2015-08-26T08:14:05Z";1502128;14789114
 "3415450dc59e40dd676b2317cc5bc15d465611f2";"Add syntax for schemes and polymorphic typing";"2015-08-24T11:12:24Z";1502128;14789114
@@ -1516,7 +1516,7 @@
 "6e2317c6c77b3ed548784e1201ede160e564c4c5";"Improved README.md.";"2014-01-21T08:26:31Z";1502128;14789114
 "356e3dd291930c99c26ca584809357df8a34aa73";"Spellcheck.";"2014-01-21T08:26:24Z";1502128;14789114
 "72001c40e4c7804129d46df5d96edac3b3e8561f";"Fixed indentation.";"2014-01-21T08:05:29Z";1502128;14789114
-"03b5d34dc7790a7878d00200347ebceb753d1ba2";"Changed \"decidability\" to \"comparability\"";"2014-01-20T20:50:31Z";1502128;14789114
+"03b5d34dc7790a7878d00200347ebceb753d1ba2";"Changed ""decidability"" to ""comparability""";"2014-01-20T20:50:31Z";1502128;14789114
 "558991d27cc36c563443c5772e0418b0cac9a769";"Fixed comments.";"2014-01-20T06:08:53Z";1502128;14789114
 "3478b97749c7c0b9f882538a02fc2f44d4ac11ec";"Put small/big equivalence into a single file.";"2014-01-19T20:45:44Z";1502128;14789114
 "2f22d961dc1413a78d7e687a85749496b1acad66";"Split up lemmas from safety theorems.";"2014-01-19T20:41:23Z";1502128;14789114
@@ -1534,7 +1534,7 @@
 "0e40c4751dde2867ebb08f32d4d6e42008fbe75b";"Cleaned up types.elf";"2014-01-09T11:14:59Z";1502128;14789114
 "86f796fd4e23ee4a82c22ce11f8a7eeeba7742a9";"Cleaned up terms.elf";"2014-01-09T11:02:46Z";1502128;14789114
 "9066a1ee424a3b69b173e43280045dcd4f94532c";"Cleaned up effects-lemmas.elf";"2014-01-09T10:42:11Z";1502128;14789114
-"41c378b10a2ff082eac3fb0ef1f6ea9fb864d76c";"Cleaned up \"effects.elf\".";"2014-01-09T10:24:47Z";1502128;14789114
+"41c378b10a2ff082eac3fb0ef1f6ea9fb864d76c";"Cleaned up ""effects.elf"".";"2014-01-09T10:24:47Z";1502128;14789114
 "5f083f902ed3fe266115f073e8260e22662ff29b";"Introduced operations as pairs of instances and opsyms.";"2014-01-09T10:01:55Z";1502128;14789114
 "43e7345da94118d09d4550c203c33128d0956dac";"Renamed operation to opsym.";"2014-01-09T09:47:10Z";1502128;14789114
 "397221d9baea4674262c841a48058bde04a734a9";"Wrote comments for names.elf";"2014-01-09T09:26:27Z";1502128;14789114
@@ -1556,7 +1556,7 @@
 "2b97a31daa0b734c96c490c03c89e6af12370f12";"Proved unequal-instance-in-rest.";"2013-08-14T12:46:36Z";1502128;14789114
 "e2784e283ba57a13a0431015093335633d2955bb";"A not-yet-working attempt at proving preservation.";"2013-08-14T11:21:20Z";1502128;14789114
 "42afa9e98b8e0751e2c3bd06de9e754db82f7611";"Proved that sig is unique which proved preservation-unhandled-op.";"2013-08-14T11:02:10Z";1502128;14789114
-"fb6ebae5a2d671aa47929c3dcb9c1470466b5105";"Remove the \"decide\" boolean type and do equality/apartness properly.\n\nWhile Andrej cooked a chicken curry with eggplants (he did not have\nfresh ginger!), Matija fixed up equality comparisons on operations\nso that they are done properly with identity and apartness types,\nrather than booleans (which lose information).";"2013-08-14T10:40:50Z";646599;14789114
+"fb6ebae5a2d671aa47929c3dcb9c1470466b5105";"Remove the ""decide"" boolean type and do equality/apartness properly.\n\nWhile Andrej cooked a chicken curry with eggplants (he did not have\nfresh ginger!), Matija fixed up equality comparisons on operations\nso that they are done properly with identity and apartness types,\nrather than booleans (which lose information).";"2013-08-14T10:40:50Z";646599;14789114
 "95fb13d5c6a7e4ea79068662413337d26ad15dde";"Made the terms dependent on a signature.";"2013-08-14T08:51:06Z";1502128;14789114
 "d44b639e14ce249c3da1e750f7f7e4900835a226";"Fixed the proof of preservation-unhandled-op.";"2013-08-13T16:18:20Z";1502128;14789114
 "ddbeb1373fce6ddebae357d986390ca18c3754d3";"Found a bug in the formalization.\n\nSomehow, our vars %block does not cover everything.\nI added a couple of operations and instances,\nand preservation broke. We need to fix this first.\n\nNote that all possible cases for eq-inst-op cause\nnumerous coverage errors, so it may be wise to\ncomment out some of them when fixing up the\nproof of preservation.";"2013-08-13T15:44:19Z";1502128;14789114
@@ -1812,7 +1812,7 @@
 "cf02a32bceb6eb9817f59bf0edf807a832afa9a5";"Move BackendSignature into Language module";"2021-12-03T08:00:53Z";1502128;3625723
 "7605b43f266e1ff2d80846de4473e502e75a3bef";"Get rid of CoreTypes";"2021-12-03T07:53:03Z";1502128;3625723
 "b6a3928d47c00aab1edbe096ede004b050e3ac1e";"Include Set & Map in Symbol module";"2021-12-03T07:40:25Z";1502128;3625723
-"eb28d2db74a4fc28dc80c57e6980341869ba7069";"Use existing types instead of polyvar \"parameters\"";"2021-12-02T20:08:48Z";1502128;3625723
+"eb28d2db74a4fc28dc80c57e6980341869ba7069";"Use existing types instead of polyvar ""parameters""";"2021-12-02T20:08:48Z";1502128;3625723
 "cdf60d5c537183ba7fb5b9234fda2b00601b09b5";"Start adding support for records";"2021-12-02T13:11:40Z";1502128;3625723
 "c8ded6d9c96351d60c122b073402d1f211028181";"Support annotated expressions";"2021-12-02T12:19:09Z";1502128;3625723
 "ccf1f1152d939a7978b301cd90c012afbfa8c284";"Reintroduce Check";"2021-12-02T11:55:45Z";1502128;3625723
@@ -1890,7 +1890,7 @@
 "c27ffee3ddaaf6de383328d90750311508512ba6";"Added another multicore version";"2021-07-08T19:44:01Z";6787313;3625723
 "a4f977b909ea770b2ef59966ef63633b67b69ba7";"Stricter check of handler type";"2021-06-15T12:10:36Z";1502128;3625723
 "01fddbb88a345ee2afab0aca17cbbce0e5d1c642";"Update benchmarks";"2021-06-15T11:46:26Z";1502128;3625723
-"23f0655b422fc950c82b1e8d64727262887b5ce1";"Revert \"Add effect annotations\"\n\nThis reverts commit 301cc9ce6f783c1094730a988fd7c19e6bdf0a1d.";"2021-06-15T11:46:12Z";1502128;3625723
+"23f0655b422fc950c82b1e8d64727262887b5ce1";"Revert ""Add effect annotations""\n\nThis reverts commit 301cc9ce6f783c1094730a988fd7c19e6bdf0a1d.";"2021-06-15T11:46:12Z";1502128;3625723
 "5fb762e0438a6d51682b4b56cadd664325e86d65";"Handle casts";"2021-06-15T11:36:08Z";1502128;3625723
 "2a8dd9ea6c2b6b23c214aecc952f916a1463dbb1";"Add tests for benchmark generation";"2021-06-15T11:42:22Z";1502128;3625723
 "6427f9ef04aee08a0ad8d3c4a29d2978fdbac12f";"Ignore variable numbers when printing out format tests";"2021-06-15T11:22:46Z";1502128;3625723
@@ -2129,7 +2129,7 @@
 "9329a4aabd16c2fe570205a3918a0583d4281f93";"Semisemi after header";"2021-01-25T14:23:02Z";6787313;3625723
 "92688175dc155aaed92e20c4fdc88b654fd05e2a";"Removed pure/impure from benchmarks";"2021-01-25T13:52:39Z";6787313;3625723
 "08a23b7618247dab831fedfc714abc737ae60c4c";"Added rules for codegen testing";"2021-01-25T12:37:37Z";6787313;3625723
-"36ff26e1db9d01b9e3b7c1eb3a2d5e6409b2699c";"Printing \";;\" after terms";"2021-01-25T12:32:52Z";6787313;3625723
+"36ff26e1db9d01b9e3b7c1eb3a2d5e6409b2699c";"Printing "";;"" after terms";"2021-01-25T12:32:52Z";6787313;3625723
 "2ac00448e2c0469a6b8d2a06ea20a67569c14ffb";"Allow variables as handlers in optimization";"2021-01-24T20:40:04Z";6787313;3625723
 "85989ec02860f5f2fc3a1a550b83149fe8cfb44e";"Generated code gets formatted";"2021-01-22T15:27:10Z";6787313;3625723
 "380846433e89d7a27fec01fbc67cd9e3e3eed8e2";"Fix effect system state passing";"2021-01-22T12:47:46Z";1502128;3625723
@@ -2252,7 +2252,7 @@
 "016fc306c62dbd28808bb0e9e40dbf407e4b2217";"Allowing filenames with spaces";"2020-12-17T13:26:19Z";6787313;3625723
 "0faaf15dcade93f3539ca146669f7981fd4ac23c";"dune.inc depends on tests";"2020-12-17T08:52:50Z";6787313;3625723
 "386da9ba3ae6f67b201b207df38433aa440a4d29";"Added failing tests";"2020-12-16T21:17:25Z";6787313;3625723
-"a943d340fd54cb6ec722146bfce530c3d4b7cb64";"Revert \"Refactored eff to library\"\n\nThis reverts commit f6ff3adf8b2dafe071e2273ab86bbf025b0970cd.";"2020-12-16T21:02:12Z";6787313;3625723
+"a943d340fd54cb6ec722146bfce530c3d4b7cb64";"Revert ""Refactored eff to library""\n\nThis reverts commit f6ff3adf8b2dafe071e2273ab86bbf025b0970cd.";"2020-12-16T21:02:12Z";6787313;3625723
 "75e5ace8ecfb607ef9355edf47d86473c7eee279";"Added tests for dune";"2020-12-16T19:09:42Z";6787313;3625723
 "f6ff3adf8b2dafe071e2273ab86bbf025b0970cd";"Refactored eff to library";"2020-12-16T19:09:17Z";6787313;3625723
 "d9e22b811beadc8f3dddd2d5a4b244d0f51a5b19";"Simplify loading of standard library";"2020-11-23T12:52:16Z";1502128;3625723
@@ -2347,7 +2347,7 @@
 "012a17a82d53b74908baf0887ec06b53f758c2f8";"Merge pull request #1 from BrechtSerckx/erasure-untyped\n\nErasure untyped";"2019-07-31T08:54:21Z";9508955;3625723
 "37bcb8ba632f18bef2f50b4f0b8079293dca28af";"Fixed the handing bug";"2019-07-22T10:07:33Z";9508955;3625723
 "584bbe4612970bc5cc42f60c9f906c6e4bf7ae0f";"tcTopLevelMono: Return the inferred type too";"2019-07-15T12:30:31Z";9508955;3625723
-"3d64bc32ad43b1a34f12efe0e20b15bac4f99b68";"Rename \"tcTopLevel\" to \"tcTopLevelMono\"\n\nWe need more descriptive names since we are gonna experiment with\ntop-level let-generalization later.";"2019-07-15T12:09:46Z";9508955;3625723
+"3d64bc32ad43b1a34f12efe0e20b15bac4f99b68";"Rename ""tcTopLevel"" to ""tcTopLevelMono""\n\nWe need more descriptive names since we are gonna experiment with\ntop-level let-generalization later.";"2019-07-15T12:09:46Z";9508955;3625723
 "c630af5aa30865e3c989c4757689ef10915e3ef8";"Added a (currently failing) example with top-letrec";"2019-07-15T11:09:33Z";9508955;3625723
 "28d8cb742462d8831a7f8c25625ee3c4f7e57668";"Added another (passing) example";"2019-07-15T10:29:22Z";9508955;3625723
 "f42980d8f596e1dae6560c263236157d32801c41";"Apparently the bug is in having the let IN the handler :/\n\nMore work to be done here";"2019-07-15T10:14:54Z";9508955;3625723
@@ -2363,7 +2363,7 @@
 "8e389d504774ae5aad2db3a950d64dffa9240770";"It seems we managed to avoid some of the problems";"2019-06-21T11:42:09Z";9508955;3625723
 "69eff6a65f6d487c53daef8c89f76ec02fbb0c43";"MIGHT WANT TO REVERT THIS (THOUGH IT'S QUITE SOME WORK)";"2019-06-21T11:31:05Z";9508955;3625723
 "096119423aa2d40efd136012f36553f029530d1f";"minor fix";"2019-06-21T09:22:14Z";9508955;3625723
-"76ad9addf9434a7a27dfa76b9b4bd9c6eeb8a1aa";"I want to remove \"tcUntypedAbstraction\" etc.";"2019-06-21T09:11:14Z";9508955;3625723
+"76ad9addf9434a7a27dfa76b9b4bd9c6eeb8a1aa";"I want to remove ""tcUntypedAbstraction"" etc.";"2019-06-21T09:11:14Z";9508955;3625723
 "3355bd65df519352f539bbcd1a3fe1b38ca0552a";"wibbles";"2019-06-20T14:46:38Z";9508955;3625723
 "7df099571e9ea20ee1b92ab798f368ce73826c5a";"Another bug is lurking in the code\n\ntry ./eff -V 10 gdebug/pattern-matching.eff to reproduce";"2019-06-20T14:37:38Z";9508955;3625723
 "940959bf15b2c01a6424743e4c243a9475805d13";"Fixed the bug";"2019-06-20T14:36:14Z";9508955;3625723
@@ -2408,7 +2408,7 @@
 "259d4761b40aa3297529210fc84c8200aeefd3a0";"Cleanup splitter";"2019-05-31T07:52:19Z";1502128;3625723
 "f1db67499c35971d373052afe983ab144641c72f";"Replace TypingEnv with a VariableMap";"2019-05-31T06:48:00Z";1502128;3625723
 "597e099093d209099a30a1af2ff486d71828600a";"ocamlformat";"2019-05-31T06:34:45Z";1502128;3625723
-"10b858b475530881877edca0184082a6f3e99790";"Revert \"Added type inference for records\"\n\nThis reverts commit 2e970260bffa3c5f4e7890116c42f0dc222cac9b.";"2019-05-30T12:15:40Z";1502128;3625723
+"10b858b475530881877edca0184082a6f3e99790";"Revert ""Added type inference for records""\n\nThis reverts commit 2e970260bffa3c5f4e7890116c42f0dc222cac9b.";"2019-05-30T12:15:40Z";1502128;3625723
 "4f535c266491b5ba2a238eb9ac75893c5be4e26d";"Fix let generalization";"2019-05-30T12:11:46Z";1502128;3625723
 "37a0057e27477404d334617ed96e7c80735eebcb";"Remove unnecessary substitutions";"2019-05-30T11:55:54Z";1502128;3625723
 "fdddf01446d600449b3ca57cff920efc2e229bc4";"Clean up generalization";"2019-05-30T11:35:16Z";1502128;3625723
@@ -2426,7 +2426,7 @@
 "2e970260bffa3c5f4e7890116c42f0dc222cac9b";"Added type inference for records";"2019-05-25T23:11:51Z";6787313;3625723
 "917ee588b55389964c75c8dd9986f5ddd7f16610";"Added typing for tuples";"2019-05-24T23:25:50Z";6787313;3625723
 "761dc9b58ac65d2f3bf748e85a99eb9b5eb0db0a";"Started dropping the old stuff";"2019-05-24T14:54:08Z";9508955;3625723
-"2db1160fbb0feb9153ac9541c0fe7c049512e412";"\"Finished\" pattern matching; Finished rewriting Constraint Generation";"2019-05-24T12:59:36Z";9508955;3625723
+"2db1160fbb0feb9153ac9541c0fe7c049512e412";"""Finished"" pattern matching; Finished rewriting Constraint Generation";"2019-05-24T12:59:36Z";9508955;3625723
 "8e0da8a271add3141a577d8d3367627a6b1618ec";"Make some matches exhaustive";"2019-05-23T14:39:51Z";9508955;3625723
 "4203a3769b9e71ec0ca20b3ad582156301552a06";"Check a pattern against a concrete type, or infer one\n\nThese two functions are to be used in constraint generation for\nmatch-with expressions. There are multiple ways to deal with\npattern matching but we'll revisit this later.";"2019-05-23T11:05:38Z";9508955;3625723
 "5bb95006376f5103550014df8c1584ee6c5cc2a8";"A comment";"2019-05-22T12:38:57Z";9508955;3625723
@@ -2435,11 +2435,11 @@
 "aabc647a4a352f154a6ec5136d264e42ed553ceb";"Gather type and dirt variables from constraints";"2019-05-22T10:57:06Z";9508955;3625723
 "777008f725aaac117968d854eed8c327b8bfe637";"Gather type and dirt variables from types, constraints, and dirts";"2019-05-22T09:57:47Z";9508955;3625723
 "433259d1bd28d8c655446196ab9ed1d81ce5c0a3";"small bugfix";"2019-05-21T14:52:40Z";9508955;3625723
-"2d521ce92f15771778497e1fada53be6f3fd1bb1";"\"Finished\" LetRec";"2019-05-21T14:48:49Z";9508955;3625723
-"0398a2bcd34a6561caacec7cc35db5e4029fb6ca";"\"Finished\" LetVal";"2019-05-21T11:21:51Z";9508955;3625723
-"14babbab0f6d150c7532e85227a6a0abdd282eda";"\"Finished\" function split\n\nThere seem to be some nasty things lurking in effect-system/typed.ml\nParticularly the computation of free type and dirt variables in\nobjects seems to be very buggy. Let\'s hope I am wrong.";"2019-05-21T09:38:45Z";9508955;3625723
-"a08511929e3cfff4f08eb2c95cd880ef821f77c1";"\"Finished\" value let bindings (do-bindings, monomorphic)";"2019-05-20T11:06:42Z";9508955;3625723
-"3e8beeebdb1a75b6763ff6a4f879c209825b1f43";"\"Finished\" the Handler case";"2019-05-20T09:21:20Z";9508955;3625723
+"2d521ce92f15771778497e1fada53be6f3fd1bb1";"""Finished"" LetRec";"2019-05-21T14:48:49Z";9508955;3625723
+"0398a2bcd34a6561caacec7cc35db5e4029fb6ca";"""Finished"" LetVal";"2019-05-21T11:21:51Z";9508955;3625723
+"14babbab0f6d150c7532e85227a6a0abdd282eda";"""Finished"" function split\n\nThere seem to be some nasty things lurking in effect-system/typed.ml\nParticularly the computation of free type and dirt variables in\nobjects seems to be very buggy. Let\'s hope I am wrong.";"2019-05-21T09:38:45Z";9508955;3625723
+"a08511929e3cfff4f08eb2c95cd880ef821f77c1";"""Finished"" value let bindings (do-bindings, monomorphic)";"2019-05-20T11:06:42Z";9508955;3625723
+"3e8beeebdb1a75b6763ff6a4f879c209825b1f43";"""Finished"" the Handler case";"2019-05-20T09:21:20Z";9508955;3625723
 "6f0d21e5be1cce922ee8f0936e349c76d0a7ad7f";"Implemented tcHandle";"2019-05-15T14:51:31Z";9508955;3625723
 "6d1be3c62cd06937690ef123959233706cff0986";"(Re)Implemented tcValue and tcApply";"2019-05-15T12:23:17Z";9508955;3625723
 "1ef82b1efa7821bfc57641fc1a94cfbba80e49f6";"Started setting up for inference for computations";"2019-05-15T11:47:55Z";9508955;3625723
@@ -2679,7 +2679,7 @@
 "ca6cb46bc05d801ecef213e50338de93a1a25c5d";"Allow pattern matching directly in handler, also translates to pattern matching for effect parameters in match statements.";"2018-03-28T09:22:04Z";31988337;3625723
 "8a59b76aca7237d5a6d81424ae0cb1f70ce5e617";"Preliminary multicore printing";"2018-03-28T08:03:53Z";1502128;3625723
 "dc050d670399481d875fc335261e9ee23ae14da6";"Merge remote-tracking branch 'bitbucket/explicit-effect-subtyping' into explicit-effect-subtyping\n\n# Conflicts:\n#\tsrc/codegen/optimize.ml\n#\tsrc/typing/explicit-typing/typed.ml";"2018-03-28T07:46:09Z";1502128;3625723
-"4bc2a2f0e856d6946b9d7c92b59aa65c32057ef5";"Mark unimplemented code with \"failwith __LOC__\"\n\nI would reserve \"assert false\" for cases that cannot happen.";"2018-03-28T06:43:37Z";1502128;3625723
+"4bc2a2f0e856d6946b9d7c92b59aa65c32057ef5";"Mark unimplemented code with ""failwith __LOC__""\n\nI would reserve ""assert false"" for cases that cannot happen.";"2018-03-28T06:43:37Z";1502128;3625723
 "9531c918fa2afa50d62251d34abf0b0b8668fb50";"Add simple version using one case per effect in match.";"2018-03-24T22:10:53Z";31988337;3625723
 "5dc8d6ad06cebe95e0221242a4f4f44e038ef757";"Fix bug in pervasives and reorganize desugar.";"2018-03-23T16:13:24Z";31988337;3625723
 "0bcfa531d8fbeaaed823385fd29c38116484ee6a";"Reorganize pervasives a bit.";"2018-03-23T14:51:37Z";31988337;3625723
@@ -3083,7 +3083,7 @@
 "790175baa555631af18278f343fbd7b94d708b34";"Move scheme printing to SmartPrint";"2016-12-02T12:22:27Z";1502128;3625723
 "721cf9745bb0f9dd07f0af74ec5f48156c9524d5";"Make printing of type constraints stupid";"2016-12-02T12:21:43Z";1502128;3625723
 "c58c2872c6cad267c50c37e9a65c68206989e095";"Add stupid printing functions to Type";"2016-12-02T12:00:19Z";1502128;3625723
-"9c0c75b92bc67a88b3292d2b297440459fb2850f";"Move \"smart\" printing functions to SmartPrint module";"2016-12-02T11:39:33Z";1502128;3625723
+"9c0c75b92bc67a88b3292d2b297440459fb2850f";"Move ""smart"" printing functions to SmartPrint module";"2016-12-02T11:39:33Z";1502128;3625723
 "951b59220c46af9a8d07d1d4cae495fa0192eb72";"Fix a bug that prevented full regions from propagating";"2016-12-01T20:27:35Z";1502128;3625723
 "6a5dcbb647d9e19f13515fcee7427322a64384ba";"Merge branch 'codegen' into pure";"2016-12-01T20:58:28Z";1502128;3625723
 "4bf53858e3fbba0f6ef9ccb2d6d28306140a54f0";"Simplify Scheme.is_pure_for_handler";"2016-12-01T20:58:10Z";1502128;3625723
@@ -3114,7 +3114,7 @@
 "abf44d8d5775ca7751572b95a2bd7de7bca89d4c";"- changed eff.ml: output ml file with unoptimized commands\n - add new test script which compare the output of the unoptimized and the optimized ml files\n        this checks whether the end result from the optimizations are equivalent to the unoptimized commands\n - add test cases";"2016-11-18T10:10:44Z";5156106;3625723
 "68543f5bd63e9c33828cbc7a3269d5e8612b3e11";"- add optimization: split handler when handling a bind: generalised";"2016-11-18T10:03:58Z";5156106;3625723
 "5a71de11bbe40c57bd288af31db51ac180d12b1f";"- add optimization: split handler when handling a bind with pure-for-handler inner bind";"2016-11-18T10:02:42Z";5156106;3625723
-"3b437ec6b23200c3f258108b60c04e3fb2e62321";"- typing for pure application specialization: uncomment\n        BUG: the bug occurs when the application is passed as a parameter and has type \"Type.Param\" instead of \"Type.Arrow\"";"2016-11-18T10:01:15Z";5156106;3625723
+"3b437ec6b23200c3f258108b60c04e3fb2e62321";"- typing for pure application specialization: uncomment\n        BUG: the bug occurs when the application is passed as a parameter and has type ""Type.Param"" instead of ""Type.Arrow""";"2016-11-18T10:01:15Z";5156106;3625723
 "f463af202e59da9f47fa08886ea55dc5acec52d0";"- fixed bug pure_beta_reduce: made wrong pure_abstraction";"2016-11-18T09:57:43Z";5156106;3625723
 "ed72a8e4fcbf7de51faafa8f02408dd1741dd457";"Merge branch 'pure' into smart-pure WIP";"2016-11-18T08:02:04Z";1502128;3625723
 "f0c5a49dc6600ceaf26510cd836afc6e79826278";"Further simplify pure built-in functions";"2016-11-18T07:34:12Z";1502128;3625723
@@ -3307,7 +3307,7 @@
 "4fcef596509844bcd156bfb05924812fa2c55774";"Add typing of toplevel lets";"2016-01-08T14:39:33Z";1502128;3625723
 "17a53e3a2277bb96eb6e84f103e7aeacea7821fc";"An optimization that removes useless OCaml commands.";"2016-01-08T13:54:46Z";1502128;3625723
 "ecbcc768ce3fff969fad5ceed41f2fe2b06767d8";"Added scaffolding for printing all commands";"2016-01-08T13:52:22Z";1502128;3625723
-"29ffa9c7bd1b7de3b8ad3cc5ad629cc4793a6123";"Removed separate optimization of files\n\nA comparison between optimized and unoptimized version is shown when\nadding a \"-V 4\" verbosity option when calling \"--compile file.eff\"";"2016-01-08T13:43:42Z";1502128;3625723
+"29ffa9c7bd1b7de3b8ad3cc5ad629cc4793a6123";"Removed separate optimization of files\n\nA comparison between optimized and unoptimized version is shown when\nadding a ""-V 4"" verbosity option when calling ""--compile file.eff""";"2016-01-08T13:43:42Z";1502128;3625723
 "4b41f96147fd9f13095b568f6fca3617eddf3bdb";"Add optimization of commands";"2016-01-08T13:40:01Z";1502128;3625723
 "98141c38a07f64e3d884e30812a086232b0b95e5";"Merge branch 'codegen' of https://bitbucket.org/matijapretnar/eff into codegen\n\nConflicts:\n\tsrc/syntax/typed.ml";"2016-01-08T10:35:28Z";10197743;3625723
 "033b4c98b78ce0c943a63fb1479afe16af8f8544";"Add a test for code generation";"2016-01-08T09:04:53Z";1502128;3625723
@@ -3340,7 +3340,7 @@
 "6009fd701cecb0d729ba604f1f588e51340bbce2";"Clean up naming in Parser.collect_handler_clauses";"2015-12-15T07:46:26Z";1502128;3625723
 "cbca5058abae0bc9c9f7119ca27643f8f95347d7";"Remove any mention of operation symbols";"2015-12-15T07:40:11Z";1502128;3625723
 "f276fc18551728f2f2911ecb8ec846b3250fa67c";"Rename handler clause record fields";"2015-12-15T07:36:17Z";1502128;3625723
-"5625ccf2f716b7e9649cbce57b2a27a3bc05a8ae";"Picking the proper stable branch\n\nThere are a bunch of stable branches lying around right now, but none could\nbe considered stable as they already have some of the faults of the new\nexperimental effect system. Thus, I took 8d8374b, which was the last commit\nthat is the most resemblant of the \"old\" Eff. It does incorporate some effect\nsystem plumbing, but it does no work & harm.\n\nMerge remote-tracking branch \'andrej/stable\' into proper-stable";"2015-12-14T14:35:40Z";1502128;3625723
+"5625ccf2f716b7e9649cbce57b2a27a3bc05a8ae";"Picking the proper stable branch\n\nThere are a bunch of stable branches lying around right now, but none could\nbe considered stable as they already have some of the faults of the new\nexperimental effect system. Thus, I took 8d8374b, which was the last commit\nthat is the most resemblant of the ""old"" Eff. It does incorporate some effect\nsystem plumbing, but it does no work & harm.\n\nMerge remote-tracking branch \'andrej/stable\' into proper-stable";"2015-12-14T14:35:40Z";1502128;3625723
 "5ea64b7067f7def409e5e63dc627a42d425c4537";"fixing types for new constructs";"2015-12-09T11:40:19Z";10197743;3625723
 "25e5e3f61690709b1f6e40a6b191711435d5a1a8";"updated optimizations + fixing bug in eff.ml to enter optimize_comp";"2015-12-06T17:08:28Z";10197743;3625723
 "6fc7ce21b7fda26779d141c008bc613899a7dc27";"adding pure apply";"2015-12-03T14:37:15Z";10197743;3625723
@@ -3441,7 +3441,7 @@
 "931473fdecded630bd4c8797301720157de88aab";"Add an OPAM file for eff.";"2015-03-27T23:38:40Z";1736496;3625723
 "44643e3b5057c7246ac70e60019cdd993150cdd7";"Optimize bind and some new lines to pretty print";"2015-02-25T15:24:32Z";10197743;3625723
 "5ad3b545324413765c7d42fa4994fcccfb573c02";"Update tests for new location format";"2015-02-23T10:37:14Z";1502128;3625723
-"972df7ed18a1144fa605e97c6ee229467f237e4b";"Clean up location management\n\n* we use the name location instead of position\n  because the abbreviation \"pos\" may also be used\n  for positive parameters in type inference \n* locations are now implemented in a separate\n  module";"2015-02-23T10:35:32Z";1502128;3625723
+"972df7ed18a1144fa605e97c6ee229467f237e4b";"Clean up location management\n\n* we use the name location instead of position\n  because the abbreviation ""pos"" may also be used\n  for positive parameters in type inference \n* locations are now implemented in a separate\n  module";"2015-02-23T10:35:32Z";1502128;3625723
 "a3a1490d1bb57e4520110aed87d9f0c53c969f76";"Optimize bound values into let";"2015-02-20T16:26:37Z";1502128;3625723
 "fa74da4dcb826457e0cb8f8a3a11944ce2027af9";"Trivial optimization";"2015-02-20T16:19:01Z";1502128;3625723
 "b7a775984538462a6f0f06b1fc67cda5e7b2981a";"Split compiled lets into lets and binds";"2015-02-20T16:12:02Z";1502128;3625723
@@ -3796,7 +3796,7 @@
 "da9f987a40673d6aea09f079864a29157eb17b3b";"Added top region and substitutions of instances.";"2012-08-20T10:24:03Z";1502128;3625723
 "230cf425d18ad5f09103185dae8c5ef4096ef163";"Added fresh instances do dirty types.\n\nNow, we must make sure that such fresh instances are appropriately refreshed.";"2012-08-20T08:54:07Z";1502128;3625723
 "892f42cba48c2ced1a2be594994825c9a57b4dcf";"Merge branch 'master' of github.com:andrejbauer/eff";"2012-08-16T11:53:48Z";646599;3625723
-"31e42081e8577b3c604ed3433c4d1fe45af3b2a4";"Unification is faster and produces only \"atomic\" constraints.\n\nRemoving duplicate constraints helped performance.";"2012-08-16T11:52:56Z";646599;3625723
+"31e42081e8577b3c604ed3433c4d1fe45af3b2a4";"Unification is faster and produces only ""atomic"" constraints.\n\nRemoving duplicate constraints helped performance.";"2012-08-16T11:52:56Z";646599;3625723
 "f33981040dfd8dac6ddb82efd4a8b3f99962f73a";"Minor change of handling of dirts in TopLet.";"2012-08-16T10:21:34Z";1502128;3625723
 "5210f539a54e0f6bae22d244def1a9eb205625c1";"Inference for let returns a list of dirts.\n\nWe will at some point want a list in order to see which computations may be parallelized.";"2012-08-15T01:52:12Z";1502128;3625723
 "f27ad17f18967edd489d1ed3e63ae2d775deac59";"Unify expands inequalities between type parameters and types.\n\nWhenever we see an inequality between a type parameter and a type, we replace the parameter with a fresh type of the same structure, and compare the two instead.";"2012-08-15T01:39:47Z";1502128;3625723
@@ -3830,7 +3830,7 @@
 "666743646233f7ba89fee81962836d8f26083cf6";"Added an interface for Error.";"2012-08-08T12:50:14Z";1502128;3625723
 "f49f4a265a42eb700976d41a79e6592e044221e0";"Types (and type schemes) are now beautified before printing.\n\nPrinting does no more funny substitutions when printing parameters, but assumes\nthat the types (and their parameters) are already beautified. Type.beautify and\nType.beautify2 now return beautified type schemes instead of the beautifying\nsubstitution.";"2012-08-08T12:15:59Z";1502128;3625723
 "2607cc1fe8491a8d6f4f32df1c5c514741406f83";"Nicer printing of type arguments.\n\nWhen a type is applied to multiple arguments, for example (ty1, ty2) name,\nthe arguments are printed unparenthesised no matter what they are. Before,\nthey were all printed parenthesised, probably by mistake. Furthermore, I fixed\nthat there is only one space, not two, after the separating commas. This was\nsurely a mistake.";"2012-08-08T11:47:39Z";1502128;3625723
-"05d2836986cde8a43954db206b782c1348bc4e4a";"Separated types and type definitions.\n\nAs it turns out, there are no terms with types Sum, Record, or Effect.\nInstead, those terms are of the type Apply (name, ...), where name is\nthe name of the defined type. The only proper way is of course to separate\ntypes and type definitions.\n\nType definitions are Sum, Record, Effect and Inline. The first three are\nmore or less what they were before, while the last one represents type\nabbreviations. This separation introduces a few additional functions\n(we now need subst_tydef and fresh_tydef), but removes a lot of unused cases in\nType.free_params, Print.type, and Unify.solve. Some of them were already\n\"assert false\"s and others them provided a computation that was never called.";"2012-08-08T11:19:15Z";1502128;3625723
+"05d2836986cde8a43954db206b782c1348bc4e4a";"Separated types and type definitions.\n\nAs it turns out, there are no terms with types Sum, Record, or Effect.\nInstead, those terms are of the type Apply (name, ...), where name is\nthe name of the defined type. The only proper way is of course to separate\ntypes and type definitions.\n\nType definitions are Sum, Record, Effect and Inline. The first three are\nmore or less what they were before, while the last one represents type\nabbreviations. This separation introduces a few additional functions\n(we now need subst_tydef and fresh_tydef), but removes a lot of unused cases in\nType.free_params, Print.type, and Unify.solve. Some of them were already\n""assert false""s and others them provided a computation that was never called.";"2012-08-08T11:19:15Z";1502128;3625723
 "8df147a75f5fb42a016964a38ae2883bf24e2ea5";"Removed special treatment of the empty type as it is an ordinary sum type.";"2012-08-08T10:06:52Z";1502128;3625723
 "d0d9368bddd6350a0d81826da24eac56abb39aed";"Rewritten Tctx.infer_... functions.\n\nFunctions now call corresponding Tctx.find_... functions and return the\nappropriate type (already in the applied form) together with any information\nneeded for type inference. The documentation is a bit vague, but at least it\nis not contradictory to the implementation.";"2012-08-08T09:48:47Z";1502128;3625723
 "7888338c86d0f93b2bb096ef20eb25028f458e1b";"Replaced ~pos:pos with the shortcut ~pos.";"2012-08-08T06:45:23Z";1502128;3625723
@@ -3843,7 +3843,7 @@
 "810cbe83cee847d7d600a82eb78a4b1a53c4e34e";"Comprehensive functions for value comparison.\n\nWe still need to add tests for <.";"2012-08-07T10:06:06Z";646599;3625723
 "f57e6c8f3764ea543fd9911e3ac72ad58cee88a2";"Trying to catch places where pattern exhaustion checks should avoid using ocaml =.";"2012-08-07T10:05:58Z";646599;3625723
 "266ead413b8cb542db3e199bcf8a9c35db298f11";"Fixed equality testing.\n\nEquality testing did not work because of faulty Value.equal function.\nIt performed shallow testing, it did not correctly compare instances,\nand it had a default case which did not make sense.";"2012-08-07T08:05:18Z";646599;3625723
-"8df75c2062a1499d507081aae1e4dd53cd85b8a5";"Runtime error caused by comparison of functional values fixed.\n\nAn operation with a resource carries around a functional value (the resource\nhandler). This causes runtime errors of the type \"cannot compare functional\nvalues\". Let us hope this was the only instance of the problem. We should\nreview all cases where values of type Value.instance are compared.";"2012-08-07T07:08:51Z";646599;3625723
+"8df75c2062a1499d507081aae1e4dd53cd85b8a5";"Runtime error caused by comparison of functional values fixed.\n\nAn operation with a resource carries around a functional value (the resource\nhandler). This causes runtime errors of the type ""cannot compare functional\nvalues"". Let us hope this was the only instance of the problem. We should\nreview all cases where values of type Value.instance are compared.";"2012-08-07T07:08:51Z";646599;3625723
 "1a417a7435ecd7785322832147d1d9f064e053cf";"No need to use exceptions in exception-avoiding association list functions";"2012-08-07T07:08:43Z";646599;3625723
 "b9851f101bc3bfa73702b471e83d6f8ff0bed158";"Added an explanation to exhaustiveness checking about empty types.";"2012-08-06T22:02:38Z";646599;3625723
 "cd7ea4c50ae832d2822e1a51d37b8fe8d3c9fff1";"Code review of pattern exhaustive checking. There are problems.\n\nThere are at least two problems:\n\n1. The code assumed all types are inhabited, but this is not the case for the empty type.\n\n2. Exhaustiveness checking is called inside infer.ml, so it can happen quite easily that\npattern warning are issued before type errors. The exhaustiveness code is quite explicit\nthat it should be called *after* type checking because it assume everything is well typed.\n\nI am inclined to suggest that the inference phase should emit fully typed code, this will be useful in general,\nfor example when we want to relax the value restriction.\n\nAnd exhaustiveness checking really has to traverse the code separately from inference, there is no way around that.";"2012-08-06T21:54:22Z";646599;3625723
@@ -3889,12 +3889,12 @@
 "235e9873e4fa732d4c74ddfe1ca4add20a38ec3a";"Added tests/errors/*.eff.out to .gitignore and .hgignore.\n\nThanks to Mark Jason Dominus for pointing it out.";"2012-03-23T20:23:07Z";1502128;3625723
 "1a393697061d4af40aaa36ad815154d6b054605e";"Error report for non-linear patterns that resembles ocaml error report";"2012-03-22T07:49:49Z";646599;3625723
 "d53f6190f4062d242f1c141326ffedea9681f7f5";"Removed is_refutable from pattern.ml because it was buggy and not used, anyway";"2012-03-22T07:49:22Z";646599;3625723
-"adad537c66b9ac47acad3a054ea54eb83c925b8f";"Replaced the built-in \"standard error\" exception instance.\n\nIn a similar way that the function ref creates new ref instances, the built-in\nfunction exception creates new exception instances. The only difference is that\nan instance created with this function writes out a nicer runtime error when an\nuncaught raise escapes to the toplevel.\n\nAlong the same lines, I created four exception instances to represent division\nby zero, invalid arguments, assertion faults, and failure errors. Beforehand,\nthey were all triggered by the same instance, only with different arguments.\nNow, they behave as usual exceptions and one does not need a special handler to\nhandle them.";"2012-03-18T10:24:40Z";1502128;3625723
-"27f7b6f259221bd81384aa1a174ca5b9455d7462";"Fixed descriptions of instances.\n\nEach instance now carries an optional description that we use when showing the\ninstance. Built-in instances are described by \"standard I/O\", \"standard error\",\nand \"random number generation\". Instances created with new have no descriptions.\nIf an instance has a description, we show them as <description>, if not, we show\nthem as <instance #...>.\n\nBeforehand, each instance already carried a description, but this was never\nused, and each instance showed as <instance #...>, even the built-in ones.";"2012-03-18T10:02:07Z";1502128;3625723
+"adad537c66b9ac47acad3a054ea54eb83c925b8f";"Replaced the built-in ""standard error"" exception instance.\n\nIn a similar way that the function ref creates new ref instances, the built-in\nfunction exception creates new exception instances. The only difference is that\nan instance created with this function writes out a nicer runtime error when an\nuncaught raise escapes to the toplevel.\n\nAlong the same lines, I created four exception instances to represent division\nby zero, invalid arguments, assertion faults, and failure errors. Beforehand,\nthey were all triggered by the same instance, only with different arguments.\nNow, they behave as usual exceptions and one does not need a special handler to\nhandle them.";"2012-03-18T10:24:40Z";1502128;3625723
+"27f7b6f259221bd81384aa1a174ca5b9455d7462";"Fixed descriptions of instances.\n\nEach instance now carries an optional description that we use when showing the\ninstance. Built-in instances are described by ""standard I/O"", ""standard error"",\nand ""random number generation"". Instances created with new have no descriptions.\nIf an instance has a description, we show them as <description>, if not, we show\nthem as <instance #...>.\n\nBeforehand, each instance already carried a description, but this was never\nused, and each instance showed as <instance #...>, even the built-in ones.";"2012-03-18T10:02:07Z";1502128;3625723
 "edcdfaf9162b0bc8a39ea89dcbcf032bf6676084";"Merge.";"2012-03-13T11:25:54Z";1502128;3625723
 "7b8c11534dead56d2438279ab2adad72267a6b08";"Better autoconf setup, got rid of the shell wrapper.\n\nThe shell wrapper which looked for rlwrap and ledit is gone, now\neff does this by itself, but only if the interactive shell is\nstarted. Should eff report that a line editor was found?\n\nMakefile.am now declares the eff executable as the main target\n(rather than the shell wrapper), as it should. The trick with\nsettting eff_SOURCES to the empty value is needed, orelse automake\nthinks eff is a C program and wants a C compiler.";"2012-03-13T05:11:49Z";646599;3625723
 "7dd2b247cdafda7aa20ff41ffbb8d2bf6e78e7f3";"Merge pull request #4 from andrejbauer/master\n\nCleaned up examples directory, added info on editor support, messed with git (sorry)";"2012-03-11T21:32:07Z";1502128;3625723
-"563326dfa6e1576ef0244e98a16290d2c951c4d0";"Cleaned up examples.\n\nThe examples directory now contains examples from the \"Programming\nwith algebraic effects and handlers\" paper. The examples are extended\nwith test cases.";"2012-03-11T21:25:37Z";646599;3625723
+"563326dfa6e1576ef0244e98a16290d2c951c4d0";"Cleaned up examples.\n\nThe examples directory now contains examples from the ""Programming\nwith algebraic effects and handlers"" paper. The examples are extended\nwith test cases.";"2012-03-11T21:25:37Z";646599;3625723
 "6443916afb395f10c507a12780590adfca73066e";"Merge remote-tracking branch 'upstream/master'";"2012-03-11T10:08:32Z";646599;3625723
 "9d04dd90df604968e69d2c3d11e02b688493e13d";"Messing with git, sorry";"2012-03-11T08:53:16Z";646599;3625723
 "dd3c11a50bd9f46f64fab49b4a19aec1d170df65";"Merge branch 'master' of github.com:andrejbauer/eff";"2012-03-11T08:49:46Z";646599;3625723
@@ -3905,14 +3905,14 @@
 "058e2dbb450ccabc55d078130d56f184c7bb1c5b";"Added eff.byte and eff.native to .PHONY in Makefile.\n\nBecause we use ocamlbuild to detect dependencies, Makefile\nis confused about when it should recompile. This is rectified\nby putting the executable targets into .PHONY.";"2012-03-10T01:02:24Z";646599;3625723
 "e5234aeabddb33a410712990b8a2920cf132740a";"Started to clean up examples.\n\nBecause we now print out toplevel results when a file is run\nfrom the command line, we can avoid many uses of check in examples.";"2012-03-09T23:48:41Z";646599;3625723
 "58daa9042cf895db4184bf1e4a737eaf989b6c67";"Added the state handler to pervasives.eff.";"2012-03-09T23:47:27Z";646599;3625723
-"108f1256abddf66f5df31afa80dfc9e8b9e84d53";"Updated tests to match the new behavior of non-interactive files.\n\nThere is now a difference between loading a file with -l and loading\nit as an anonymous command-line argument. With -l the file is loaded\nsilently (interactive mode is off), while in the other mode we print\nout toplevel values and definitions, just like we would at toplevel.\n\nConsequently, we can get rid of top-level \"checks\" and \"check_vals\"\nin tests, but more importantly also in examples.";"2012-03-09T23:37:33Z";646599;3625723
+"108f1256abddf66f5df31afa80dfc9e8b9e84d53";"Updated tests to match the new behavior of non-interactive files.\n\nThere is now a difference between loading a file with -l and loading\nit as an anonymous command-line argument. With -l the file is loaded\nsilently (interactive mode is off), while in the other mode we print\nout toplevel values and definitions, just like we would at toplevel.\n\nConsequently, we can get rid of top-level ""checks"" and ""check_vals""\nin tests, but more importantly also in examples.";"2012-03-09T23:37:33Z";646599;3625723
 "2512ff8c49ca004643d52463a879d44c76b68745";"forgot to commit src/external.ml with previous commit";"2012-03-09T23:05:56Z";646599;3625723
 "13a4b107df18b06175104ed77f5dfaf9c9ec34c4";"Changed how runtime errors such as division by zero are reported.\n\nWe used to allow operations to be triggered by resources and we used\nthis for reporting common errors through the builtin exception instance\nerr. This trick does not work anymore, so I changed things around.\n\nFirst I added Error.exc so that err#raise can report an exception.\nThen in pervasives I added a type of runtime errors, changed err so\nthat it accepts runtime errors (rather than strings), and wrote\nconvenience handlers for handling division by zero and others.\n\nSo now division by zero is handled as\n\n  with divisionByZero x with ...\n\nwhich will evaluate to x if err#raise DivisionByZero happens.";"2012-03-09T23:01:07Z";646599;3625723
 "0cf347fac2035fd6f197f7e1f23ef7111e8921c4";"Added eff.byte and eff.native to .PHONY in Makefile.\n\nBecause we use ocamlbuild to detect dependencies, Makefile\nis confused about when it should recompile. This is rectified\nby putting the executable targets into .PHONY.";"2012-03-10T01:02:24Z";646599;3625723
 "9e76679c8cda4b41a09c657b4d8ea47c6cf4121d";"Cleaned up choice.eff example.\n\nBecause we now print out toplevel results, we can get rid of many\nuses of check and check_val in examples.";"2012-03-09T23:49:43Z";646599;3625723
 "c25b7273b5006449088b7bce786a90094487d028";"Started to clean up examples.\n\nBecause we now print out toplevel results when a file is run\nfrom the command line, we can avoid many uses of check in examples.";"2012-03-09T23:48:41Z";646599;3625723
 "23bab63cbfbdbdd85477e3b8bf0e70eecfdb1b6a";"Added the state handler to pervasives.eff.";"2012-03-09T23:47:27Z";646599;3625723
-"dea6cbd0726a08779aec3c22587d93b80bd57c7b";"Updated tests to match the new behavior of non-interactive files.\n\nThere is now a difference between loading a file with -l and loading\nit as an anonymous command-line argument. With -l the file is loaded\nsilently (interactive mode is off), while in the other mode we print\nout toplevel values and definitions, just like we would at toplevel.\n\nConsequently, we can get rid of top-level \"checks\" and \"check_vals\"\nin tests, but more importantly also in examples.";"2012-03-09T23:37:33Z";646599;3625723
+"dea6cbd0726a08779aec3c22587d93b80bd57c7b";"Updated tests to match the new behavior of non-interactive files.\n\nThere is now a difference between loading a file with -l and loading\nit as an anonymous command-line argument. With -l the file is loaded\nsilently (interactive mode is off), while in the other mode we print\nout toplevel values and definitions, just like we would at toplevel.\n\nConsequently, we can get rid of top-level ""checks"" and ""check_vals""\nin tests, but more importantly also in examples.";"2012-03-09T23:37:33Z";646599;3625723
 "0dbb0a3d2b0925b53abd27fbd7e137d2ec33b6e2";"forgot to commit src/external.ml with previous commit";"2012-03-09T23:05:56Z";646599;3625723
 "a528c1e702e3b92f514741768f224773e92bfb68";"Changed how runtime errors such as division by zero are reported.\n\nWe used to allow operations to be triggered by resources and we used\nthis for reporting common errors through the builtin exception instance\nerr. This trick does not work anymore, so I changed things around.\n\nFirst I added Error.exc so that err#raise can report an exception.\nThen in pervasives I added a type of runtime errors, changed err so\nthat it accepts runtime errors (rather than strings), and wrote\nconvenience handlers for handling division by zero and others.\n\nSo now division by zero is handled as\n\n  with divisionByZero x with ...\n\nwhich will evaluate to x if err#raise DivisionByZero happens.";"2012-03-09T23:01:07Z";646599;3625723
 "3b3cf7c983982f573b3ac7b75223c80568ab2cfe";".gitignore test output files";"2012-03-08T15:04:30Z";208680;3625723
@@ -5625,7 +5625,7 @@
 "9f9e9369f2c903f56b29716ac330e55e99b5cebf";"Nova datoteka za spletno banko";"2017-11-30T08:56:29Z";33514602;109676487
 "c8202f808b5453bd8ef79dfc2034f367dd21aed1";"Dodana funkcija za polnjenje baze";"2017-11-27T10:28:25Z";6708236;109676487
 "c4f81e3f7625d9788f20d70fc6dc5b847ff87137";"Dodani modeli";"2017-11-27T10:06:41Z";6708236;109676487
-"ee22e9f20c7cdc8ecf8ebef943ab683b2751e4dc";"Spremenjena funkcija \"izpisRacunov\"";"2017-11-20T06:37:59Z";29731600;109676487
+"ee22e9f20c7cdc8ecf8ebef943ab683b2751e4dc";"Spremenjena funkcija ""izpisRacunov""";"2017-11-20T06:37:59Z";29731600;109676487
 "2afce952788efa25814c7b449b6b2b4bd91a0764";"Merge branch 'master' of https://github.com/alenFMF/banka";"2017-11-16T10:01:57Z";29731600;109676487
 "4795c4cd32188d30b198e8d2d10011508066e72d";"Spremenjeno: Izpis Računov";"2017-11-16T10:01:41Z";29731600;109676487
 "7ba328b8a3a10cf0fb3033565b8c0952cafa1362";"Merge branch 'master' of https://github.com/alenFMF/banka";"2017-11-16T09:59:55Z";27783187;109676487
@@ -5729,7 +5729,7 @@
 "7b1a1db6fbc6f8b7a3d4405192ee8b4590ca2006";"Add links and problem descriptions";"2017-05-06T12:00:19Z";6708236;90457772
 "2e31fec898b1130cd4ce6b012c2fd00060ca4c58";"Add cell with no output text";"2017-05-06T11:16:33Z";6708236;90457772
 "9f10a24ec6779f105b70009186978ee99621ef9e";"Initial commit";"2017-05-06T11:14:04Z";6708236;90457772
-"f92b8276dd2d13fade25325ebf99874efca451cd";"Add link to the article \"Cubic vertex-transitive graphs of girth six\"";"2021-11-28T18:10:44Z";6708236;88176726
+"f92b8276dd2d13fade25325ebf99874efca451cd";"Add link to the article ""Cubic vertex-transitive graphs of girth six""";"2021-11-28T18:10:44Z";6708236;88176726
 "97971276194a7439521984e39ef0896e50b436a2";"Add links to master courses pages and repositories";"2021-03-02T18:12:50Z";6708236;88176726
 "56d8c0672d75af4b792c226e6c2fd61b2817e087";"Add links to GitHub pages for courses";"2021-02-27T14:10:05Z";6708236;88176726
 "010ac2f8dd084d5a04846475538988b1ef8e5052";"Updates: papers, projects, courses";"2021-02-27T13:53:29Z";6708236;88176726
@@ -6132,7 +6132,7 @@
 "f9651a349b0250d510a9ce63d8cc32428294163c";"Merge branch 'original'";"2016-11-11T09:56:22Z";6708236;70465486
 "1fa78ae7da41226a85db3ffa6151b8ff25f0d651";"Dodan splošen algoritem za iskanje v globino";"2016-11-11T09:55:38Z";6708236;70465486
 "da594288a23b3902c3abdaa8e80d7ccdc13d4e8c";"Merge branch 'resitve-vaje' into resitve";"2016-10-28T21:39:07Z";6708236;70465486
-"5df96bff36953564049937d9ff7c50c8656747ee";"Revert \"Revert \"Dodan razširjeni Evklidov algoritem\"\"\n\nThis reverts commit 26421bf58344f241452064ae0648d6eb9435d28a.";"2016-10-28T21:38:41Z";6708236;70465486
+"5df96bff36953564049937d9ff7c50c8656747ee";"Revert ""Revert ""Dodan razširjeni Evklidov algoritem""""\n\nThis reverts commit 26421bf58344f241452064ae0648d6eb9435d28a.";"2016-10-28T21:38:41Z";6708236;70465486
 "537858e902df7da72c89434ec656638ddd42fb0e";"Merge branch 'original' into resitve-vaje";"2016-10-28T21:38:20Z";6708236;70465486
 "1c74c39faccd1e6e76bef4becd2cd003ad1001e6";"Dodan algoritem bucketSort";"2016-10-28T21:34:42Z";6708236;70465486
 "5cde1f9fe077ce3da923e4f3b84fdd73a4a77cd3";"Merge branch 'resitve-vaje' into resitve";"2016-10-28T21:34:28Z";6708236;70465486
@@ -6144,11 +6144,11 @@
 "c0036baf269589643e31e91137906da2c8ae03b5";"Dodana algoritma select in find";"2016-10-28T21:16:13Z";6708236;70465486
 "5ae999612a422c6c1db097ebf071d008468a4f96";"Popravljen opis vej";"2016-10-28T20:44:51Z";6708236;70465486
 "835d424835536875179786ac8f5cf4bae8f58b40";"Dodan iterativni mergesort";"2016-10-28T12:58:17Z";6708236;70465486
-"26421bf58344f241452064ae0648d6eb9435d28a";"Revert \"Dodan razširjeni Evklidov algoritem\"\n\nThis reverts commit d64e1391b49aca2cdf04d5b136d902bb7331a3f6.";"2016-10-27T19:52:20Z";6708236;70465486
+"26421bf58344f241452064ae0648d6eb9435d28a";"Revert ""Dodan razširjeni Evklidov algoritem""\n\nThis reverts commit d64e1391b49aca2cdf04d5b136d902bb7331a3f6.";"2016-10-27T19:52:20Z";6708236;70465486
 "203838f2e1b645d4d1a46dae7e370a5196edccce";"Merge branch 'master' into resitve-vaje";"2016-10-27T19:52:13Z";6708236;70465486
 "12cae10f5b2e567f4ad99baf51a7b64cd8306a0e";"Merge branch 'master' into resitve";"2016-10-27T19:52:09Z";6708236;70465486
 "220769087b636400c21b30556326bbccfacbb70b";"Dodan opis vej v README.md";"2016-10-27T19:51:43Z";6708236;70465486
-"9c85c9f2b71caf1bfdd610fc3055802b198af74d";"Dodana \"uradna\" implementacija sklada in vrste";"2016-10-27T19:34:00Z";6708236;70465486
+"9c85c9f2b71caf1bfdd610fc3055802b198af74d";"Dodana ""uradna"" implementacija sklada in vrste";"2016-10-27T19:34:00Z";6708236;70465486
 "af34852e32f5b945e9909d534ca7689ef1ef92f9";"Dodana implementacija sklada z vaj";"2016-10-21T22:25:43Z";6708236;70465486
 "da9c897c0d7db60aa004947297177f9e200ba75d";"Preimenovana datoteka za 3. vaje";"2016-10-21T10:31:13Z";6708236;70465486
 "8cc02b544dad96a3a790ea8ecfd586f1ff061802";"Strukture premaknjene v 3. vaje";"2016-10-18T08:11:07Z";6708236;70465486
@@ -7108,7 +7108,7 @@
 "5eb8730937366733ea02d45f93fce1fde118c421";"Add a (static) weekly puzzle";"2017-10-11T19:32:02Z";6708236;37872380
 "baaaca231cad319dd7a17ab614a0fbc1ee0e945f";"Fix project info";"2017-10-11T13:45:32Z";6708236;37872380
 "04c27042c6fbc3f5e7436c447deef9df7cf6ef03";"Merge pull request #3 from jaanos/work\n\nObjavljena različica";"2017-10-08T18:24:54Z";28307425;37872380
-"dcc763d46c8c7e74e3214f3cc1235cc94f4c9226";"Re-added variable declaration which was accidentally deleted. After image is \"uploaded\" the button \"Potrdi\" needs to be pressed, the functionality was left from when the images were uploaded to the server. Cleanup of unused js/py files.\n\n-todo fix the css\n-code cleanup";"2017-10-05T16:37:19Z";28307425;37872380
+"dcc763d46c8c7e74e3214f3cc1235cc94f4c9226";"Re-added variable declaration which was accidentally deleted. After image is ""uploaded"" the button ""Potrdi"" needs to be pressed, the functionality was left from when the images were uploaded to the server. Cleanup of unused js/py files.\n\n-todo fix the css\n-code cleanup";"2017-10-05T16:37:19Z";28307425;37872380
 "37d250799c3945fcacf107d76878a0359047c35a";"Merge branch 'work'";"2017-10-04T11:00:52Z";6708236;37872380
 "94e3c13e542471692f32bb9a08c0a08ba78246ed";"Merge branch 'steganography' into work";"2017-10-04T10:57:25Z";6708236;37872380
 "14fbcdc5ae6a6f343c6d5cbc5d4df0c31043fbc1";"Fix centering of elements";"2017-10-04T10:54:33Z";6708236;37872380
@@ -7411,7 +7411,7 @@
 "03e0b9769c49d554205e857eea97ff0dfb6540c2";"Forgot a then.";"2015-04-07T23:27:45Z";6708236;25945637
 "b49258ed9423417d7b0e1d9c9ac3288789b66bd2";"Merge branch 'duality' into polar";"2015-04-07T23:22:49Z";6708236;25945637
 "5e3eea3ba060990dcfeb3154457ce3918bee813a";"More constructions with duality, allow choosing a component of the clique graph.";"2015-04-07T14:17:17Z";6708236;25945637
-"1dfa18c9bcf78a0862359be0528eee5c9acb3e73";"Revert \"Add duality functions to Grassmann graphs.\"\n\nThis reverts commit 1cdcaa59b3e64f1857734cf7d8354ea9f5768977.";"2015-04-07T14:05:46Z";6708236;25945637
+"1dfa18c9bcf78a0862359be0528eee5c9acb3e73";"Revert ""Add duality functions to Grassmann graphs.""\n\nThis reverts commit 1cdcaa59b3e64f1857734cf7d8354ea9f5768977.";"2015-04-07T14:05:46Z";6708236;25945637
 "1cdcaa59b3e64f1857734cf7d8354ea9f5768977";"Add duality functions to Grassmann graphs.";"2015-04-07T13:32:27Z";6708236;25945637
 "3230552cd0d0781e57790e8630d2290100526941";"Add affine polar graphs VNO.";"2015-04-07T12:10:48Z";6708236;25945637
 "4659bf427bb55ff7b7312f710f8342cccceecf80";"Fix affine polar graphs in README.md.";"2015-04-07T09:29:47Z";6708236;25945637
@@ -7427,14 +7427,14 @@
 "8ae7221197fae9d10d748deb7452ec5dedfc62dd";"Merge branch 'projective' into quadrangles";"2015-04-04T21:25:05Z";6708236;25945637
 "b89029c8f56bbca7b9193644b8fcbbdcc2b1bb23";"Forgot to remove the argument for default dualities.";"2015-04-04T21:22:15Z";6708236;25945637
 "5ae1145f6edfcf4fe53819701a8a3865daf36096";"Merge branch 'projective' into quadrangles";"2015-04-04T21:19:05Z";6708236;25945637
-"3ca5cfaec9a59711f3002290949c83308c45a386";"Revert \"Update duality functions for T GQs.\"\n\nThis reverts commit 8e44f56faf7ad2ecd1b6b63278bf70ac147a1ba4.";"2015-04-04T20:45:43Z";6708236;25945637
-"17888d47600131223057d707f8d0f3fe17baa36c";"Revert \"Update duality functions for classical GQs.\"\n\nThis reverts commit 494166e702508131d395e999a3ccc83715e72d13.";"2015-04-04T20:45:18Z";6708236;25945637
-"27520b8a57bbd10341971b56c2fcd1df6099932c";"Revert \"Duality functions should also get the graph on the input.\"\n\nThis reverts commit 94fe62f900bfb7902511bda46309f21217fda9fb.\n\nConflicts:\n\tlib/AuxiliaryFunctions.gap\n\tlib/GeneralConstructions.gap";"2015-04-04T19:40:41Z";6708236;25945637
-"b0409b02b1eaa83fd5eb02c916d2a2328ebcd19c";"Revert \"Update duality functions, again.\"\n\nThis reverts commit c16948e42d6175744f24ef536662e9b7b7d093b2.";"2015-04-04T19:31:26Z";6708236;25945637
+"3ca5cfaec9a59711f3002290949c83308c45a386";"Revert ""Update duality functions for T GQs.""\n\nThis reverts commit 8e44f56faf7ad2ecd1b6b63278bf70ac147a1ba4.";"2015-04-04T20:45:43Z";6708236;25945637
+"17888d47600131223057d707f8d0f3fe17baa36c";"Revert ""Update duality functions for classical GQs.""\n\nThis reverts commit 494166e702508131d395e999a3ccc83715e72d13.";"2015-04-04T20:45:18Z";6708236;25945637
+"27520b8a57bbd10341971b56c2fcd1df6099932c";"Revert ""Duality functions should also get the graph on the input.""\n\nThis reverts commit 94fe62f900bfb7902511bda46309f21217fda9fb.\n\nConflicts:\n\tlib/AuxiliaryFunctions.gap\n\tlib/GeneralConstructions.gap";"2015-04-04T19:40:41Z";6708236;25945637
+"b0409b02b1eaa83fd5eb02c916d2a2328ebcd19c";"Revert ""Update duality functions, again.""\n\nThis reverts commit c16948e42d6175744f24ef536662e9b7b7d093b2.";"2015-04-04T19:31:26Z";6708236;25945637
 "8a90f3068160f9a452408eade7446a6b4a74e5d0";"Merge branch 'duality' into projective";"2015-04-04T19:29:32Z";6708236;25945637
-"4bc9d1663879108e1852190848b39e89ea309fbc";"Revert \"Revert \"Duality functions should get lists of vertex names instead of lists of indices.\"\"\n\nThis reverts commit 72fe8722a658ba6569c715131172fde11fd37425.";"2015-04-04T19:28:09Z";6708236;25945637
-"8ddc5febd6cbefa8f691bf50a8577b17f6c3ce07";"Revert \"Duality functions should also get the graph on the input.\"\n\nThis reverts commit 94fe62f900bfb7902511bda46309f21217fda9fb.";"2015-04-04T19:28:07Z";6708236;25945637
-"1f95f36126569a5490ba9d02f4ac3eb657872eb3";"Revert \"Missing semicolon.\"\n\nThis reverts commit 67f3649ca1356011218b6bf8f1053c2915b08afa.";"2015-04-04T19:28:02Z";6708236;25945637
+"4bc9d1663879108e1852190848b39e89ea309fbc";"Revert ""Revert ""Duality functions should get lists of vertex names instead of lists of indices.""""\n\nThis reverts commit 72fe8722a658ba6569c715131172fde11fd37425.";"2015-04-04T19:28:09Z";6708236;25945637
+"8ddc5febd6cbefa8f691bf50a8577b17f6c3ce07";"Revert ""Duality functions should also get the graph on the input.""\n\nThis reverts commit 94fe62f900bfb7902511bda46309f21217fda9fb.";"2015-04-04T19:28:07Z";6708236;25945637
+"1f95f36126569a5490ba9d02f4ac3eb657872eb3";"Revert ""Missing semicolon.""\n\nThis reverts commit 67f3649ca1356011218b6bf8f1053c2915b08afa.";"2015-04-04T19:28:02Z";6708236;25945637
 "494166e702508131d395e999a3ccc83715e72d13";"Update duality functions for classical GQs.";"2015-04-04T17:41:16Z";6708236;25945637
 "9dc115e288d83682819cd53f0877a8f486e6450a";"Merge branch 'duality' into quadrangles";"2015-04-04T17:24:22Z";6708236;25945637
 "fb1744716bb6c38a52ad94ff8c6e5cbb07cee9c7";"Merge branch 'duality' into projective";"2015-04-04T17:23:26Z";6708236;25945637
@@ -7447,7 +7447,7 @@
 "98ffac05f2b6b6c4fc5bd3b06b8585c5224a9f24";"Merge branch 'duality' into quadrangles";"2015-04-04T16:50:27Z";6708236;25945637
 "52fe76403c08b713c66bbe0ef598ff8669176094";"Updated duality functions for projective planes.";"2015-04-04T16:49:41Z";6708236;25945637
 "692f939c2b1c00142e1f41061f0465857bb1ccd9";"Merge branch 'duality' into projective";"2015-04-04T16:37:10Z";6708236;25945637
-"72fe8722a658ba6569c715131172fde11fd37425";"Revert \"Duality functions should get lists of vertex names instead of lists of indices.\"\n\nThis reverts commit 2453ca33197dba2154c43fdb8793fe9141a8270e.\n\nConflicts:\n\tlib/GeneralConstructions.gap";"2015-04-04T16:36:37Z";6708236;25945637
+"72fe8722a658ba6569c715131172fde11fd37425";"Revert ""Duality functions should get lists of vertex names instead of lists of indices.""\n\nThis reverts commit 2453ca33197dba2154c43fdb8793fe9141a8270e.\n\nConflicts:\n\tlib/GeneralConstructions.gap";"2015-04-04T16:36:37Z";6708236;25945637
 "55e228de987af90e1718157fa06207cad88967f8";"Add duality functions for T GQs.";"2015-04-04T16:30:56Z";6708236;25945637
 "b5330b384f1c11362a64105902d0ee8efc8188d6";"Add duality functions for classical GQs.";"2015-04-04T14:51:54Z";6708236;25945637
 "86254f48a411687d73a513eb949ce1bfa68ddaed";"Merge branch 'duality' into quadrangles\n\nConflicts:\n\tlib/AuxiliaryFunctions.gap";"2015-04-04T14:33:39Z";6708236;25945637
@@ -7709,6 +7709,7 @@
 "8f9b29ee471db90432ad160022daa4126fb67dbd";"Vaja 3 in 4";"2022-03-08T11:57:23Z";57182827;459528610
 "c8c2797d743f28a28f4306091e27cbc44b7cf3d2";"Vaja1";"2022-02-15T11:58:31Z";57182827;459528610
 "872c6a77cff125fb0cb5d2aa5a69b7650d18fd3a";"Initial commit";"2022-02-15T10:22:36Z";57182827;459528610
+"79d9adbe289b7af1003a50402694301051049b9f";"Posodobljena podatkovna baza";"2022-03-27T16:35:17Z";57182827;442000649
 "0e32767a2f9bcfb7431c6357478f9a234c4bd027";"Pridobivanje podatkov na nov nacin, ostale stvari trenutno ne delajo";"2022-03-26T01:37:02Z";57182827;442000649
 "bf159b48d5556d058120204742f43e4647fa0813";"Nov readme,bug fix";"2022-03-20T02:49:03Z";57182827;442000649
 "412f9aa9785e122ad1c3815ad9af3a40bd7057a3";"Removed sqlite exe";"2022-03-16T02:19:16Z";57182827;442000649
@@ -8209,7 +8210,7 @@
 "e2c75f39eace2294e6efeda2d37562ba15490662";"Dodala novo .md datoteko od doma";"2017-05-15T06:31:36Z";28532399;91266659
 "54490ae56bf403d139d9e65cab758769a73019a4";"Initial commit";"2017-05-14T19:32:20Z";28532399;91266659
 "4a7cfc37890a66f57db2b393f1688fe10c3bcf23";"Dodala README.md datoteko";"2017-05-08T11:53:13Z";28532399;90621240
-"43ee60713f0a30b841c213cbd01049f75ce47b72";"Revert \"dodali smo novo vrstico\"\n\nThis reverts commit 86091e9aa628b4b12ef1630e82335f7edf5fcd40.";"2022-03-14T09:57:04Z";49947010;469675606
+"43ee60713f0a30b841c213cbd01049f75ce47b72";"Revert ""dodali smo novo vrstico""\n\nThis reverts commit 86091e9aa628b4b12ef1630e82335f7edf5fcd40.";"2022-03-14T09:57:04Z";49947010;469675606
 "86091e9aa628b4b12ef1630e82335f7edf5fcd40";"dodali smo novo vrstico";"2022-03-14T09:55:07Z";49947010;469675606
 "7e24dab71543f105510f1b00c847080f4938891c";"Add project files.";"2022-03-14T09:52:25Z";49947010;469675606
 "4b5c86fb8863fecfb7ad67dbece4d5ac4cf72949";"Add .gitignore and .gitattributes.";"2022-03-14T09:52:23Z";49947010;469675606
@@ -8516,7 +8517,7 @@
 "7296a23e291af81db15e28f4761f2b0314ad23d6";"nove tabele (samo html-ji)";"2022-03-14T23:08:29Z";57182940;437637495
 "155ed9842862d2c44b9a42ab8fdf5a3b159228fd";"nove tabele (samo html-ji)";"2022-03-14T23:08:02Z";57182940;437637495
 "8190e2db06311c8a2eae56062951609886c09d52";"dodani funkciji za leta odlocbe";"2022-03-14T22:03:32Z";57182940;437637495
-"5d43a96e0b67d2e876a2f7a24d5f83434f7f8822";"\"popravljen\" zacetni dropdown meni";"2022-03-14T22:03:16Z";57182940;437637495
+"5d43a96e0b67d2e876a2f7a24d5f83434f7f8822";"""popravljen"" zacetni dropdown meni";"2022-03-14T22:03:16Z";57182940;437637495
 "1e6c7ceadf34fc672eb7b4ae82d70fcad3aa5f79";"Merge branch 'main' of https://github.com/benisa21/Davcno_svetovanje into main";"2022-03-14T21:44:20Z";57182940;437637495
 "82e77d296c3fa3ef633d8cd850ed4b4b82ff39b7";"nova html datoteka";"2022-03-14T21:29:47Z";57182940;437637495
 "54da3bbca46ad3c3871eaed6290040abbae20305";"popravki";"2022-03-14T14:36:55Z";57182940;437637495
@@ -8770,5 +8771,5 @@
 "9ddf07809da9f0743907f6db8b3118c37e64d3ef";"Add files via upload";"2020-01-15T14:15:38Z";57447682;224453007
 "ac791cab5b21ceae5932fa1755298a95575d8469";"Update README.md";"2019-12-03T22:13:20Z";57447682;224453007
 "4ec67d005f502ec4fdb140402ba9c1ed10a80cc8";"Delete rom.nb";"2019-12-03T22:02:32Z";57447682;224453007
-"9b1dbf3daa09925c9ac77793f72d82ed1a6c66e6";"Add files via upload\n\nUporabljala bom ukaz \"Manipulate\" in bom narisala več grafov, ki jih bo potem možno premikat v odvisnosti od parametrov. \r\nVsako funkcijo bom še dodatno opisala (sodost, lihost, ničle, itd.)\r\nNekatere matematične probleme bom poskusila reševat grafično.";"2019-12-03T22:01:16Z";57447682;224453007
+"9b1dbf3daa09925c9ac77793f72d82ed1a6c66e6";"Add files via upload\n\nUporabljala bom ukaz ""Manipulate"" in bom narisala več grafov, ki jih bo potem možno premikat v odvisnosti od parametrov. \r\nVsako funkcijo bom še dodatno opisala (sodost, lihost, ničle, itd.)\r\nNekatere matematične probleme bom poskusila reševat grafično.";"2019-12-03T22:01:16Z";57447682;224453007
 "2c18c224f4ed5ef4a12de857ab7a32da90063cec";"Initial commit";"2019-11-27T14:48:19Z";57447682;224453007

@@ -1,6 +1,9 @@
 from model import *
 
 def getInput(maxOptions):
+	"""
+	Main function that allows navigaion of text interface
+	"""
 	try:
 		choice = int(input("Choice: "))
 		if choice > maxOptions or choice < 0:
@@ -12,7 +15,9 @@ def getInput(maxOptions):
 		return -1
 
 def displayTable(header,cellSizes,data):
-	""" len of header must match len cellSizes and each row in data """
+	""" 
+	Draw elaborate table, of which you can set column width, header, and contents
+	"""
 	strFn = lambda n: f"{{:<{n}}}"
 	newCellSizes = tuple([max(cellSizes[i],len(header[i])) for i in range(len(cellSizes))])
 	modelRow = "|".join(map(strFn,newCellSizes)) # create generic row 
@@ -23,7 +28,6 @@ def displayTable(header,cellSizes,data):
 		trimmedRow = (repr(str(row[i]))[1:-1][:newCellSizes[i]] for i in range(len(row)))
 		print(modelRow.format(*trimmedRow))
 	print()
-
 
 
 def displayUsers():
@@ -55,11 +59,11 @@ def displayUsers():
 				print(f"ID: {userInfo[0]}")
 				print(f"Username: {userInfo[1]}")
 				print(f"Favorite programming language: {favLang}")
-				print(f"Number of public repositories: {userInfo[2]}")
+				print(f"Number of repositories: {len(repos)}")
 				print(f"Number of commits: {len(commits)}")
 				print(f"Number of issues submitted: {len(issues)}")
-				print(f"Number of followers: {userInfo[3]}")
-				print(f"Join date: {userInfo[4]}")
+				print(f"Number of followers: {userInfo[2]}")
+				print(f"Join date: {userInfo[3]}")
 				print()
 
 				repoHeader = ("Title","Description","Num. stars","Prog. language","Date created")
@@ -77,8 +81,8 @@ def displayUsers():
 					print("Commits:")
 					displayTable(commitHeader,commitSizes,commits)
 
-				issueHeader = ("Title","Repo. title","Repo. owner","Issue body","Date opened","Time opened")
-				issueSizes = (25,25,25,45,12,8)
+				issueHeader = ("Title","Repo. title","Repo. owner","Issue body","State","Num. comments","Date opened","Time opened")
+				issueSizes = (30,25,25,45,8,5,12,8)
 				if len(issues) > 15:
 					print("Fifteen most recent issues:")
 					displayTable(issueHeader,issueSizes,issues[:15])
@@ -137,8 +141,8 @@ def displayRepos():
 					print("Commits:")
 					displayTable(commitHeader,commitSizes,commits)
 
-				issueHeader = ("Title","Issuer","Issue body","Date opened","Time opened")
-				issueSizes = (25,25,45,12,8)
+				issueHeader = ("Title","Issuer","Issue body","State","Num. comments","Date opened","Time opened")
+				issueSizes = (30,25,45,8,5,12,8)
 				if len(issues) > 15:
 					print("Fifteen most recent issues:")
 					displayTable(issueHeader,issueSizes,issues[:15])
@@ -157,7 +161,7 @@ def displayRepos():
 def displayLangs():
 	langData = Language.getLangUsageInOrder()
 	while True:
-		langHeader = ("Programming language","Number of repos. language is used in","Number of commits language is used in")
+		langHeader = ("Programming language","Number of repos. language is used in","Number of commits to repos. that use the language")
 		langSizes = (15,10,10)
 		if len(langData) != 0:
 			print("Languages:")
@@ -174,7 +178,7 @@ def textInterface():
 		print("Retrieve data about:")
 		print("1) Users")
 		print("2) Repositories")
-		print("3) Programing languages")
+		print("3) Programming languages")
 		print()
 		print("0) Exit")
 

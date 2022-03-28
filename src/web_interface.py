@@ -28,7 +28,7 @@ def getFontFile(filename):
 
 @bottle.route("/<filename:re:.*\.js>","GET")
 def getScriptFile(filename):
-	return bottle.static_file(filename,root = 'static/scripts/')
+	return bottle.static_file(filename,root = 'static/js_scripts/')
 
 @bottle.route("/","GET")
 def main():
@@ -51,7 +51,7 @@ def search():
 	elif category == "repos":
 		split = value.split("/")
 		if len(split) != 2:
-			return bottle.redirect(f"/userNotFound")
+			return bottle.redirect(f"/repoNotFound")
 
 		username,repoName = split
 		user = User.getUserInfo(username)
@@ -76,12 +76,12 @@ def users():
 @bottle.route("/users/<username>","GET")
 def user(username): 
 	user = User.getUserInfo(username)
-	if user == None: # ali uporabnik sploh obstaja
+	if user == None: # does the user even exist?
 		return bottle.redirect(f"/userNotFound?username={username}")
 
-	userRepos = Repository.getAllReposOfOwner(user[1])
-	userCommits = Commit.getAllCommitsByUsername(user[1])
-	userIssues = Issue.getAllIssuesOfUser(user[1]) # added issues
+	userRepos = Repository.getAllReposOfOwner(username)
+	userCommits = Commit.getAllCommitsByUsername(username)
+	userIssues = Issue.getAllIssuesOfUser(username)
 	favLang = Language.getFavoriteLangOfUser(username)
 	return bottle.template("user.html",user = user,favLang = favLang,repos = userRepos,
 	commits = userCommits,issues = userIssues,account = getAccountCookie())
@@ -131,7 +131,7 @@ def loginForm():
 	username = bottle.request.forms.get("username")
 	password = bottle.request.forms.get("password")
 
-	if attemptLogin(username,password):
+	if validUsername(username) and validPassword(password) and attemptLogin(username,password):
 		bottle.response.set_cookie("account",username,secret=secretCkKey)
 		bottle.redirect("/")
 	bottle.redirect(f"/login?username={username}&loginFailed=0")
@@ -171,7 +171,7 @@ def registerForm():
 		bottle.redirect(f"/register?username={username}&registrationFailed=3")
 
 	# after validation, we create a new user
-	createNewUser(username,password,0) 
+	createNewUser(username,password,False)
 
 	if attemptLogin(username,password):
 		bottle.response.set_cookie("account",username,secret = secretCkKey)
@@ -194,6 +194,8 @@ def repoNotFound():
 	account = getAccountCookie())
 
 bottle.TEMPLATE_PATH.insert(0,'static/views')
-bottle.run(reloader = True,debug = True)
-userConn.close()
-conn.close()
+try:
+	bottle.run()
+finally:
+	userConn.close()
+	conn.close()
